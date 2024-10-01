@@ -5,7 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/Profilepage';
 import { useCallback, useState } from 'react';
-import { NavBar } from './components/NavBar';
+import { ProfileBlurb } from './components/ProfileBlurb';
 
 function App() {
   const [isLoggedIn,setIsLoggedIn]=useState(true);
@@ -13,15 +13,14 @@ function App() {
 
   return (
     <>
-      <NavBar/>
+      <Routes>
+      <Route path='/' element={<ProtectedRoute isLoggedIn={isLoggedIn} ><MainPage/></ProtectedRoute>}/>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/profile' element={<ProtectedRoute isLoggedIn={isLoggedIn}><ProfilePage/></ProtectedRoute>}/>
+      </Routes>
     </>
   );
 }
 
 export default App;
 
-//<Routes>
-// <Route path='/' element={<ProtectedRoute isLoggedIn={isLoggedIn} ><MainPage/></ProtectedRoute>}/>
-//  <Route path='/login' element={<LoginPage/>}/>
-//  <Route path='/profile' element={<ProtectedRoute isLoggedIn={isLoggedIn}><ProfilePage/></ProtectedRoute>}/>
-//</Routes>
