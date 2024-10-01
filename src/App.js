@@ -5,13 +5,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/Profilepage';
 import { useCallback, useState } from 'react';
-import { ProfileBlurb } from './components/ProfileBlurb';
-import { Suggestion } from './components/Suggestion';
 
 function App() {
   const [isLoggedIn,setIsLoggedIn]=useState(true);
-
-
   return (
     <>
       <Routes>
