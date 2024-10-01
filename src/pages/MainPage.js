@@ -1,16 +1,18 @@
 import React from "react";
+import { NavBar } from "../components/NavBar";
+import "./MainPage.css";
 
 const MainPage = () =>{
     return(
         <>
             <div className="d-flex my-4 mx-3 justify-content-evenly responsive-flex ">
-                <div className="bg-warning w-25 d-flex justify-content-center mx-2">
+                <div className="nav-right bg-warning d-flex justify-content-center mx-2">
+                    <NavBar/>
+                </div>
+                <div className="middle-collumn bg-primary d-flex justify-content-center mx-2">
                     <p>hello</p>
                 </div>
-                <div className="bg-primary w-50 d-flex justify-content-center mx-2">
-                    <p>hello</p>
-                </div>
-                <div className="bg-success w-25 d-flex justify-content-center mx-2">
+                <div className="nav-left bg-success d-flex justify-content-center mx-2">
                     <p>hello</p>
                 </div>
             </div>
