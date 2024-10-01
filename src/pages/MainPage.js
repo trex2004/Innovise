@@ -2,6 +2,7 @@ import React from "react";
 import { NavBar } from "../components/NavBar";
 import "./MainPage.css";
 import { ProfileBlurb } from "../components/ProfileBlurb";
+import { Suggestion } from "../components/Suggestion";
 
 const MainPage = () =>{
     return(
@@ -13,8 +14,9 @@ const MainPage = () =>{
                 <div className="middle-collumn bg-primary d-flex justify-content-center mx-2">
                     <p>hello</p>
                 </div>
-                <div className="nav-left bg-success d-flex justify-content-center mx-2">
+                <div className="nav-left bg-success d-flex justify-content-center mx-2 flex-column">
                     <ProfileBlurb/>
+                    <Suggestion/>
                 </div>
             </div>
         </>

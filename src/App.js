@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/Profilepage';
 import { useCallback, useState } from 'react';
 import { ProfileBlurb } from './components/ProfileBlurb';
+import { Suggestion } from './components/Suggestion';
 
 function App() {
   const [isLoggedIn,setIsLoggedIn]=useState(true);
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
       <Routes>
-      <Route path='/' element={<ProtectedRoute isLoggedIn={isLoggedIn} ><MainPage/></ProtectedRoute>}/>
+        <Route path='/' element={<ProtectedRoute isLoggedIn={isLoggedIn} ><MainPage/></ProtectedRoute>}/>
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/profile' element={<ProtectedRoute isLoggedIn={isLoggedIn}><ProfilePage/></ProtectedRoute>}/>
       </Routes>
