@@ -1,6 +1,7 @@
 import React from "react";
 import { NavBar } from "../components/NavBar";
 import "./MainPage.css";
+import { ProfileBlurb } from "../components/ProfileBlurb";
 
 const MainPage = () =>{
     return(
@@ -13,7 +14,7 @@ const MainPage = () =>{
                     <p>hello</p>
                 </div>
                 <div className="nav-left bg-success d-flex justify-content-center mx-2">
-                    <p>hello</p>
+                    <ProfileBlurb/>
                 </div>
             </div>
         </>
