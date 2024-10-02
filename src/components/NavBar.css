@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*to use this font just copy paste the above line int he css file where you want to use it - swayam*/
+
+.logo-div{
+    padding: 0%;
+}
+
+.logo-div-img{
+    /* width: 15vw !important; */
+    max-width:100% !important;
+    height:auto !important;
+}
+
+/*font used for right nav bar buttons - swayam*/
+/*use this method to style fonts - swayam*/
+.Poppins{
+    font-family: "Poppins" !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-size: medium !important;
+}
+
+.navbar-Button{
+    color: #FFFFFF !important;
+    justify-content: flex-start !important;
+    border-radius: 10px !important;
+}
+
+.navbar-Button:hover{
+    background-color: aqua;
+    color: #000000 !important;
+    justify-content: flex-start;
+}
+
+.nav-div{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+

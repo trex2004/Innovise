@@ -1,9 +1,41 @@
-.nav-right{
-    width: 20vw !important;
-}
-.middle-column{
-    width: 50vw !important;
-}
 .nav-left{
     width: 20vw !important;
+    height: 95vh !important;
+    background-color: #111111;
+    border-radius: 25px !important;
+    position: fixed; /* these three lines make the divs fixed on the page -swayam*/
+    top:3vh;
+    left: 2vw;
 }
+.middle-column{
+    height: 150vh !important; /*just for testing the fixedness for the nav divs - swayam*/
+    width: 50vw !important;
+    /* position: relative;
+    top:2.5vh; */
+    /* left: 2vw; */ 
+}
+.nav-right{
+    width: 20vw !important;
+    position: fixed;
+    top: 3vh;
+    right: 2vw;
+}
+
+@media screen and (max-width: 950px){
+    .nav-left{
+       display: none !important;
+    }
+    .nav-right{
+       display: none !important;
+    }
+    .middle-column{
+        width: 90vw !important;
+    }
+  }
+
+@media screen and (max-height: 475px){
+    .nav-left{
+       /* display: none !important; */
+       overflow: auto;
+    }
+  }
