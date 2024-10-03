@@ -11,9 +11,9 @@ export function Suggestion(){
             <h3>Suggested</h3>
 
             <div className="suggest-content">
-                {users.map((u)=>{
+                {users.map((u,i)=>{
                     return (
-                        <div className="suggest-option">
+                        <div className="suggest-option" key={i}>
                             <div className="pic-div"></div>
                             <div className="uname-div">{u.name}</div>
                             <button>Follow</button>
