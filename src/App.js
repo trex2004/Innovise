@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/Profilepage';
 import { useCallback, useState } from 'react';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   const [isLoggedIn,setIsLoggedIn]=useState(true);
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element={<ProtectedRoute isLoggedIn={isLoggedIn} ><MainPage/></ProtectedRoute>}/>
         <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/profile' element={<ProtectedRoute isLoggedIn={isLoggedIn}><ProfilePage/></ProtectedRoute>}/>
       </Routes>
     </>
