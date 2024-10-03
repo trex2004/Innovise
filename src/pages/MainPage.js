@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
 import { NavBar } from "../components/NavBar";
 import "./MainPage.css";
-import axios from "axios";
 import { ProfileBlurb } from "../components/ProfileBlurb";
 import { Suggestion } from "../components/Suggestion";
 import { SearchBar } from "../components/SearchBar";
+import api from "../components/axiosbaseurl.js";
 
 const MainPage = () =>{
 
     useEffect(() => {
         async function test(){
-            let data = await fetch("http://localhost:5000/");
-            data = await data.json();
-            console.log(data);
+            try {
+                let data = await api.get('/');
+                console.log(data.data); 
+            } catch (error) {
+                console.log("Opps!! something went wrong")
+            }
         }
 
         test();
