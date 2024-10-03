@@ -9,15 +9,13 @@ import { SearchBar } from "../components/SearchBar";
 const MainPage = () =>{
 
     useEffect(() => {
-        const test = async () => {
-            try {
-                const res = await axios.get('/');
-                console.log(res.data)
-            } catch (error) {
-                console.log("error")
-            }
+        async function test(){
+            let data = await fetch("http://localhost:5000/");
+            data = await data.json();
+            console.log(data);
         }
-        test()
+
+        test();
         
     },[])
 
