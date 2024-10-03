@@ -5,3 +5,5 @@ const api = axios.create({
 });
 
 export default api;
+
+//import this file to send requests to backend and just write api.get() to send request

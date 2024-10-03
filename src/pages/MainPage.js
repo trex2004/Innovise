@@ -4,14 +4,14 @@ import "./MainPage.css";
 import { ProfileBlurb } from "../components/ProfileBlurb";
 import { Suggestion } from "../components/Suggestion";
 import { SearchBar } from "../components/SearchBar";
-import api from "../components/axiosbaseurl.js";
+import api from "../components/axiosbaseurl.js"; //import this to send request
 
 const MainPage = () =>{
 
     useEffect(() => {
         async function test(){
             try {
-                let data = await api.get('/');
+                let data = await api.get('/'); //sending request to backend with axios
                 console.log(data.data); 
             } catch (error) {
                 console.log("Opps!! something went wrong")
