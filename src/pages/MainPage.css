@@ -6,6 +6,7 @@
     position: fixed; /* these three lines make the divs fixed on the page -swayam*/
     top:3vh;
     left: 2vw;
+    overflow: auto;
 }
 .middle-column{
     height: 150vh !important; /*just for testing the fixedness for the nav divs - swayam*/
