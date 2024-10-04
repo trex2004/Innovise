@@ -12,7 +12,7 @@ const ProtectedRoute = (props) => {
   useEffect(() => {
     const checkAuthorization = async () => {
       try {
-        const data = await api.get("/test",{headers: {Authorization: 'Bearer ' + authToken}})
+        const data = await api.get("/users/current",{headers: {Authorization: 'Bearer ' + authToken}})
         if (data.status === 200) {
         setIsAuthorized(true);
         }

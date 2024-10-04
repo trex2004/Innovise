@@ -11,7 +11,7 @@ const MainPage = () =>{
     useEffect(() => {
         async function test(){
             try {
-                let data = await api.get('/'); //sending request to backend with axios
+                let data = await api.get('/test'); //sending request to backend with axios
                 console.log(data.data); 
             } catch (error) {
                 console.log("Opps!! something went wrong")

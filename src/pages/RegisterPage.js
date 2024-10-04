@@ -17,10 +17,12 @@ const RegisterPage = (props) =>{
             bodyFormData.append("email",email)
             bodyFormData.append("password",password)
             bodyFormData.append("name",name)
-            await api.post("/users",bodyFormData)
+            const x = await api.post("/users",bodyFormData)
+            console.log(x)
             navigate("/login");
         } catch (error) {
             console.log("register page post error: sending name,email passowrd")
+            console.log(error)
         }
     }
 

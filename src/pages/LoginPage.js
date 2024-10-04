@@ -15,7 +15,7 @@ const LoginPage = (props) =>{
             var bodyFormData = new FormData();
             bodyFormData.append("password",password)
             bodyFormData.append("username",name)
-            const x = await api.post("/login",bodyFormData)
+            const x = await api.post("/users/login",bodyFormData)
             // console.log(x.data)
             localStorage.setItem("authToken",x.data.access_token)
             navigate("/");
