@@ -1,12 +1,14 @@
-import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Button, FormHelperText, TextField } from "@mui/material";
+import React, { useState } from "react";
 import api from "../components/axiosbaseurl";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = (props) =>{
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const navigate = useNavigate()
 
     const submitHandler = async (event) => {
         try {
@@ -15,7 +17,8 @@ const RegisterPage = (props) =>{
             bodyFormData.append("email",email)
             bodyFormData.append("password",password)
             bodyFormData.append("name",name)
-            const x = await api.post("/users",bodyFormData)
+            await api.post("/users",bodyFormData)
+            navigate("/login");
         } catch (error) {
             console.log("register page post error: sending name,email passowrd")
         }
