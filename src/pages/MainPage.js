@@ -5,8 +5,15 @@ import { ProfileBlurb } from "../components/ProfileBlurb";
 import { Suggestion } from "../components/Suggestion";
 import { SearchBar } from "../components/SearchBar";
 import api from "../components/axiosbaseurl.js"; //import this to send request
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () =>{
+
+    const navigate = useNavigate();
+
+    const toProfilePage = () => {
+        navigate("/profile")
+    }
 
     useEffect(() => {
         async function test(){
@@ -22,6 +29,8 @@ const MainPage = () =>{
         
     },[])
 
+
+
     return(
         <>
             <div className="d-flex my-4 mx-3 justify-content-evenly responsive-flex ">
@@ -32,7 +41,9 @@ const MainPage = () =>{
                     <SearchBar/>
                 </div>
                 <div className="nav-right bg-success d-flex justify-content-center mx-2 flex-column">
-                    <ProfileBlurb/>
+                    <div onClick={toProfilePage}>
+                        <ProfileBlurb/>
+                    </div>
                     <Suggestion/>
                 </div>
             </div>

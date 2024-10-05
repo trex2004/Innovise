@@ -1,0 +1,44 @@
+.nav-left-profile-page{
+    width: 20vw !important;
+    height: 95vh !important;
+    background-color: #111111;
+    border-radius: 25px !important;
+    position: fixed; /* these three lines make the divs fixed on the page -swayam*/
+    top:3vh;
+    left: 2vw;
+    overflow: auto;
+}
+
+.middle-column-profile-page{
+    height: fit-content;
+    width: 50vw !important;
+
+    /* position: relative;
+    top:2.5vh; */
+    /* left: 2vw; */ 
+}
+.nav-right{
+    width: 20vw !important;
+    position: fixed;
+    top: 3vh;
+    right: 2vw;
+}
+
+@media screen and (max-width: 950px){
+    .nav-left{
+       display: none !important;
+    }
+    .nav-right{
+       display: none !important;
+    }
+    .middle-column-profile-page{
+        width: 90vw !important;
+    }
+  }
+
+@media screen and (max-height: 475px){
+    .nav-left{
+       /* display: none !important; */
+       overflow: auto;
+    }
+  }
