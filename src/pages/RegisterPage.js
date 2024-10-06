@@ -8,6 +8,7 @@ const RegisterPage = (props) =>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const [fullname, setFullName] = useState('');
     const navigate = useNavigate()
 
     const submitHandler = async (event) => {
@@ -17,11 +18,12 @@ const RegisterPage = (props) =>{
             bodyFormData.append("email",email)
             bodyFormData.append("password",password)
             bodyFormData.append("name",name)
+            bodyFormData.append("fullname",name)
             const x = await api.post("/users",bodyFormData)
             console.log(x)
             navigate("/login");
         } catch (error) {
-            console.log("register page post error: sending name,email passowrd")
+            console.log("register page post error: sending name,email,passowrd,full name")
             console.log(error)
         }
     }
@@ -33,7 +35,8 @@ const RegisterPage = (props) =>{
                 <form onSubmit={submitHandler}>
                     <TextField required label="Email" value={email} onInput={ e=>setEmail(e.target.value)} type="email"/>
                     <TextField required label="Password" value={password} onInput={ e=>setPassword(e.target.value)} type="password"/>
-                    <TextField required label="Name" value={name} onInput={ e=>setName(e.target.value)}/>
+                    <TextField required label="UserName" value={name} onInput={ e=>setName(e.target.value)}/>
+                    <TextField required label="Full Name" value={fullname} onInput={ e=>setFullName(e.target.value)}/>
                     <FormHelperText/>
                     <Button type="submit">Sumbit</Button>
                 </form>

@@ -2,6 +2,7 @@ import { Button, FormHelperText, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../components/axiosbaseurl";
+import { jwtDecode } from "jwt-decode";
 
 const LoginPage = (props) =>{
 
@@ -16,7 +17,11 @@ const LoginPage = (props) =>{
             bodyFormData.append("password",password)
             bodyFormData.append("username",name)
             const x = await api.post("/users/login",bodyFormData)
-            // console.log(x.data)
+            const token = x.data.access_token
+            const username = jwtDecode(token).sub;
+            const userId = await api.get("/users/name/"+username)
+            localStorage.setItem("username",username)
+            localStorage.setItem("id",userId.data.payload._id)
             localStorage.setItem("authToken",x.data.access_token)
             navigate("/");
         } catch (error) {
