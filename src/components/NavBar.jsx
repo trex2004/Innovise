@@ -6,12 +6,20 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import HowToRegRoundedIcon from '@mui/icons-material/HowToRegRounded';
 import TipsAndUpdatesRoundedIcon from '@mui/icons-material/TipsAndUpdatesRounded';
 import WorkRoundedIcon from '@mui/icons-material/WorkRounded';
+import { useNavigate } from "react-router-dom";
 
-const handleClick = (value) =>{
-    console.log(value)
-}
 
 export function NavBar(){
+    
+    const navigate = useNavigate();
+
+    const handleClick = (value) =>{
+        if(value=='Trending'){
+            navigate("/")
+        }
+        console.log(value)
+    }
+
     return (
         <div className="side-div d-flex flex-column  ">
             <div className="logo-div d-flex my-3">
