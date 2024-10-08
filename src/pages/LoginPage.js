@@ -33,17 +33,16 @@ const LoginPage = (props) => {
 
   return (
     <>
-      <div className="tw-m-0 tw-overflow-x-auto tw-overflow-y-hidden tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full tw-relative tw-bg-[#111]">
+      <div className="side-content tw-m-0 tw-overflow-x-auto tw-overflow-y-hidden tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[100vh] tw-relative tw-bg-[#111]">
         <div className="vdo">
           <SideVideo />
         </div>
-        <div className="tw-w-[45vw] tw-h-screen tw-flex tw-flex-col tw-justify-center tw-items-center">
-          <div className="tw-h-32 tw-my-0 tw--mt-16">
+        <div className="outer-container tw-w-[45vw] tw-h-auto tw-flex tw-flex-col tw-justify-center tw-items-center">
+          <div className="image tw-h-32 tw-my-0 tw--mt-16">
             <img src={myImage} alt="Logo" className="tw-h-auto" />
           </div>
-
           <div className="container">
-            <div className="heading">{"Login"}</div>
+            <div className="heading tw-text-6xl">Login</div>
             <form onSubmit={submitHandler} className="form">
               <input
                 className="input"
@@ -61,9 +60,9 @@ const LoginPage = (props) => {
                 type="password"
               />
               <span className="forgot-password">
-                <a href="#">{"Forgot Password"}</a>
+                Don't have an account? <a href="/register">{"Register"}</a>
               </span>
-              <div className="tw-flex tw-justify-center tw-items-center">
+              <div className="flex tw-justify-center tw-items-center">
                 <Button
                   type="submit"
                   variant="contained"
