@@ -2,7 +2,7 @@ import "./ProfileBlurb.css"
 
 export function ProfileBlurb(){
     return (
-        <div className="profile-blurb-div">
+        <div className="profile-blurb-div border">
             <div className="profile-details-div">
                 <div className="profile-pic-div">
 

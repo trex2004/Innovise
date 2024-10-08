@@ -7,7 +7,7 @@ export function Suggestion(){
         {"pic":"","name":"B"},
     ]);
     return (
-        <div className="suggest-div">
+        <div className="suggest-div border border-black">
             <h3>Suggested</h3>
 
             <div className="suggest-content">

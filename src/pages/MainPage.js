@@ -40,7 +40,7 @@ const MainPage = () =>{
                 <div className="middle-column bg-primary d-flex justify-content-center mx-2">
                     <SearchBar/>
                 </div>
-                <div className="nav-right bg-success d-flex justify-content-center mx-2 flex-column">
+                <div className="nav-right d-flex justify-content-center mx-2 flex-column gap-3">
                     <div onClick={toProfilePage}>
                         <SideProfile/> 
                     </div>

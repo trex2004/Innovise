@@ -1,7 +1,7 @@
 /* App.css */
 
 .profile-card {
-  background-color: #333;
+  background-color: #111111;
   color: #fff;
   border-radius: 20px;
   padding: 20px;
@@ -36,7 +36,7 @@
 
 .edit-btn {
   background-color: #fff;
-  color: #333;
+  color: #111111;
   border: none;
   padding: 10px 20px;
   border-radius: 10px;

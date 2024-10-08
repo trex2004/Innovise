@@ -14,7 +14,7 @@ const ProfilePage = () =>{
                 <div className="middle-column-profile-page d-flex justify-content-center mx-2">
                     <ProfilePageHeader/>
                 </div>
-                <div className="nav-right bg-success d-flex justify-content-center mx-2 flex-column">
+                <div className="nav-right d-flex justify-content-center mx-2 flex-column">
                     <Suggestion/>
                 </div>
             </div>
