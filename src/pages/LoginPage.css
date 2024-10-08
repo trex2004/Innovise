@@ -1,18 +1,21 @@
 .container {
+  
+  height:30%;
   width : 25vw;
   background: #111111;
   border-radius: 20px;
-  padding: 25px 35px;
+  padding: 2vh 2vw;
   border: 2px solid rgb(29, 29, 29);
- 
   margin: 20px;
+  
 }
+
 .heading {
   text-align: center;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 5vh;
   color: #36A6B2;
- 
+  height:8vh;
   filter: drop-shadow(0px 5.81px 72.63px #36A6B2 ); /* Used equivalent color */
 }
 
@@ -29,6 +32,7 @@
   margin-top: 15px;
   color: white;
   border-inline: 2px solid transparent;
+  height: 8vh;
 }
 
 .form .input::placeholder {
@@ -58,6 +62,9 @@
   padding-block: 15px;
   margin: 20px auto;
   border-radius: 20px;
+  height: 8vh;
+  justify-content: center;
+  font-size: 2vh;
   
 }
 @media screen and (max-width: 780px){
@@ -67,10 +74,30 @@
   }
 
   .container {
-    width : 80vw;
+    max-width : 80vw;
+    max-height: fit-content;
    
-    height : 100%;
+
     justify-items: center;
-    
   }
+  
+  .outer-container{
+   
+    
+    height:100vh
+  }
+
+  
+}
+
+@media screen and (max-height: 600px){
+
+.image{
+  display: none;
+}
+.container{
+  scale: 90%;
+  height: auto;
+}
+
 }
