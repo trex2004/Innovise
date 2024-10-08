@@ -6,16 +6,22 @@ import api from "./axiosbaseurl";
 export function ProfilePageHeaderOtherUser(props) {
 
     const userName = props.userName
+    const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'))
     const [userDetails, setUserDetails] = useState("");
     const [userTags, setUserTags] = useState([]);
+    const [userId, setUserId] = useState();
+    const [isFollowing, setIsFollowing] = useState();
 
     useEffect(() => {
         const getUserDetails = async () => {
             try {
                 const temp = await api.get("/users/name/"+userName)
-                const userId = temp.data.payload._id
-                const x = await api.get("/users/" + userId)
-                const y = await api.get("/users/" + userId + "/interests")
+                const tempUserId = temp.data.payload._id
+                const x = await api.get("/users/" + tempUserId)
+                const y = await api.get("/users/" + tempUserId + "/interests")
+                const z = await api.get("/users/following/"+userId,{headers: {Authorization: 'Bearer ' + authToken}})
+                setIsFollowing(z.data.payload)
+                setUserId(tempUserId)
                 setUserTags(y.data.payload)
                 setUserDetails(x.data.payload)
             }
@@ -25,10 +31,25 @@ export function ProfilePageHeaderOtherUser(props) {
             }
         }
         getUserDetails()
-    }, [userName])
+    }, [userName,userId])
 
-    const handleFollow = () => {
-        console.log("Follow");
+    const handleFollow = async () => {
+        try {
+            var bodyFormData = new FormData();
+            bodyFormData.append("name",userName)
+            if(isFollowing){
+                bodyFormData.append("delete",1)
+                await api.post("/users/following",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
+                setIsFollowing(false)
+            }
+            else{
+                bodyFormData.append("delete",0)
+                await api.post("/users/following",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
+                setIsFollowing(true)
+            }
+        } catch (error) {
+            console.log("Some error in following: other user header")
+        }
     }
 
     const tagsHtml = userTags.map((tag, i) => {
@@ -51,7 +72,7 @@ export function ProfilePageHeaderOtherUser(props) {
                             <div className="h2">{userDetails.fullname}</div>
                             <div className="">{userDetails.bio}</div>
                         </div>
-                        <div className="rounded-pill border px-3 py-1 edit-div-profile-header" onClick={handleFollow}>Follow</div>
+                        <div className="rounded-pill border px-3 py-1 edit-div-profile-header" onClick={handleFollow}>{isFollowing?"Unfollow":"Follow"}</div>
                     </div>
                 </div>
                 <div className=" profilepage-tag-div d-flex flex-wrap gap-2 m-3">

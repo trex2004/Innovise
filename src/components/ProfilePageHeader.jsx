@@ -11,6 +11,8 @@ export function ProfilePageHeader() {
     const [userDetails, setUserDetails] = useState("");
     const [userTags, setUserTags] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
+    const [reload,setReload] = useState(false);
     const userId = localStorage.getItem("id")
     // console.log(userId)
 
@@ -28,9 +30,8 @@ export function ProfilePageHeader() {
             }
         }
         getUserDetails()
-    }, [])
+    }, [reload])
 
-    // console.log(userDetails)
 
     const tagsHtml = userTags.map((tag, i) => {
         return (
@@ -42,11 +43,16 @@ export function ProfilePageHeader() {
 
     const addTags = async (values) => {
         try {
-            const x = []
+            var bodyFormData = new FormData();
+            var i=1;
             values.tags.forEach(tag => {
-                x.push(tag.tag)
+                bodyFormData.append(`interest[${i}]`,tag.tag)
+                i++;
             });
-            console.log(x);
+            bodyFormData.append("num",values.tags.length)
+            await api.post("/users/interests",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
+            setReload(!reload)
+            setShowModal(false)
         } catch (error) {
             console.log(error)
             console.log("add tag modal issue")
