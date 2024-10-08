@@ -60,7 +60,7 @@ const LoginPage = (props) => {
                 type="password"
               />
               <span className="forgot-password">
-                Don't have an account? <a href="#">{"Register"}</a>
+                Don't have an account? <a href="/register">{"Register"}</a>
               </span>
               <div className="flex tw-justify-center tw-items-center">
                 <Button

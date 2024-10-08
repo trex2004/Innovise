@@ -80,7 +80,7 @@ const RegisterPage = (props) => {
                                 onInput={e => setFullName(e.target.value)}
                             />
                             <span className="forgot-password">
-                                Already have an account? <a href="#">{"Login"}</a>
+                                Already have an account? <a href="/login">{"Login"}</a>
                             </span>
                             <div className="flex tw-justify-center tw-items-center">
                                 <Button
