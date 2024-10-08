@@ -48,6 +48,8 @@
   display: block;
   margin-top: 10px;
   margin-left: 10px;
+  font-size: 10px;
+  color: white;
 }
 
 .form .forgot-password a {
