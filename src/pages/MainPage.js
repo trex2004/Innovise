@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NavBar } from "../components/NavBar";
 import "./MainPage.css";
-import { ProfileBlurb } from "../components/ProfileBlurb";
+import { SideProfile } from "../components/SideProfile"; // Change of component
 import { Suggestion } from "../components/Suggestion";
 import { SearchBar } from "../components/SearchBar";
 import api from "../components/axiosbaseurl.js"; //import this to send request
@@ -42,7 +42,7 @@ const MainPage = () =>{
                 </div>
                 <div className="nav-right bg-success d-flex justify-content-center mx-2 flex-column">
                     <div onClick={toProfilePage}>
-                        <ProfileBlurb/>
+                        <SideProfile/> 
                     </div>
                     <Suggestion/>
                 </div>
