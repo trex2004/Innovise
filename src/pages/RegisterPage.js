@@ -81,7 +81,7 @@ const RegisterPage = (props) => {
                             />
                             <span className="forgot-password">
                                 <a href="#">
-                                    {"Register"}
+                                    {"Login"}
                                 </a>
                             </span>
                             <div className="flex tw-justify-center tw-items-center">

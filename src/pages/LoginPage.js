@@ -61,7 +61,7 @@ const LoginPage = (props) => {
                 type="password"
               />
               <span className="forgot-password">
-                <a href="#">{"Login"}</a>
+                <a href="#">{"Forgot Password"}</a>
               </span>
               <div className="tw-flex tw-justify-center tw-items-center">
                 <Button
@@ -69,7 +69,7 @@ const LoginPage = (props) => {
                   variant="contained"
                   className="login-button tw-px-8 tw-py-3 tw-border-0 tw-bg-[#36A6B2] tw-text-white tw-font-bold tw-transition-all tw-duration-500 hover:tw-bg-[#669ca2] hover:tw-shadow-lg hover:tw-scale-110 active:tw-bg-[#19484d] active:tw-scale-95"
                 >
-                  {"Register"}
+                  {"Login"}
                 </Button>
               </div>
             </form>

@@ -27,6 +27,9 @@ export function ProfilePageHeaderOtherUser(props) {
         getUserDetails()
     }, [userName])
 
+    const handleFollow = () => {
+        console.log("Follow");
+    }
 
     const tagsHtml = userTags.map((tag, i) => {
         return (
@@ -48,6 +51,7 @@ export function ProfilePageHeaderOtherUser(props) {
                             <div className="h2">{userDetails.fullname}</div>
                             <div className="">{userDetails.bio}</div>
                         </div>
+                        <div className="rounded-pill border px-3 py-1 edit-div-profile-header" onClick={handleFollow}>Follow</div>
                     </div>
                 </div>
                 <div className=" profilepage-tag-div d-flex flex-wrap gap-2 m-3">
