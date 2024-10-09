@@ -1,5 +1,12 @@
 /* App.css */
 
+.Poppins{
+  font-family: "Poppins" !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: medium !important;
+}
+
 .profile-card {
   background-color: #111111;
   color: #fff;
@@ -12,7 +19,7 @@
   
 .profile-image {
   border-radius: 50%;
-  overflow: hidden;
+  overflow: auto;
   width: 35%;
   height: 35%;
   margin: 0 auto;

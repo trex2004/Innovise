@@ -40,11 +40,13 @@ const MainPage = () =>{
                 <div className="middle-column bg-primary d-flex justify-content-center mx-2">
                     <SearchBar/>
                 </div>
-                <div className="nav-right d-flex justify-content-center mx-2 flex-column gap-3">
-                    <div onClick={toProfilePage}>
+                <div className="nav-right mx-2">
+                    <div onClick={toProfilePage} className="mb-4">
                         <SideProfile/> 
                     </div>
-                    <Suggestion/>
+                    <div>
+                        <Suggestion/>
+                    </div>
                 </div>
             </div>
         </>

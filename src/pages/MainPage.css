@@ -6,7 +6,7 @@
     position: fixed; /* these three lines make the divs fixed on the page -swayam*/
     top:3vh;
     left: 2vw;
-    overflow: auto;
+    overflow:auto;
 }
 .middle-column{
     height: 150vh !important; /*just for testing the fixedness for the nav divs - swayam*/
@@ -20,6 +20,8 @@
     position: fixed;
     top: 3vh;
     right: 2vw;
+    height:95vh;
+    overflow: auto !important;
 }
 
 @media screen and (max-width: 950px){
@@ -36,6 +38,13 @@
 
 @media screen and (max-height: 475px){
     .nav-left{
+       /* display: none !important; */
+       overflow: auto;
+    }
+  }
+
+@media screen and (max-height: 475px){
+    .nav-right{
        /* display: none !important; */
        overflow: auto;
     }

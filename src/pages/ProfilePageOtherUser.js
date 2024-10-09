@@ -18,7 +18,7 @@ const ProfilePageOtherUser = (props) =>{
                 <div className="middle-column-profile-page d-flex justify-content-center mx-2">
                     <ProfilePageHeaderOtherUser userName={userName}/>
                 </div>
-                <div className="nav-right bg-success d-flex justify-content-center mx-2 flex-column">
+                <div className="nav-right mx-2 ">
                     <Suggestion/>
                 </div>
             </div>

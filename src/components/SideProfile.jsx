@@ -21,7 +21,7 @@ export function SideProfile() {
   if (userDetails){
     
       return (
-        <div className="profile-card">
+        <div className="profile-card Poppins">
           <div className="profile-image">
             <img
               src={testProfilepic} // Replace with your image URL

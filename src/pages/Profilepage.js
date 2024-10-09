@@ -3,6 +3,7 @@ import { NavBar } from "../components/NavBar";
 import { Suggestion } from "../components/Suggestion";
 import { ProfilePageHeader } from "../components/ProfilePageHeader";
 import "./ProfilePage.css"
+import { FollowerList } from "../components/FollowerList";
 
 const ProfilePage = () =>{
     return(
@@ -14,8 +15,8 @@ const ProfilePage = () =>{
                 <div className="middle-column-profile-page d-flex justify-content-center mx-2">
                     <ProfilePageHeader/>
                 </div>
-                <div className="nav-right d-flex justify-content-center mx-2 flex-column">
-                    <Suggestion/>
+                <div className="nav-right mx-2">
+                    <FollowerList/>
                 </div>
             </div>
         </>

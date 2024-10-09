@@ -1,35 +1,50 @@
 .suggest-div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    background-color: #111111;
+    color: white;
+    border-radius: 20px !important;
 
-.suggest-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.suggest-option{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
 }
 
 .pic-div{
-    border: 1px solid black;
     border-radius: 100%;
     width: 20px;
     height: 20px;
-    margin-right: 10px;
+}
+
+.Poppins{
+    font-family: "Poppins" !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-size: medium !important;
+}
+
+.suggestions-picture-div{
+    width: 33%;
+
+}
+
+.suggestions-picture-internal-div{
+    max-height: 80% !important;
+    max-width: 80% !important ;
+    border: 0.3vh;
+    border-color: aqua;
+    border-style: solid;
+    /* margin-top: auto !important;
+    margin-bottom: auto !important; */
+}
+
+.visit-div-suggestions{ 
+    width:fit-content ;
+    cursor: pointer;
+}
+
+.Poppins-sugg{
+    font-family: "Poppins" !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-size: 1vi !important;
 }
 
 .uname-div{
-    justify-content: center;
-    align-items: center; 
-    margin-right: 5px;
+    cursor: pointer;
 }

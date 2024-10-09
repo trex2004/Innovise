@@ -4,7 +4,7 @@ export function SearchBar(){
     return (
         <div className="search-div">
             <div className="search-div-top">
-                <div className="pic-div"></div>
+                <div></div>
                 <form action="">
                     <input type="text"/>
                 </form>

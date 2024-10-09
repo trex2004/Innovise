@@ -5,7 +5,7 @@ import testProfilepic from "./test-profile-pic.jpg"
 import { useNavigate } from "react-router-dom";
 
 
-export function Suggestion(){
+export function FollowerList(){
 
     const [users,setUsers] = useState([]);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'))
@@ -15,7 +15,7 @@ export function Suggestion(){
     useEffect(()=> {
         const getSuggestions = async () => {
             try {
-                const x = await api.get("/users/suggestions",{headers: {Authorization: 'Bearer ' + authToken}})
+                const x = await api.get("/users/suggestions",{headers: {Authorization: 'Bearer ' + authToken}}) //temp until route is made - swayam
                 const data = x.data.payload
                 setUsers(data)
             } catch (error) {
@@ -44,7 +44,7 @@ export function Suggestion(){
                     <div className="uname-div align-self-center Poppins-sugg" onClick={() => handleClick(user.name)}>{user.fullname}</div>
                 </div>  
                 <div className="d-flex me-2">
-                    <button className="rounded-pill border px-2 py-1 visit-div-suggestions align-self-center Poppins-sugg" onClick={() => handleClick(user.name)}>View</button>
+                    <button className="rounded-pill border px-2 py-1 visit-div-suggestions align-self-center Poppins-sugg " onClick={() => handleClick(user.name)}>View</button>
                 </div>
             </div>
         )
@@ -52,7 +52,7 @@ export function Suggestion(){
     return (
         <div className="suggest-div d-flex flex-column gap-3 p-2  justify-content-center Poppins">
             <div className="align-self-center mt-3">
-                <div className="h5">Suggested</div>
+                <div className="h5">My Followers</div>
             </div>
 
             <div className="suggest-content d-flex flex-column gap-3">

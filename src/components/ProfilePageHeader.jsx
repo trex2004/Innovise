@@ -5,6 +5,7 @@ import api from "./axiosbaseurl";
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { Button, Form, Input, Modal, Space } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
 export function ProfilePageHeader() {
 
@@ -71,7 +72,7 @@ export function ProfilePageHeader() {
                             <div className="h2">{userDetails.fullname}</div>
                             <div className="">{userDetails.bio}</div>
                         </div>
-                        <div className="rounded-pill border px-3 py-1 edit-div-profile-header">Edit</div>
+                        <div className="rounded-pill border ps-2 pe-3 py-2 edit-div-profile-header"><EditRoundedIcon/> Edit</div>
                     </div>
                 </div>
                 <div className=" profilepage-tag-div d-flex flex-wrap gap-2 m-3">
