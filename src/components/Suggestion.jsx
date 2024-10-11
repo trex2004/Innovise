@@ -17,6 +17,7 @@ export function Suggestion(){
             try {
                 const x = await api.get("/users/suggestions",{headers: {Authorization: 'Bearer ' + authToken}})
                 const data = x.data.payload
+                console.log(data)
                 setUsers(data)
             } catch (error) {
                 console.log("Error in seggestions component while feting data")

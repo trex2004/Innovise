@@ -17,7 +17,7 @@
     top:2.5vh; */
     /* left: 2vw; */ 
 }
-.nav-right{
+.nav-right-profile-page{
     width: 20vw !important;
     position: fixed;
     top: 3vh;
@@ -28,7 +28,7 @@
     .nav-left-profile-page{
        display: none !important;
     }
-    .nav-right{
+    .nav-right-profile-page{
        display: none !important;
     }
     .middle-column-profile-page{

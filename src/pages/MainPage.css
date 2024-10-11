@@ -11,8 +11,8 @@
 .middle-column{
     height: 150vh !important; /*just for testing the fixedness for the nav divs - swayam*/
     width: 50vw !important;
-    /* position: relative;
-    top:2.5vh; */
+    position: relative;
+    top:3vh;
     /* left: 2vw; */ 
 }
 .nav-right{
@@ -24,12 +24,19 @@
     overflow: auto !important;
 }
 
+.nav-top{
+    display: none;
+}
+
 @media screen and (max-width: 950px){
     .nav-left{
        display: none !important;
     }
     .nav-right{
        display: none !important;
+    }
+    .nav-top{
+        display: contents !important;
     }
     .middle-column{
         width: 90vw !important;
@@ -38,14 +45,12 @@
 
 @media screen and (max-height: 475px){
     .nav-left{
-       /* display: none !important; */
        overflow: auto;
     }
   }
 
 @media screen and (max-height: 475px){
     .nav-right{
-       /* display: none !important; */
        overflow: auto;
     }
   }

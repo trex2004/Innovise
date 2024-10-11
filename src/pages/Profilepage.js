@@ -1,6 +1,5 @@
 import React from "react";
 import { NavBar } from "../components/NavBar";
-import { Suggestion } from "../components/Suggestion";
 import { ProfilePageHeader } from "../components/ProfilePageHeader";
 import "./ProfilePage.css"
 import { FollowerList } from "../components/FollowerList";
@@ -15,7 +14,7 @@ const ProfilePage = () =>{
                 <div className="middle-column-profile-page d-flex justify-content-center mx-2">
                     <ProfilePageHeader/>
                 </div>
-                <div className="nav-right mx-2">
+                <div className="nav-right-profile-page mx-2">
                     <FollowerList/>
                 </div>
             </div>

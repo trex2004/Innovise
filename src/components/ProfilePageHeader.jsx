@@ -77,7 +77,7 @@ export function ProfilePageHeader() {
                 </div>
                 <div className=" profilepage-tag-div d-flex flex-wrap gap-2 m-3">
                     {tagsHtml}
-                    <div className="rounded-pill ps-2 pe-3 py-2 tag-single-div Poppins" onClick={() => setShowModal(true)}><AddRoundedIcon /> Add</div>
+                    <div className="rounded-pill ps-2 pe-3 py-2 tag-single-div tag-edit-div Poppins" onClick={() => setShowModal(true)}><AddRoundedIcon /> Add</div>
                 </div>
             </div>
             <Modal title="Add Tags" open={showModal} onCancel={() => setShowModal(false)} destroyOnClose={true} footer={false} >
