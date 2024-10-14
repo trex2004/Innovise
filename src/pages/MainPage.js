@@ -4,6 +4,7 @@ import "./MainPage.css";
 import { SideProfile } from "../components/SideProfile"; // Change of component
 import { Suggestion } from "../components/Suggestion";
 import { SearchBar } from "../components/SearchBar";
+import { PostContainer } from "../components/PostContainer.jsx";
 import api from "../components/axiosbaseurl.js"; //import this to send request
 import { useNavigate } from "react-router-dom";
 import TopNavbar from "../components/TopNavbar.jsx";
@@ -54,6 +55,7 @@ const MainPage = () =>{
                         </div>
                         <div className="middle-column bg-primary d-flex flex-column mx-2">
                             <SearchBar/>
+                            <PostContainer/>
                         </div>
                         <div className="nav-right mx-2">
                             <div onClick={toProfilePage} className="mb-4">
