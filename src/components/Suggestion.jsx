@@ -50,6 +50,7 @@ export function Suggestion(){
             </div>
         )
     })
+    
     return (
         <div className="suggest-div d-flex flex-column gap-3 p-2  justify-content-center Poppins">
             <div className="align-self-center mt-3">

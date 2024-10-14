@@ -35,9 +35,9 @@
     .nav-right{
        display: none !important;
     }
-    .nav-top{
+    /* .nav-top{
         display: contents !important;
-    }
+    } */
     .middle-column{
         width: 90vw !important;
     }

@@ -1,13 +1,7 @@
-.search-div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.search-div-bottom{
+    width: 100%;
 }
 
 .search-div-top{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
 }
