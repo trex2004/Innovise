@@ -53,7 +53,7 @@ const MainPage = () =>{
                         <div className="nav-left d-flex justify-content-center mx-2 rounded">
                             {isOpen && <NavBar/>}
                         </div>
-                        <div className="middle-column bg-primary d-flex flex-column mx-2">
+                        <div className="middle-column d-flex flex-column mx-2">
                             <SearchBar/>
                             <PostContainer/>
                         </div>
