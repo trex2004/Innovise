@@ -4,7 +4,7 @@ import testProfilepic from "./test-profile-pic.jpg"
 export function Post(){
     return (
         <Flex gap="middle" vertical align="center" style={{"marginBottom":"1vi"}}>
-            <Card style={{"width":"100%","backgroundColor":"#081E20"}}>
+            <Card style={{"width":"100%","backgroundColor":"#081E20","border":"none","borderRadius":"20px"}}>
                 <Flex gap="middle" align="center" style={{"marginBottom":"1vi"}}>
                     <Flex justify="flex-start" align="center" style={{"width":"70%"}}>
                         <Avatar src={testProfilepic} style={{"marginRight":"1vi","width":"15%","height":"15%"}}/>

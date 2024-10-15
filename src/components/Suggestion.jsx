@@ -5,7 +5,7 @@ import testProfilepic from "./test-profile-pic.jpg"
 import { useNavigate } from "react-router-dom";
 
 
-export function Suggestion(){
+export function Suggestion(props){
 
     const [users,setUsers] = useState([]);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'))

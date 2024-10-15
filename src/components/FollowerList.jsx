@@ -15,7 +15,7 @@ export function FollowerList(){
     useEffect(()=> {
         const getSuggestions = async () => {
             try {
-                const x = await api.get("/users/suggestions",{headers: {Authorization: 'Bearer ' + authToken}}) //temp until route is made - swayam
+                const x = await api.get("/users/followers",{headers: {Authorization: 'Bearer ' + authToken}}) //temp until route is made - swayam
                 const data = x.data.payload
                 setUsers(data)
             } catch (error) {

@@ -4,6 +4,7 @@ import { Suggestion } from "../components/Suggestion";
 import "./ProfilePage.css"
 import { useParams } from "react-router-dom";
 import { ProfilePageHeaderOtherUser } from "../components/ProfilePageHeaderOtherUser";
+import { PostContainer } from "../components/PostContainer";
 
 const ProfilePageOtherUser = (props) =>{
 
@@ -15,8 +16,9 @@ const ProfilePageOtherUser = (props) =>{
                 <div className="nav-left-profile-page d-flex justify-content-center mx-2 ">
                     <NavBar/>
                 </div>
-                <div className="middle-column-profile-page d-flex justify-content-center mx-2">
+                <div className="middle-column-profile-page d-flex flex-column justify-content-center mx-2">
                     <ProfilePageHeaderOtherUser userName={userName}/>
+                    <PostContainer/>
                 </div>
                 <div className="nav-right mx-2 ">
                     <Suggestion/>

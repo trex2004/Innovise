@@ -25,8 +25,8 @@
 }
 
 .post-button{
-    color: darkgray !important;
-    border: darkgray solid 2px !important;
+    color: lightgray !important;
+    border: lightgray solid 2px !important;
 }
 
 .base-post-button{
@@ -70,12 +70,12 @@
     font-family: "Poppins" !important;
     font-weight: 400 !important;
     font-style: normal !important;
-    font-size:larger !important;
+    font-size: 1.5vmax !important;
 }
 
 .Poppins-create-post-sub-button{
     font-family: "Poppins" !important;
     font-weight: 300 !important;
     font-style: normal !important;
-    font-size:medium !important;
+    font-size: 1vmax !important;
 }

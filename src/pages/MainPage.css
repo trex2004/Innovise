@@ -1,7 +1,7 @@
 .nav-left{
     width: 20vw !important;
     height: 95vh !important;
-    background-color: #111111;
+    background-color: #181818;
     border-radius: 25px !important;
     position: fixed; /* these three lines make the divs fixed on the page -swayam*/
     top:3vh;
