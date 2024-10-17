@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavBar } from "../components/NavBar";
 import { Suggestion } from "../components/Suggestion";
 import "./ProfilePage.css"
 import { useParams } from "react-router-dom";
 import { ProfilePageHeaderOtherUser } from "../components/ProfilePageHeaderOtherUser";
 import { PostContainer } from "../components/PostContainer";
+import api from "../components/axiosbaseurl";
 
 const ProfilePageOtherUser = (props) =>{
 
+    const [userId, setUserId] = useState();
     const userName = useParams().username
+
+    
+    useEffect(() => {
+        const getUserID = async () => {
+            try {
+                const temp = await api.get("/users/name/"+userName)
+                const tempUserId = temp.data.payload._id
+                setUserId(tempUserId)
+            } catch (error) {
+                console.log("Error while trying to get userid in other user profile page")
+            }
+        }
+        getUserID()
+    },[userName])
 
     return(
         <>
@@ -18,7 +34,7 @@ const ProfilePageOtherUser = (props) =>{
                 </div>
                 <div className="middle-column-profile-page d-flex flex-column justify-content-center mx-2">
                     <ProfilePageHeaderOtherUser userName={userName}/>
-                    <PostContainer/>
+                    <PostContainer id={userId}/>
                 </div>
                 <div className="nav-right mx-2 ">
                     <Suggestion/>

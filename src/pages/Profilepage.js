@@ -14,7 +14,7 @@ const ProfilePage = () =>{
                 </div>
                 <div className="middle-column-profile-page d-flex flex-column justify-content-center mx-2">
                     <ProfilePageHeader/>
-                    <PostContainer/>
+                    <PostContainer id={localStorage.getItem("id")}/>
                 </div>
                 <div className="nav-right-profile-page mx-2">
                     <FollowerList/>
