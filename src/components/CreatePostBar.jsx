@@ -3,7 +3,7 @@ import testProfilepic from "./test-profile-pic.jpg"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
 import { useEffect, useState } from "react";
-import { AutoComplete, Button, Form, Input, Modal, Select, Space } from "antd";
+import { AutoComplete, Button, ConfigProvider, Form, Input, Modal, Select, Space } from "antd";
 import api from "./axiosbaseurl";
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
@@ -88,72 +88,74 @@ export function CreatePostBar(){
                 <div variant="outlined" className="project-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("project")}><AddRoundedIcon/>Project Collab</div>
                 <div variant="outlined" className="post-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("post")}><AddRoundedIcon/>Post</div>
             </div>
-            <Modal title="Create Post" open={showModal} onCancel={() => setShowModal(false)} destroyOnClose={true}  footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
-                <Form onFinish={submitFormData} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} initialValues={{["type"]: typeOfPost,["link1"]:"",["link2"]:"" }}>
-                    <Form.Item name="type" label="Type" rules={[{ required: true,message: 'Please select Type!'}]} >
-                        <Select
-                            options={[
-                                { value: 'post', label: 'Post' },
-                                { value: 'internship', label: 'Internship' },
-                                { value: 'project', label: 'Project' },
-                            ]}
-                        />
-                    </Form.Item>
-                    <Form.Item name="textContent" label="Content" rules={[{ required: true,message: 'Please enter text!'}]} >
-                        <Input.TextArea placeholder="Lorem ipsum" />
-                    </Form.Item>
-                    <Form.Item name="link1" label="Link 1" rules={[{ type: 'url'}, { type: 'string', min: 6 }]}>
-                        <Input placeholder="www.example.com" />
-                    </Form.Item>
-                    <Form.Item name="link2" label="Link 2" rules={[{ type: 'url'}, { type: 'string', min: 6 }]}>
-                        <Input placeholder="www.example.com" />
-                    </Form.Item>
-                    <Form.List name="tags">
-                        {(fields, { add, remove }) => (
-                            <>
-                                {fields.map(({ key, name, ...restField }) => (
-                                    <Space key={key} style={{paddingLeft:12}}>
-                                        <div className="d-flex flex-row gap-2 px-2 align-items-baseline"> 
-                                            <Form.Item
-                                                {...restField}
-                                                name={[name, 'tag']}
-                                                rules={[{ required: true, message: 'Missing tag',},]} >
-                                                <AutoComplete 
-                                                    style={{ color: "#FFFFFF" }}
-                                                    placeholder="Tag" options={options}
-                                                    onSelect={(data)=>{
-                                                        setSelectedOptions((x)=>[...x,data]);
-                                                    }}
-                                                    filterOption={(inputValue, option) =>{
-                                                        if (option){
-                                                            return option.value.toUpperCase().startsWith(inputValue.toUpperCase())
+            <ConfigProvider theme={{components: {Form: {labelColor:"#FFFFFF"},},}}>
+                <Modal title="Create Post" open={showModal} onCancel={() => setShowModal(false)} destroyOnClose={true}  footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
+                    <Form onFinish={submitFormData} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} initialValues={{["type"]: typeOfPost,["link1"]:"",["link2"]:"" }}>
+                        <Form.Item name="type" label="Type" rules={[{ required: true,message: 'Please select Type!'}]} >
+                            <Select
+                                options={[
+                                    { value: 'post', label: 'Post' },
+                                    { value: 'internship', label: 'Internship' },
+                                    { value: 'project', label: 'Project' },
+                                ]}
+                            />
+                        </Form.Item>
+                        <Form.Item name="textContent" label="Content" rules={[{ required: true,message: 'Please enter text!'}]} >
+                            <Input.TextArea placeholder="Lorem ipsum" />
+                        </Form.Item>
+                        <Form.Item name="link1" label="Link 1" rules={[{ type: 'url'}, { type: 'string', min: 6 }]}>
+                            <Input placeholder="www.example.com" />
+                        </Form.Item>
+                        <Form.Item name="link2" label="Link 2" rules={[{ type: 'url'}, { type: 'string', min: 6 }]}>
+                            <Input placeholder="www.example.com" />
+                        </Form.Item>
+                        <Form.List name="tags">
+                            {(fields, { add, remove }) => (
+                                <>
+                                    {fields.map(({ key, name, ...restField }) => (
+                                        <Space key={key} style={{paddingLeft:12}}>
+                                            <div className="d-flex flex-row gap-2 px-2 align-items-baseline"> 
+                                                <Form.Item
+                                                    {...restField}
+                                                    name={[name, 'tag']}
+                                                    rules={[{ required: true, message: 'Missing tag',},]} >
+                                                    <AutoComplete 
+                                                        style={{ color: "#FFFFFF" }}
+                                                        placeholder="Tag" options={options}
+                                                        onSelect={(data)=>{
+                                                            setSelectedOptions((x)=>[...x,data]);
+                                                        }}
+                                                        filterOption={(inputValue, option) =>{
+                                                            if (option){
+                                                                return option.value.toUpperCase().startsWith(inputValue.toUpperCase())
+                                                            }
+                                                            return false;
                                                         }
-                                                        return false;
-                                                    }
-                                                    }
-                                                >
-                                                    <Input></Input>
-                                                </AutoComplete> 
-                                            </Form.Item>
-                                            <MinusCircleOutlined  onClick={() => remove(name)} />
-                                        </div>
-                                    </Space>
-                                ))}
-                                <Form.Item>
-                                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                                        Add Tag
-                                    </Button>
-                                </Form.Item>
-                            </>
-                        )}
-                    </Form.List>
-                    <Form.Item style={{display:"flex",justifyContent:"right"}}>
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Modal>
+                                                        }
+                                                    >
+                                                        <Input></Input>
+                                                    </AutoComplete> 
+                                                </Form.Item>
+                                                <MinusCircleOutlined  onClick={() => remove(name)} />
+                                            </div>
+                                        </Space>
+                                    ))}
+                                    <Form.Item>
+                                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                                            Add Tag
+                                        </Button>
+                                    </Form.Item>
+                                </>
+                            )}
+                        </Form.List>
+                        <Form.Item style={{display:"flex",justifyContent:"right"}}>
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </Modal>
+            </ConfigProvider>
         </div>
     )
 }
