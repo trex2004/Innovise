@@ -5,13 +5,20 @@ import api from "./axiosbaseurl.js"
 export function PostContainer(props){
 
     const [postData,setPostData] = useState([])
+    const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const uid =  props.id;
 
     useEffect(()=>{
         const getPostDetails = async () =>{
             try {
-                const data = await api.get("/users/post/"+uid)
-                setPostData(data.data.payload)
+                if(uid==="main"){
+                    const data = await api.get("/users/post/suggestions",{headers: {Authorization: 'Bearer ' + authToken}})
+                    setPostData(data.data.payload)
+                }
+                else{
+                    const data = await api.get("/users/post/"+uid)
+                    setPostData(data.data.payload)
+                }
             } catch (error) {
                 // console.log(error)
                 console.log("error in post container")

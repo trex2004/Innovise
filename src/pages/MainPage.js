@@ -55,7 +55,7 @@ const MainPage = () =>{
                         </div>
                         <div className="middle-column d-flex flex-column mx-2">
                             <SearchBar/>
-                            <PostContainer id={localStorage.getItem("id")}/>
+                            <PostContainer id={"main"}/>
                         </div>
                         <div className="nav-right mx-2">
                             <div onClick={toProfilePage} className="mb-4">

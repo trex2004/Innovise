@@ -20,9 +20,6 @@ export function ProfilePageHeader() {
     
     const userId = localStorage.getItem("id")
 
-    useEffect(()=>{
-        console.log(selectedOptions);
-    },[selectedOptions])
 
     useEffect(()=>{
         const getTags = async() => {
