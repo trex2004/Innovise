@@ -3,11 +3,11 @@ import { NavBar } from "../components/NavBar";
 import "./MainPage.css";
 import { SideProfile } from "../components/SideProfile"; // Change of component
 import { Suggestion } from "../components/Suggestion";
-import { SearchBar } from "../components/SearchBar";
 import { PostContainer } from "../components/PostContainer.jsx";
 import api from "../components/axiosbaseurl.js"; //import this to send request
 import { useNavigate } from "react-router-dom";
 import TopNavbar from "../components/TopNavbar.jsx";
+import { CreatePostBar } from "../components/CreatePostBar.jsx";
 
 const MainPage = () =>{
 
@@ -54,7 +54,7 @@ const MainPage = () =>{
                             {isOpen && <NavBar/>}
                         </div>
                         <div className="middle-column d-flex flex-column mx-2">
-                            <SearchBar/>
+                            <CreatePostBar/>
                             <PostContainer id={"main"}/>
                         </div>
                         <div className="nav-right mx-2">

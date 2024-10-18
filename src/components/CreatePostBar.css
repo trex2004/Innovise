@@ -1,16 +1,16 @@
-.search-div{
+.create-div{
     background-image: url(../assets/search_bar_pic.jpg);
     background-repeat: no-repeat;
     border-radius: 20px;
     /* border: solid black 3px; */
 }
 
-.search-div-bottom{
+.create-div-bottom{
     width: 100%;
     min-height: fit-content;
 }
 
-.search-div-top{
+.create-div-top{
     width: 100%;
 }
 
@@ -39,11 +39,11 @@
     backdrop-filter: blur(2px);
 }
 
-.search-bar-picture-div{
+.create-bar-picture-div{
     width: 10%;
 }
 
-.search-bar-picture-internal-div{
+.create-bar-picture-internal-div{
     max-height: 100% !important;
     max-width: 100% !important ;
     border: 0.3vh;
@@ -79,3 +79,4 @@
     font-style: normal !important;
     font-size: 1vmax !important;
 }
+
