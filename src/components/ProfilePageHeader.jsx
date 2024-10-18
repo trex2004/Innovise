@@ -3,7 +3,7 @@ import "./ProfilePageHeader.css";
 import testProfilepic from "./test-profile-pic.jpg"
 import api from "./axiosbaseurl";
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { Button, Form, Input, Modal, Space } from 'antd';
+import { Button, Form, Input, Modal, Space, AutoComplete } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
@@ -14,7 +14,28 @@ export function ProfilePageHeader() {
     const [showModal, setShowModal] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [reload,setReload] = useState(false);
+
+    const [options,setOptions] = useState([]);
+    const [selectedOptions,setSelectedOptions] = useState([]);
+    
     const userId = localStorage.getItem("id")
+
+    useEffect(()=>{
+        console.log(selectedOptions);
+    },[selectedOptions])
+
+    useEffect(()=>{
+        const getTags = async() => {
+            const x = await api.get("/users/tags")
+            let new_options = x.data.payload.map((i)=>{
+                return {
+                    value: i
+                }
+            })
+            setOptions(new_options);
+        }
+        getTags();
+    },[])
     // console.log(userId)
 
     useEffect(() => {
@@ -92,7 +113,22 @@ export function ProfilePageHeader() {
                                                 {...restField}
                                                 name={[name, 'tag']}
                                                 rules={[{ required: true, message: 'Missing tag',},]} >
-                                                <Input placeholder="Tag"/>
+                                                <AutoComplete 
+                                                    style={{ color: "#FFFFFF" }}
+                                                    placeholder="Tag" options={options}
+                                                    onSelect={(data)=>{
+                                                        setSelectedOptions((x)=>[...x,data]);
+                                                    }}
+                                                    filterOption={(inputValue, option) =>{
+                                                        if (option){
+                                                            return option.value.toUpperCase().startsWith(inputValue.toUpperCase())
+                                                        }
+                                                        return false;
+                                                    }
+                                                    }
+                                                >
+                                                    <Input></Input>
+                                                </AutoComplete> 
                                             </Form.Item>
                                             <MinusCircleOutlined  onClick={() => remove(name)} />
                                         </div>
