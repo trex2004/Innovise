@@ -78,8 +78,10 @@ export function Post({data}){
 
                 <Flex vertical gap="middle">
                     <Flex gap="middle" align="flex-start" justify="flex-start" style={{"height":"50%","color":"#FFFFFF"}}>
-                        <a href="https://www.google.com/">Link 1</a>
-                        <a href="https://www.yahoo.com/">Link 2</a>
+                        {data.links.map((x,i)=>{
+                            return <a href={x}>Link {i+1}</a>
+                        })}
+                        
                     </Flex>
                     <Flex gap="middle" align="flex-end" style={{"height":"50%"}} wrap >
                         {tagsHtml}
