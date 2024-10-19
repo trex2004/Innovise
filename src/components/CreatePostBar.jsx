@@ -1,11 +1,11 @@
 import "./CreatePostBar.css"
 import testProfilepic from "./test-profile-pic.jpg"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useEffect, useState } from "react";
 import { AutoComplete, Button, ConfigProvider, Form, Input, Modal, Select, Space } from "antd";
 import api from "./axiosbaseurl";
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import {PlusOutlined,MinusCircleOutlined } from '@ant-design/icons';
 
 
 export function CreatePostBar(){
@@ -41,15 +41,36 @@ export function CreatePostBar(){
         }
     }
 
+    const handleSearch = (value) =>{
+        try {
+            console.log(value)
+        } catch (error) {
+            console.log("Error in search component")
+        }
+    }
+
     let colour = "#000000";
+    let activeColour = "#000000";
+    let passiveColour = "#000000";
+    let dropDownColour = "#000000";
+
     if(typeOfPost==="post"){
         colour="#1D1D1D";
+        activeColour = "#131313";
+        passiveColour = "#181818";
+        dropDownColour = "#333333";
     }
     if(typeOfPost==="internship"){
         colour="#081F20";
+        activeColour = "#031415";
+        passiveColour = "#04191B";
+        dropDownColour = "#062A2B";
     }
     if(typeOfPost==="project"){
         colour="#09122D";
+        activeColour = "#05090E";
+        passiveColour = "#070E17";
+        dropDownColour = "#0B1739";
     }
 
     const submitFormData = async (values) => {
@@ -79,7 +100,7 @@ export function CreatePostBar(){
                     <img src={testProfilepic} alt="profile picture" className="rounded-circle create-bar-picture-internal-div m-auto"></img>
                 </div>
                 <div className=" create-post-button-div align-self-center ">
-                    <div className="main-create-post-button d-flex align-items-center Poppins-create-post-button px-4 gap-2" onClick={() => handleClick("post")}><DriveFileRenameOutlineRoundedIcon/>Start a Post</div>
+                    <div className="main-create-post-button d-flex align-items-center Poppins-create-post-button px-4 gap-2" onClick={() => handleSearch("search")}><SearchRoundedIcon fontSize="large"/>Search </div>
                 </div>
             </div>
 
@@ -88,11 +109,22 @@ export function CreatePostBar(){
                 <div variant="outlined" className="project-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("project")}><AddRoundedIcon/>Project Collab</div>
                 <div variant="outlined" className="post-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("post")}><AddRoundedIcon/>Post</div>
             </div>
-            <ConfigProvider theme={{components: {Form: {labelColor:"#FFFFFF"},},}}>
+            <ConfigProvider theme={{components: {
+                Form: {labelColor:"#FFFFFF"}, 
+                Modal: {titleColor:"#FFFFFF",titleFontSize:17,titleLineHeight:2},
+                Input: {activeBg: activeColour,activeBorderColor: activeColour,
+                        hoverBg: activeColour,hoverBorderColor: activeColour,
+                        colorBgContainer: passiveColour,colorBorder: passiveColour,
+                        colorText:"#FFFFFF",colorTextPlaceholder:"#3D3D3D"},
+                Select: {colorText:"#FFFFFF",colorTextPlaceholder:"#3D3D3D",
+                        colorBgContainer:passiveColour,colorBorder:passiveColour,
+                        activeBorderColor:activeColour,hoverBorderColor:activeColour,
+                        optionSelectedBg:activeColour,colorBgElevated:dropDownColour,},
+                },}}>
                 <Modal title="Create Post" open={showModal} onCancel={() => setShowModal(false)} destroyOnClose={true}  footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
                     <Form onFinish={submitFormData} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} initialValues={{["type"]: typeOfPost,["link1"]:"",["link2"]:"" }}>
                         <Form.Item name="type" label="Type" rules={[{ required: true,message: 'Please select Type!'}]} >
-                            <Select
+                            <Select onChange={(value) => setTypeOfPost(value)}
                                 options={[
                                     { value: 'post', label: 'Post' },
                                     { value: 'internship', label: 'Internship' },
@@ -136,7 +168,7 @@ export function CreatePostBar(){
                                                         <Input></Input>
                                                     </AutoComplete> 
                                                 </Form.Item>
-                                                <MinusCircleOutlined  onClick={() => remove(name)} />
+                                                <MinusCircleOutlined style={{ color: 'red' }}  onClick={() => remove(name)} />
                                             </div>
                                         </Space>
                                     ))}

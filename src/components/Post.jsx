@@ -79,7 +79,7 @@ export function Post({data}){
                 <Flex vertical gap="middle">
                     <Flex gap="middle" align="flex-start" justify="flex-start" style={{"height":"50%","color":"#FFFFFF"}}>
                         {data.links.map((x,i)=>{
-                            return <a href={x}>Link {i+1}</a>
+                            return <a href={x} key={i}>Link {i+1}</a>
                         })}
                         
                     </Flex>
