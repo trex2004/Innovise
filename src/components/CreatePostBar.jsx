@@ -105,9 +105,10 @@ export function CreatePostBar(){
             </div>
 
             <div className="create-div-bottom d-flex flex-row gap-4 px-4 Poppins">
-                <div variant="outlined" className="intern-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("internship")}><AddRoundedIcon/>Internship</div>
+
+            <div variant="outlined" className="post-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("post")}><AddRoundedIcon/>Post</div>
                 <div variant="outlined" className="project-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("project")}><AddRoundedIcon/>Project Collab</div>
-                <div variant="outlined" className="post-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("post")}><AddRoundedIcon/>Post</div>
+                 <div variant="outlined" className="intern-button base-post-button d-flex align-items-center rounded-pill Poppins-create-post-sub-button gap-2" onClick={() => handleClick("internship")}><AddRoundedIcon/>Internship</div>
             </div>
             <ConfigProvider theme={{components: {
                 Form: {labelColor:"#FFFFFF"}, 

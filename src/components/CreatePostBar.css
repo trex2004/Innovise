@@ -1,5 +1,6 @@
 .create-div{
     background-image: url(../assets/search_bar_pic.jpg);
+    
     background-repeat: no-repeat;
     border-radius: 20px;
     /* border: solid black 3px; */
@@ -30,6 +31,8 @@
 }
 
 .base-post-button{
+    background-color: rgba(0, 0, 0, 0.375);
+    
     width: 33%;
     padding-left: 3%;
     padding-right: 3%;
@@ -57,6 +60,7 @@
 }
 
 .main-create-post-button{
+    background-color: rgba(0, 0, 0, 0.375);
     color: white !important;
     border: white solid 2px !important;
     width: 100% !important;
