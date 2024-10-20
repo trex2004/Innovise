@@ -3,7 +3,7 @@ import "./ProfilePageHeader.css";
 import testProfilepic from "./test-profile-pic.jpg"
 import api from "./axiosbaseurl";
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { Button, Form, Input, Modal, Space, AutoComplete } from 'antd';
+import { Button, Form, Input, Modal, Space, AutoComplete, Select } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
@@ -65,7 +65,7 @@ export function ProfilePageHeader() {
             var bodyFormData = new FormData();
             var i=1;
             values.tags.forEach(tag => {
-                bodyFormData.append(`interest[${i}]`,tag.tag)
+                bodyFormData.append(`interest[${i}]`,tag)
                 i++;
             });
             bodyFormData.append("num",values.tags.length)
@@ -100,45 +100,9 @@ export function ProfilePageHeader() {
             </div>
             <Modal title="Add Tags" open={showModal} onCancel={() => setShowModal(false)} destroyOnClose={true} footer={false} >
                 <Form name="dynamic_form_nest_item"  onFinish={addTags} autoComplete="off" >
-                    <Form.List name="tags">
-                        {(fields, { add, remove }) => (
-                            <>
-                                {fields.map(({ key, name, ...restField }) => (
-                                    <Space key={key} >
-                                        <div className="d-flex flex-row gap-2 px-2 align-items-baseline"> 
-                                            <Form.Item
-                                                {...restField}
-                                                name={[name, 'tag']}
-                                                rules={[{ required: true, message: 'Missing tag',},]} >
-                                                <AutoComplete 
-                                                    style={{ color: "#FFFFFF" }}
-                                                    placeholder="Tag" options={options}
-                                                    onSelect={(data)=>{
-                                                        setSelectedOptions((x)=>[...x,data]);
-                                                    }}
-                                                    filterOption={(inputValue, option) =>{
-                                                        if (option){
-                                                            return option.value.toUpperCase().startsWith(inputValue.toUpperCase())
-                                                        }
-                                                        return false;
-                                                    }
-                                                    }
-                                                >
-                                                    <Input></Input>
-                                                </AutoComplete> 
-                                            </Form.Item>
-                                            <MinusCircleOutlined  onClick={() => remove(name)} />
-                                        </div>
-                                    </Space>
-                                ))}
-                                <Form.Item>
-                                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                                        Add Tag
-                                    </Button>
-                                </Form.Item>
-                            </>
-                        )}
-                    </Form.List>
+                    <Form.Item name="tags" label="Tags" >
+                        <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
+                    </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Submit
