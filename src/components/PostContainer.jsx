@@ -16,7 +16,7 @@ export function PostContainer(props){
                     setPostData(data.data.payload)
                 }
                 else{
-                    const data = await api.get("/users/post/"+uid)
+                    const data = await api.get("/users/post/"+uid,{headers: {Authorization: 'Bearer ' + authToken}})
                     setPostData(data.data.payload)
                 }
             } catch (error) {
