@@ -78,7 +78,7 @@ export function CreatePostBar(){
             var bodyFormData = new FormData();
             var i=1;
             values.tags.forEach(tag => {
-                bodyFormData.append(`tag[${i}]`,tag.tag)
+                bodyFormData.append(`tag[${i}]`,tag)
                 i++;
             });
             bodyFormData.append("num",values.tags.length)
@@ -118,9 +118,11 @@ export function CreatePostBar(){
                         colorBgContainer: passiveColour,colorBorder: passiveColour,
                         colorText:"#FFFFFF",colorTextPlaceholder:"#3D3D3D"},
                 Select: {colorText:"#FFFFFF",colorTextPlaceholder:"#3D3D3D",
-                        colorBgContainer:passiveColour,colorBorder:passiveColour,
-                        activeBorderColor:activeColour,hoverBorderColor:activeColour,
-                        optionSelectedBg:activeColour,colorBgElevated:dropDownColour,},
+                        colorBgContainer: passiveColour,colorBorder: passiveColour,
+                        activeBorderColor: activeColour,hoverBorderColor: activeColour,
+                        optionSelectedBg: activeColour,colorBgElevated: dropDownColour,
+                        multipleItemBg: activeColour,multipleItemBorderColor: activeColour,
+                        colorIcon: "#FFFFFF"},
                 },}}>
                 <Modal title="Create Post" open={showModal} onCancel={() => setShowModal(false)} destroyOnClose={true}  footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
                     <Form onFinish={submitFormData} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} initialValues={{["type"]: typeOfPost,["link1"]:"",["link2"]:"" }}>
@@ -142,45 +144,9 @@ export function CreatePostBar(){
                         <Form.Item name="link2" label="Link 2" rules={[{ type: 'url'}, { type: 'string', min: 6 }]}>
                             <Input placeholder="www.example.com" />
                         </Form.Item>
-                        <Form.List name="tags">
-                            {(fields, { add, remove }) => (
-                                <>
-                                    {fields.map(({ key, name, ...restField }) => (
-                                        <Space key={key} style={{paddingLeft:12}}>
-                                            <div className="d-flex flex-row gap-2 px-2 align-items-baseline"> 
-                                                <Form.Item
-                                                    {...restField}
-                                                    name={[name, 'tag']}
-                                                    rules={[{ required: true, message: 'Missing tag',},]} >
-                                                    <AutoComplete 
-                                                        style={{ color: "#FFFFFF" }}
-                                                        placeholder="Tag" options={options}
-                                                        onSelect={(data)=>{
-                                                            setSelectedOptions((x)=>[...x,data]);
-                                                        }}
-                                                        filterOption={(inputValue, option) =>{
-                                                            if (option){
-                                                                return option.value.toUpperCase().startsWith(inputValue.toUpperCase())
-                                                            }
-                                                            return false;
-                                                        }
-                                                        }
-                                                    >
-                                                        <Input></Input>
-                                                    </AutoComplete> 
-                                                </Form.Item>
-                                                <MinusCircleOutlined style={{ color: 'red' }}  onClick={() => remove(name)} />
-                                            </div>
-                                        </Space>
-                                    ))}
-                                    <Form.Item>
-                                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                                            Add Tag
-                                        </Button>
-                                    </Form.Item>
-                                </>
-                            )}
-                        </Form.List>
+                        <Form.Item name="tags" label="Tags" >
+                            <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
+                        </Form.Item>
                         <Form.Item style={{display:"flex",justifyContent:"right"}}>
                             <Button type="primary" htmlType="submit">
                                 Submit
