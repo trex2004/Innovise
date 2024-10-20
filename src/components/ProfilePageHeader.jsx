@@ -78,12 +78,15 @@ export function ProfilePageHeader() {
         }
     }
 
+    let data_b64 = userDetails["picture"];
+    data_b64 = "data:image/jpeg;base64,"+data_b64
+
     return (
         <>
             <div className="profile-header-main-div d-flex flex-column Poppins">
                 <div className="profilepage-display-div d-flex">
                     <div className="profilepage-picture-div d-flex justify-content-center">
-                        <img src={testProfilepic} alt="profile picture" className="rounded-circle profilepage-picture-internal-div m-auto"></img>
+                        <img src={data_b64} alt="profile picture" className="rounded-circle profilepage-picture-internal-div m-auto"></img>
                     </div>
                     <div className=" profilepage-details-div d-flex flex-column gap-4 m-auto">
                         <div>

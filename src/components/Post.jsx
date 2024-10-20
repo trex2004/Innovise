@@ -1,5 +1,4 @@
 import {Card,Avatar,Flex,Button, Anchor} from "antd"
-import testProfilepic from "./test-profile-pic.jpg"
 import { useEffect, useState } from "react"
 import api from "./axiosbaseurl"
 
@@ -50,13 +49,15 @@ export function Post({data}){
         console.log("Like")
     }
 
+    let data_b64 = userData["picture"];
+    data_b64 = "data:image/jpeg;base64,"+data_b64
 
     return (
         <Flex gap="middle" vertical align="center" style={{"marginBottom":"1vi"}}>
             <Card style={{"width":"100%","backgroundColor":colour,"border":"none","borderRadius":"20px"}}>
                 <Flex gap="middle" align="center" style={{"marginBottom":"1vi"}}>
                     <Flex justify="flex-start" align="center" style={{"width":"70%"}}>
-                        <Avatar src={testProfilepic} style={{"marginRight":"1vi","width":"15%","height":"15%"}}/>
+                        <Avatar src={data_b64} style={{"marginRight":"1vi","width":"15%","height":"15%"}}/>
                         <div style={{"color":"#FFFFFF"}}>
                             <h4>{userData.fullname}</h4>
                             <p>
