@@ -50,7 +50,7 @@ export function Post({data}){
     }
 
     let data_b64 = userData["picture"];
-    data_b64 = "data:image/jpeg;base64,"+data_b64
+    data_b64 = "data:image;base64,"+data_b64
 
     return (
         <Flex gap="middle" vertical align="center" style={{"marginBottom":"1vi"}}>
