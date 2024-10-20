@@ -53,14 +53,14 @@ export function Post({data}){
     data_b64 = "data:image;base64,"+data_b64
 
     return (
-        <Flex gap="middle" vertical align="center" style={{"marginBottom":"1vi"}}>
+        <Flex  gap="middle" vertical align="center" style={{"marginBottom":"1vi"}}>
             <Card style={{"width":"100%","backgroundColor":colour,"border":"none","borderRadius":"20px"}}>
                 <Flex gap="middle" align="center" style={{"marginBottom":"1vi"}}>
                     <Flex justify="flex-start" align="center" style={{"width":"70%"}}>
                         <Avatar src={data_b64} style={{"marginRight":"1vi","width":"15%","height":"15%"}}/>
-                        <div style={{"color":"#FFFFFF"}}>
+                        <div style={{"color":"#FFFFFF"}} className="Poppins">
                             <h4>{userData.fullname}</h4>
-                            <p>
+                            <p >
                                 {userData.bio}
                             </p>
                         </div>   
@@ -72,7 +72,7 @@ export function Post({data}){
                 </Flex>
 
                 <Flex style={{"marginBottom":"1vi"}}>
-                    <p style={{"color":"#FFFFFF"}}>
+                    <p style={{"color":"#FFFFFF"}} className="Poppins">
                         {data.content}
                     </p>
                 </Flex>

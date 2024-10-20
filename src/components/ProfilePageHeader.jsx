@@ -11,7 +11,8 @@ export function ProfilePageHeader() {
 
     const [userDetails, setUserDetails] = useState("");
     const [userTags, setUserTags] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+    const [showAddTagModal, setShowAddTagModal] = useState(false);
+    const [showEditProfileModal, setShowEditProfileModal] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [reload,setReload] = useState(false);
 
@@ -32,7 +33,7 @@ export function ProfilePageHeader() {
             setOptions(new_options);
         }
         getTags();
-    },[])
+    },[reload])
     // console.log(userId)
 
     useEffect(() => {
@@ -71,10 +72,42 @@ export function ProfilePageHeader() {
             bodyFormData.append("num",values.tags.length)
             await api.post("/users/interests",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
             setReload(!reload)
-            setShowModal(false)
+            setShowAddTagModal(false)
         } catch (error) {
             console.log(error)
             console.log("add tag modal issue")
+        }
+    }
+    
+    const editProfile = async (values) => {
+        try {
+            var bodyFormData = new FormData();
+            var i=1;
+            values.tags.forEach(tag => {
+                bodyFormData.append(`interest[${i}]`,tag)
+                i++;
+            });
+            bodyFormData.append("num",values.tags.length)
+            bodyFormData.append("email",values.email)
+            bodyFormData.append("bio",values.bio)
+            bodyFormData.append("fullname",values.fullname)
+            console.log(bodyFormData)
+
+            const x = await api.put("/users/",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
+            console.log(x)
+
+            setReload(!reload)
+            setShowEditProfileModal(false)
+        } catch (error) {
+            if (error.response && error.response.status === 405) {
+                console.log("Error 405");
+                setReload(!reload)
+                setShowEditProfileModal(false)
+            }
+            else{
+                console.log(error)
+                console.log("edit profile modal issue")
+            }
         }
     }
 
@@ -93,20 +126,41 @@ export function ProfilePageHeader() {
                             <div className="h2">{userDetails.fullname}</div>
                             <div className="">{userDetails.bio}</div>
                         </div>
-                        <div className="rounded-pill border ps-2 pe-3 py-2 edit-div-profile-header"><EditRoundedIcon/> Edit</div>
+                        <div className="rounded-pill border ps-2 pe-3 py-2 edit-div-profile-header" onClick={() => setShowEditProfileModal(true)}><EditRoundedIcon/> Edit</div>
                     </div>
                 </div>
                 <div className=" profilepage-tag-div d-flex flex-wrap gap-2 m-3">
                     {tagsHtml}
-                    <div className="rounded-pill ps-2 pe-3 py-2 tag-single-div tag-edit-div Poppins" onClick={() => setShowModal(true)}><AddRoundedIcon /> Add</div>
+                    <div className="rounded-pill ps-2 pe-3 py-2 tag-single-div tag-edit-div Poppins" onClick={() => setShowAddTagModal(true)}><AddRoundedIcon /> Add</div>
                 </div>
             </div>
-            <Modal title="Add Tags" open={showModal} onCancel={() => setShowModal(false)} destroyOnClose={true} footer={false} >
+            <Modal title="Add Tags" open={showAddTagModal} onCancel={() => setShowAddTagModal(false)} destroyOnClose={true} footer={false} >
                 <Form name="dynamic_form_nest_item"  onFinish={addTags} autoComplete="off" >
                     <Form.Item name="tags" label="Tags" >
                         <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
                     </Form.Item>
                     <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Modal>
+            <Modal title="Edit Porfile" open={showEditProfileModal} onCancel={() => setShowEditProfileModal(false)} destroyOnClose={true} footer={false} >
+                <Form name="dynamic_form_nest_item"  onFinish={editProfile} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} autoComplete="off" initialValues={{["fullname"]:userDetails.fullname,["bio"]:userDetails.bio,["email"]:userDetails.email,["tags"]:userTags}}>
+                    <Form.Item name="fullname" label="FullName" rules={[{ required: true,message: 'Please enter name!'}]}>
+                        <Input placeholder="Fullname"/>
+                    </Form.Item>
+                    <Form.Item name="bio" label="Bio" rules={[{ required: true,message: 'Please enter bio!'}]}>
+                        <Input placeholder="Bio"/>
+                    </Form.Item>
+                    <Form.Item name="email" label="Email" rules={[{ required: true,message: 'Please enter email!'}]}>
+                        <Input placeholder="example@gmail.com"/>
+                    </Form.Item>
+                    <Form.Item name="tags" label="Tags" >
+                        <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
+                    </Form.Item>
+                    <Form.Item> 
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>

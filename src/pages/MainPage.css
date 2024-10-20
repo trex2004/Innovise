@@ -9,7 +9,6 @@
     overflow:auto;
 }
 .middle-column{
-    height: 150vh !important; /*just for testing the fixedness for the nav divs - swayam*/
     width: 50vw !important;
     position: relative;
     top:3vh;
@@ -20,8 +19,7 @@
     position: absolute;
     top: 3vh;
     right: 2vw;
-    height:95vh;
-    overflow: auto !important;
+    overflow: auto;
 }
 
 .nav-top{
@@ -45,12 +43,6 @@
 
 @media screen and (max-height: 475px){
     .nav-left{
-       overflow: auto;
-    }
-  }
-
-@media screen and (max-height: 475px){
-    .nav-right{
        overflow: auto;
     }
   }
