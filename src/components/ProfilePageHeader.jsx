@@ -79,7 +79,7 @@ export function ProfilePageHeader() {
     }
 
     let data_b64 = userDetails["picture"];
-    data_b64 = "data:image/jpeg;base64,"+data_b64
+    data_b64 = "data:image;base64,"+data_b64
 
     return (
         <>
