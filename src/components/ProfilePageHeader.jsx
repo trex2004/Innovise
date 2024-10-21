@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, message } from "react";
 import "./ProfilePageHeader.css";
 import testProfilepic from "./test-profile-pic.jpg"
 import api from "./axiosbaseurl";
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { Button, Form, Input, Modal, Space, AutoComplete, Select } from 'antd';
+import { Button, Form, Input, Modal, Space, AutoComplete, Select, Upload } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import ImgCrop from 'antd-img-crop';
 
 export function ProfilePageHeader() {
 
@@ -81,6 +83,7 @@ export function ProfilePageHeader() {
     
     const editProfile = async (values) => {
         try {
+            console.log(values)
             var bodyFormData = new FormData();
             var i=1;
             values.tags.forEach(tag => {
@@ -93,26 +96,84 @@ export function ProfilePageHeader() {
             bodyFormData.append("fullname",values.fullname)
             console.log(bodyFormData)
 
-            const x = await api.put("/users/",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
-            console.log(x)
+            await api.put("/users/",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
 
             setReload(!reload)
             setShowEditProfileModal(false)
         } catch (error) {
-            if (error.response && error.response.status === 405) {
-                console.log("Error 405");
-                setReload(!reload)
-                setShowEditProfileModal(false)
-            }
-            else{
-                console.log(error)
-                console.log("edit profile modal issue")
-            }
+            console.log("edit profile modal issue")
         }
     }
 
     let data_b64 = userDetails["picture"];
     data_b64 = "data:image;base64,"+data_b64
+
+    // const [fileList, setFileList] = useState([
+    //     {
+    //       uid: '-1',
+    //       name: 'image.png',
+    //       status: 'done',
+    //       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    //     },
+    //   ]);
+
+    const[pic,setPic] =  useState({})
+      const onChange = (value) => {
+        console.log(value)
+      };
+
+    //   const onPreview = async (file) => {
+    //     let src = file.url;
+    //     if (!src) {
+    //       src = await new Promise((resolve) => {
+    //         const reader = new FileReader();
+    //         reader.readAsDataURL(file.originFileObj);
+    //         reader.onload = () => resolve(reader.result);
+    //       });
+    //     }
+    //     const image = new Image();
+    //     image.src = src;
+    //     const imgWindow = window.open(src);
+    //     imgWindow?.document.write(image.outerHTML);
+    //   };
+
+    // const [loading, setLoading] = useState(false);
+    // const [imageUrl, setImageUrl] = useState();
+    // const handleChange = (info) => {
+    //   if (info.file.status === 'uploading') {
+    //     setLoading(true);
+    //     return;
+    //   }
+    //   if (info.file.status === 'done') {
+    //     // Get this url from response in real world.
+    //     getBase64(info.file.originFileObj, (url) => {
+    //       setLoading(false);
+    //       setImageUrl(url);
+    //     });
+    //   }
+    // };
+
+    // const getBase64 = (img, callback) => {
+    //     const reader = new FileReader();
+    //     reader.addEventListener('load', () => callback(reader.result));
+    //     reader.readAsDataURL(img);
+    //   };
+    //   const beforeUpload = (file) => {
+    //     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    //     if (!isJpgOrPng) {
+    //       message.error('You can only upload JPG/PNG file!');
+    //     }
+    //     const isLt2M = file.size / 1024 / 1024 < 2;
+    //     if (!isLt2M) {
+    //       message.error('Image must smaller than 2MB!');
+    //     }
+    //     return isJpgOrPng && isLt2M;
+    //   };
+
+    const handlesub = (values) =>{
+
+        console.log("Like")
+    }
 
     return (
         <>
@@ -160,12 +221,20 @@ export function ProfilePageHeader() {
                     <Form.Item name="tags" label="Tags" >
                         <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
                     </Form.Item>
+                    <Form.Item name="picture" label="Picture" >
+                        <ImgCrop rotationSlider>
+                            <Upload listType="picture-card" maxCount={1}>
+                                + Upload
+                            </Upload>
+                        </ImgCrop>
+                    </Form.Item>
                     <Form.Item> 
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>
                     </Form.Item>
                 </Form>
+
             </Modal>
         </>
     )
