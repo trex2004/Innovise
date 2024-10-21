@@ -19,15 +19,26 @@
     color: cyan !important;
     border: cyan solid 2px !important;
 }
+.intern-button:hover{
+    border: 1px cyan solid !important;
+}
+
 
 .project-button{
     color: orange !important;
     border: orange solid 2px !important;
 }
 
+.project-button:hover{
+    border: 1px orange solid !important;
+}
 .post-button{
     color: lightgray !important;
     border: lightgray solid 2px !important;
+}
+
+.post-button:hover{
+    border: 1px lightgrey solid !important;
 }
 
 .base-post-button{
@@ -40,7 +51,14 @@
     padding-bottom: 1%;
     cursor: pointer;
     backdrop-filter: blur(2px);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
 }
+
+.base-post-button:hover{
+    backdrop-filter: blur(8px);
+    scale: 1.05;
+}
+
 
 .create-bar-picture-div{
     width: 10%;

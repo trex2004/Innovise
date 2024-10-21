@@ -1,6 +1,7 @@
 import {Card,Avatar,Flex,Button, Anchor} from "antd"
 import { useEffect, useState } from "react"
 import api from "./axiosbaseurl"
+import "./Post.css"
 
 export function Post({data}){
     
@@ -67,7 +68,8 @@ export function Post({data}){
                     </Flex>
 
                     <Flex justify="flex-end" style={{"width":"30%"}}>
-                        <Button onClick={() => handleFollow()}>Follow</Button>
+                        <button className="post-follow-button" onClick={() => handleFollow()}>Follow</button>
+                        
                     </Flex>  
                 </Flex>
 
