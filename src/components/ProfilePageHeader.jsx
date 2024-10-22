@@ -3,7 +3,7 @@ import "./ProfilePageHeader.css";
 import testProfilepic from "./test-profile-pic.jpg"
 import api from "./axiosbaseurl";
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { Button, Form, Input, Modal, Space, AutoComplete, Select, Upload } from 'antd';
+import { Button, Form, Input, Modal, Space, AutoComplete, Select, Upload, ConfigProvider } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { LoadingOutlined } from '@ant-design/icons';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -108,69 +108,15 @@ export function ProfilePageHeader() {
     let data_b64 = userDetails["picture"];
     data_b64 = "data:image;base64,"+data_b64
 
-    // const [fileList, setFileList] = useState([
-    //     {
-    //       uid: '-1',
-    //       name: 'image.png',
-    //       status: 'done',
-    //       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    //     },
-    //   ]);
-
-
-
-    //   const onPreview = async (file) => {
-    //     let src = file.url;
-    //     if (!src) {
-    //       src = await new Promise((resolve) => {
-    //         const reader = new FileReader();
-    //         reader.readAsDataURL(file.originFileObj);
-    //         reader.onload = () => resolve(reader.result);
-    //       });
-    //     }
-    //     const image = new Image();
-    //     image.src = src;
-    //     const imgWindow = window.open(src);
-    //     imgWindow?.document.write(image.outerHTML);
-    //   };
-
-    // const [loading, setLoading] = useState(false);
-    // const [imageUrl, setImageUrl] = useState();
-    // const handleChange = (info) => {
-    //   if (info.file.status === 'uploading') {
-    //     setLoading(true);
-    //     return;
-    //   }
-    //   if (info.file.status === 'done') {
-    //     // Get this url from response in real world.
-    //     getBase64(info.file.originFileObj, (url) => {
-    //       setLoading(false);
-    //       setImageUrl(url);
-    //     });
-    //   }
-    // };
-
-    // const getBase64 = (img, callback) => {
-    //     const reader = new FileReader();
-    //     reader.addEventListener('load', () => callback(reader.result));
-    //     reader.readAsDataURL(img);
-    //   };
-    //   const beforeUpload = (file) => {
-    //     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    //     if (!isJpgOrPng) {
-    //       message.error('You can only upload JPG/PNG file!');
-    //     }
-    //     const isLt2M = file.size / 1024 / 1024 < 2;
-    //     if (!isLt2M) {
-    //       message.error('Image must smaller than 2MB!');
-    //     }
-    //     return isJpgOrPng && isLt2M;
-    //   };
-
     const handlesub = (values) =>{
-
         console.log("Like")
     }
+
+    let colour="#1D1D1D";
+    let activeColour = "#131313";
+    let passiveColour = "#181818";
+    let dropDownColour = "#333333";
+    
 
     return (
         <>
@@ -192,47 +138,67 @@ export function ProfilePageHeader() {
                     <div className="rounded-pill ps-2 pe-3 py-2 tag-single-div tag-edit-div Poppins" onClick={() => setShowAddTagModal(true)}><AddRoundedIcon /> Add</div>
                 </div>
             </div>
-            <Modal title="Add Tags" open={showAddTagModal} onCancel={() => setShowAddTagModal(false)} destroyOnClose={true} footer={false} >
-                <Form name="dynamic_form_nest_item"  onFinish={addTags} autoComplete="off" >
-                    <Form.Item name="tags" label="Tags" >
-                        <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Modal>
-            <Modal title="Edit Porfile" open={showEditProfileModal} onCancel={() => setShowEditProfileModal(false)} destroyOnClose={true} footer={false} >
-                <Form name="dynamic_form_nest_item"  onFinish={editProfile} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} autoComplete="off" initialValues={{["fullname"]:userDetails.fullname,["bio"]:userDetails.bio,["email"]:userDetails.email,["tags"]:userTags}}>
-                    <Form.Item name="fullname" label="FullName" rules={[{ required: true,message: 'Please enter name!'}]}>
-                        <Input placeholder="Fullname"/>
-                    </Form.Item>
-                    <Form.Item name="bio" label="Bio" rules={[{ required: true,message: 'Please enter bio!'}]}>
-                        <Input placeholder="Bio"/>
-                    </Form.Item>
-                    <Form.Item name="email" label="Email" rules={[{ required: true,message: 'Please enter email!'}]}>
-                        <Input placeholder="example@gmail.com"/>
-                    </Form.Item>
-                    <Form.Item name="tags" label="Tags" >
-                        <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
-                    </Form.Item>
-                    <Form.Item name="picture" label="Picture">
-                        <ImgCrop rotationSlider>
-                            <Upload listType="picture-card" maxCount={1} multiple={false} beforeUpload={(file)=>setPic(file)} customRequest={({onSuccess})=>onSuccess("Ok")}>
-                                + Upload
-                            </Upload>
-                        </ImgCrop>
-                    </Form.Item>
-                    <Form.Item> 
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
-
-            </Modal>
+            <ConfigProvider theme={{components: {
+                Form: {labelColor:"#FFFFFF"}, 
+                Modal: {titleColor:"#FFFFFF",titleFontSize:17,titleLineHeight:2},
+                Input: {activeBg: activeColour,activeBorderColor: activeColour,
+                        hoverBg: activeColour,hoverBorderColor: activeColour,
+                        colorBgContainer: passiveColour,colorBorder: passiveColour,
+                        colorText:"#FFFFFF",colorTextPlaceholder:"#3D3D3D"},
+                Select: {colorText:"#FFFFFF",colorTextPlaceholder:"#3D3D3D",
+                        colorBgContainer: passiveColour,colorBorder: passiveColour,
+                        activeBorderColor: activeColour,hoverBorderColor: activeColour,
+                        optionSelectedBg: activeColour,colorBgElevated: dropDownColour,
+                        multipleItemBg: "#304244",multipleItemBorderColor: activeColour,
+                        colorIcon: "#FFFFFF"},
+                Upload: {colorText:"#FFFFFF",colorTextPlaceholder:"#3D3D3D",
+                        colorBgContainer: passiveColour,
+                        activeBorderColor: activeColour,hoverBorderColor: activeColour,
+                        optionSelectedBg: activeColour,colorBgElevated: dropDownColour,
+                        multipleItemBg: "#304244",multipleItemBorderColor: activeColour,
+                        colorIcon: "#FFFFFF"},
+                },}}>
+                <Modal title="Add Tags" open={showAddTagModal} onCancel={() => setShowAddTagModal(false)} destroyOnClose={true} footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
+                    <Form name="dynamic_form_nest_item"  onFinish={addTags} autoComplete="off" >
+                        <Form.Item name="tags" label="Tags" >
+                            <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
+                        </Form.Item>
+                        <Form.Item style={{display:"flex",justifyContent:"right"}}>
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </Modal>
+                <Modal title="Edit Porfile" open={showEditProfileModal} onCancel={() => setShowEditProfileModal(false)} destroyOnClose={true} footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
+                    <Form name="dynamic_form_nest_item"  onFinish={editProfile} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} autoComplete="off" initialValues={{["fullname"]:userDetails.fullname,["bio"]:userDetails.bio,["email"]:userDetails.email,["tags"]:userTags}}>
+                        <Form.Item name="fullname" label="FullName" rules={[{ required: true,message: 'Please enter name!'}]}>
+                            <Input placeholder="Fullname"/>
+                        </Form.Item>
+                        <Form.Item name="bio" label="Bio" rules={[{ required: true,message: 'Please enter bio!'}]}>
+                            <Input placeholder="Bio"/>
+                        </Form.Item>
+                        <Form.Item name="email" label="Email" rules={[{ required: true,message: 'Please enter email!'}]}>
+                            <Input placeholder="example@gmail.com"/>
+                        </Form.Item>
+                        <Form.Item name="tags" label="Tags" >
+                            <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
+                        </Form.Item>
+                        <Form.Item name="picture" label="Picture">
+                            <ImgCrop rotationSlider>
+                                <Upload listType="picture-card" maxCount={1} multiple={false} beforeUpload={(file)=>setPic(file)} customRequest={({onSuccess})=>onSuccess("Ok")}>
+                                    + Upload
+                                </Upload>
+                            </ImgCrop>
+                        </Form.Item>
+                        <Form.Item style={{display:"flex",justifyContent:"right"}}> 
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </Modal>
+            </ConfigProvider>
         </>
     )
 }
