@@ -121,7 +121,7 @@ export function CreatePostBar(){
                         colorBgContainer: passiveColour,colorBorder: passiveColour,
                         activeBorderColor: activeColour,hoverBorderColor: activeColour,
                         optionSelectedBg: activeColour,colorBgElevated: dropDownColour,
-                        multipleItemBg: "#304244",multipleItemBorderColor: activeColour,
+                        multipleItemBg: activeColour,multipleItemBorderColor: activeColour,
                         colorIcon: "#FFFFFF"},
                 },}}>
                 <Modal title="Create Post" open={showModal} onCancel={() => setShowModal(false)} destroyOnClose={true}  footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
