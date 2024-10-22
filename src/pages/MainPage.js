@@ -58,7 +58,7 @@ const MainPage = () =>{
                             <PostContainer id={"main"}/>
                         </div>
                         <div className="nav-right mx-2">
-                            <div onClick={toProfilePage} className="mb-4">
+                            <div className="mb-4">
                                 <SideProfile/> 
                             </div>
                             <div>
