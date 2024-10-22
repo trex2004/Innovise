@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import "./LoginPage.css";
 import SideVideo from "../components/sideVideo";
 import myImage from "../assets/Group1.png";
+import { message } from "antd";
 
 const LoginPage = (props) => {
   const [password, setPassword] = useState("");
@@ -26,6 +27,7 @@ const LoginPage = (props) => {
       localStorage.setItem("id", userId.data.payload._id);
       localStorage.setItem("authToken", x.data.access_token);
       navigate("/");
+      message.success("Login Successfull");
     } catch (error) {
       console.log("login page error: sending name, password");
     }
