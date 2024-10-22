@@ -2,10 +2,13 @@ import {Card,Avatar,Flex,Button, Anchor} from "antd"
 import { useEffect, useState } from "react"
 import api from "./axiosbaseurl"
 import "./Post.css"
+import { useNavigate } from "react-router-dom";
 
 export function Post({data}){
     
-    const [userData,setUserData] = useState([])
+    const [userData,setUserData] = useState([]);
+    const navigate = useNavigate();
+
     
     useEffect(() => {
         const getUserData = async () => {
@@ -36,12 +39,10 @@ export function Post({data}){
     }
     if(data.type==="project"){
         colour="#09122D";
-    }
-    // console.log(tagsHtml)
+    }    
     
-    
-    const handleFollow = () =>{
-        console.log("Follow")
+    const handleView = (value) =>{
+        navigate("/profile/"+value)
     }
     const handleShare = () =>{
         console.log("Share")
@@ -71,7 +72,7 @@ export function Post({data}){
                         </Flex>
 
                         <Flex justify="flex-end" style={{"width":"30%"}}>
-                            <button className="post-follow-button" onClick={() => handleFollow()}>Follow</button>
+                            <button className="post-follow-button" onClick={() => handleView(userData.name)}>View</button>
                             
                         </Flex>  
                     </Flex>
@@ -89,7 +90,7 @@ export function Post({data}){
                             })}
                             
                         </Flex>
-                        <Flex gap="middle" align="flex-end" style={{"height":"50%"}} wrap >
+                        <Flex gap="small" align="flex-end" style={{"height":"50%"}} wrap >
                             {tagsHtml}
                         </Flex>
                         <Flex gap="middle" align="flex-end" justify="flex-end" style={{"height":"50%"}}>
