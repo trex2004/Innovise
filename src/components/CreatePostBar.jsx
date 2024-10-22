@@ -100,7 +100,7 @@ export function CreatePostBar(){
                     <img src={testProfilepic} alt="profile picture" className="rounded-circle create-bar-picture-internal-div m-auto"></img>
                 </div>
                 <div className=" create-post-button-div align-self-center ">
-                    <div className="main-create-post-button d-flex align-items-center Poppins-create-post-button px-4 gap-2" onClick={() => handleSearch("search")}><SearchRoundedIcon fontSize="large"/>Search </div>
+                    <div className="main-create-post-button d-flex align-items-center Poppins-create-post-button px-4 gap-2 py-2" onClick={() => handleSearch("search")}><SearchRoundedIcon fontSize="large"/>Search </div>
                 </div>
             </div>
 

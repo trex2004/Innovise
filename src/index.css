@@ -20,6 +20,10 @@ code {
   box-sizing: border-box;
 }
 
+/* div{
+  border: white 1px solid;
+} */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

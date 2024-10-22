@@ -1,11 +1,11 @@
 .nav-left-profile-page{
-    width: 20vw !important;
+    width: 17vw !important;
     height: 95vh !important;
     background-color: #181818;
     border-radius: 25px !important;
     position: fixed; /* these three lines make the divs fixed on the page -swayam*/
     top:3vh;
-    left: 2vw;
+    left: 5vw;
     overflow: auto;
 }
 
@@ -18,10 +18,10 @@
     /* left: 2vw; */ 
 }
 .nav-right-profile-page{
-    width: 20vw !important;
+    width: 17vw !important;
     position: fixed;
     top: 3vh;
-    right: 2vw;
+    right: 5vw;
 }
 
 @media screen and (max-width: 950px){

@@ -1,11 +1,11 @@
 .nav-left{
-    width: 20vw !important;
+    width: 17vw !important;
     height: 95vh !important;
     background-color: #181818;
     border-radius: 25px !important;
     position: fixed; /* these three lines make the divs fixed on the page -swayam*/
     top:3vh;
-    left: 2vw;
+    left: 5vw;
     overflow:auto;
 }
 .middle-column{
@@ -15,10 +15,10 @@
     /* left: 2vw; */ 
 }
 .nav-right{
-    width: 20vw !important;
+    width: 17vw !important;
     position: absolute;
     top: 3vh;
-    right: 2vw;
+    right: 5vw;
     overflow: auto;
 }
 

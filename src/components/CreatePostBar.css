@@ -73,7 +73,7 @@
 }
 
 .create-post-button-div{
-    height: 80%;
+    height: 100% ;
     width: 60%;
 }
 
@@ -83,7 +83,7 @@
     border: white solid 2px !important;
     width: 100% !important;
     height: 100% !important;
-    border-radius: 20px !important;
+    border-radius: 25px !important;
     cursor: pointer;
     backdrop-filter: blur(2px);
 }

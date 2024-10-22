@@ -55,46 +55,50 @@ export function Post({data}){
 
     return (
         <Flex  gap="middle" vertical align="center" style={{"marginBottom":"1vi"}}>
-            <Card style={{"width":"100%","backgroundColor":colour,"border":"none","borderRadius":"20px"}}>
-                <Flex gap="middle" align="center" style={{"marginBottom":"1vi"}}>
-                    <Flex justify="flex-start" align="center" style={{"width":"70%"}}>
-                        <Avatar src={data_b64} style={{"marginRight":"1vi","width":"15%","height":"15%"}}/>
-                        <div style={{"color":"#FFFFFF"}} className="Poppins">
-                            <h4>{userData.fullname}</h4>
-                            <p >
-                                {userData.bio}
-                            </p>
-                        </div>   
+                <Card style={{"width":"100%","backgroundColor":colour,"border":"none","borderRadius":"20px"}}>
+                    <div className="mx-2">
+                    <Flex gap="middle" align="center" style={{"marginBottom":"1vi"}} >
+                        <Flex justify="flex-start" align="center" style={{"width":"70%"}}>
+                            <Avatar src={data_b64} style={{"marginRight":"1vi","width":"17%","height":"17%"}}/>
+                            <div style={{"color":"#FFFFFF"}} className="Poppins">
+                                <h4 className="Poppins-big">
+                                    {userData.fullname}
+                                </h4>
+                                <p className="Poppins-bio">
+                                    {userData.bio}
+                                </p>
+                            </div>   
+                        </Flex>
+
+                        <Flex justify="flex-end" style={{"width":"30%"}}>
+                            <button className="post-follow-button" onClick={() => handleFollow()}>Follow</button>
+                            
+                        </Flex>  
                     </Flex>
 
-                    <Flex justify="flex-end" style={{"width":"30%"}}>
-                        <button className="post-follow-button" onClick={() => handleFollow()}>Follow</button>
-                        
-                    </Flex>  
-                </Flex>
+                    <Flex style={{"marginBottom":"1.5vi","marginTop":"1.5vi"}}>
+                        <p style={{"color":"#FFFFFF"}} className="Poppins">
+                            {data.content}
+                        </p>
+                    </Flex>
 
-                <Flex style={{"marginBottom":"1vi"}}>
-                    <p style={{"color":"#FFFFFF"}} className="Poppins">
-                        {data.content}
-                    </p>
-                </Flex>
-
-                <Flex vertical gap="middle">
-                    <Flex gap="middle" align="flex-start" justify="flex-start" style={{"height":"50%","color":"#FFFFFF"}}>
-                        {data.links.map((x,i)=>{
-                            return <a href={x} key={i}>Link {i+1}</a>
-                        })}
-                        
+                    <Flex vertical gap="middle">
+                        <Flex gap="middle" align="flex-start" justify="flex-start" style={{"height":"50%","color":"#FFFFFF"}}>
+                            {data.links.map((x,i)=>{
+                                return <a href={x} key={i}>Link {i+1}</a>
+                            })}
+                            
+                        </Flex>
+                        <Flex gap="middle" align="flex-end" style={{"height":"50%"}} wrap >
+                            {tagsHtml}
+                        </Flex>
+                        <Flex gap="middle" align="flex-end" justify="flex-end" style={{"height":"50%"}}>
+                            <Button onClick={() => handleShare()}>Share</Button>
+                            <Button onClick={() => handleLike()}>Like</Button>
+                        </Flex>
                     </Flex>
-                    <Flex gap="middle" align="flex-end" style={{"height":"50%"}} wrap >
-                        {tagsHtml}
-                    </Flex>
-                    <Flex gap="middle" align="flex-end" justify="flex-end" style={{"height":"50%"}}>
-                        <Button onClick={() => handleShare()}>Share</Button>
-                        <Button onClick={() => handleLike()}>Like</Button>
-                    </Flex>
-                </Flex>
-            </Card>
+                    </div>
+                </Card>
         </Flex>
     )
 }
