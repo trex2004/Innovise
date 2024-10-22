@@ -20,9 +20,10 @@ export function ProfilePageHeader() {
 
     const [options,setOptions] = useState([]);
     const [selectedOptions,setSelectedOptions] = useState([]);
+    const[pic,setPic] =  useState({})
     
     const userId = localStorage.getItem("id")
-
+    
 
     useEffect(()=>{
         const getTags = async() => {
@@ -83,7 +84,6 @@ export function ProfilePageHeader() {
     
     const editProfile = async (values) => {
         try {
-            console.log(values)
             var bodyFormData = new FormData();
             var i=1;
             values.tags.forEach(tag => {
@@ -94,7 +94,7 @@ export function ProfilePageHeader() {
             bodyFormData.append("email",values.email)
             bodyFormData.append("bio",values.bio)
             bodyFormData.append("fullname",values.fullname)
-            console.log(bodyFormData)
+            bodyFormData.append("picture",pic)
 
             await api.put("/users/",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
 
@@ -117,10 +117,7 @@ export function ProfilePageHeader() {
     //     },
     //   ]);
 
-    const[pic,setPic] =  useState({})
-      const onChange = (value) => {
-        console.log(value)
-      };
+
 
     //   const onPreview = async (file) => {
     //     let src = file.url;
@@ -221,9 +218,9 @@ export function ProfilePageHeader() {
                     <Form.Item name="tags" label="Tags" >
                         <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
                     </Form.Item>
-                    <Form.Item name="picture" label="Picture" >
+                    <Form.Item name="picture" label="Picture">
                         <ImgCrop rotationSlider>
-                            <Upload listType="picture-card" maxCount={1}>
+                            <Upload listType="picture-card" maxCount={1} multiple={false} beforeUpload={(file)=>setPic(file)} customRequest={({onSuccess})=>onSuccess("Ok")}>
                                 + Upload
                             </Upload>
                         </ImgCrop>
