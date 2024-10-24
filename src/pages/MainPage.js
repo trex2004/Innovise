@@ -61,7 +61,7 @@ const MainPage = () =>{
                             <div className="mb-4">
                                 <SideProfile/> 
                             </div>
-                            <div>
+                            <div className="tw-mt-5">
                                 <Suggestion/>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ const MainPage = () =>{
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default MainPage;

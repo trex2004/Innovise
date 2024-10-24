@@ -4,7 +4,7 @@ import api from "../components/axiosbaseurl";
 import { useNavigate } from "react-router-dom";
 import SideVideo from "../components/sideVideo";
 import myImage from "../assets/Group1.png";
-
+import { message } from "antd";
 import "./RegisterPage.css";
 
 const RegisterPage = (props) => {
@@ -25,7 +25,9 @@ const RegisterPage = (props) => {
             const x = await api.post("/users", bodyFormData);
             console.log(x);
             navigate("/login");
+            message.success("Registered Successfully!")
         } catch (error) {
+            message.error("Registration unsuccessfull");
             console.log("register page post error: sending name,email,password,full name");
             console.log(error);
         }

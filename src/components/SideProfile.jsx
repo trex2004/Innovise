@@ -3,6 +3,7 @@ import './SideProfile.css';
 import testProfilepic from "./test-profile-pic.jpg"
 import api from './axiosbaseurl';
 import { useNavigate } from 'react-router-dom';
+import Loader from './Loader';
 
 export function SideProfile() {
     const [userId, setUserId] = useState(localStorage.getItem("id"));
@@ -59,7 +60,7 @@ export function SideProfile() {
                         <p>{userDetails.bio}</p>
                     </div>
                 </div>
-                <div className='d-flex justify-content-center gap-4'>
+                <div className='d-flex justify-content-center gap-3'>
                     <button className="edit-btn" onClick={() => handleClick("profile")}>Edit</button>
                     <button className="logout-btn" onClick={() => handleClick("logout")}>Logout</button>
                 </div>
@@ -68,7 +69,7 @@ export function SideProfile() {
     }
 
     return (
-        <>Loading...</>
+        <Loader/>
     )
 }
 

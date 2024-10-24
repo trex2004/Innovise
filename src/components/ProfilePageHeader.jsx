@@ -8,6 +8,8 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { LoadingOutlined } from '@ant-design/icons';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import ImgCrop from 'antd-img-crop';
+import Loader from "./Loader";
+
 
 export function ProfilePageHeader() {
 
@@ -23,6 +25,8 @@ export function ProfilePageHeader() {
     const[pic,setPic] =  useState({})
     
     const userId = localStorage.getItem("id")
+
+    
     
 
     useEffect(()=>{
@@ -118,7 +122,9 @@ export function ProfilePageHeader() {
     let dropDownColour = "#333333";
     
 
-    return (
+    return !userDetails?(
+        <Loader/>
+    ):(
         <>
             <div className="profile-header-main-div d-flex flex-column Poppins">
                 <div className="profilepage-display-div d-flex">

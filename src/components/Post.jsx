@@ -54,13 +54,21 @@ export function Post({data}){
     let data_b64 = userData["picture"];
     data_b64 = "data:image;base64,"+data_b64
 
-    return (
+    return (!userData || !data_b64 )?(
+        <div className=" tw-flex tw-flex-row tw-gap-2 tw-justify-center">
+        <div className="tw-animate-pulse tw-bg-gray-300 tw-w-[10vw] tw-h-[10vh] tw-rounded-full" />
+        <div className="tw-flex tw-flex-col tw-gap-2">
+          <div className="tw-animate-pulse tw-bg-gray-300 tw-w-[20vw] tw-h-[3vh] tw-rounded-full" />
+          <div className="tw-animate-pulse tw-bg-gray-300 tw-w-[25vw] tw-h-[3vh] tw-rounded-full" />
+        </div>
+      </div>
+      ):(
         <Flex  gap="middle" vertical align="center" style={{"marginBottom":"1vi"}}>
                 <Card style={{"width":"100%","backgroundColor":colour,"border":"none","borderRadius":"20px"}}>
                     <div className="mx-2">
                     <Flex gap="middle" align="center" style={{"marginBottom":"1vi"}} >
                         <Flex justify="flex-start" align="center" style={{"width":"70%"}}>
-                            <Avatar src={data_b64} style={{"marginRight":"1vi","width":"17%","height":"17%"}}/>
+                            <Avatar src={data_b64} style={{"marginRight":"1vi","width":"11%","height":"11%"}}/>
                             <div style={{"color":"#FFFFFF"}} className="Poppins">
                                 <h4 className="Poppins-big">
                                     {userData.fullname}
