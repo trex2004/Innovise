@@ -3,8 +3,7 @@ import { useEffect, useState } from "react"
 import api from "./axiosbaseurl"
 import "./Post.css"
 import { useNavigate } from "react-router-dom";
-import { HeartFilled, HeartOutlined } from '@ant-design/icons';
-import CircleIcon from '@mui/icons-material/Circle';
+import { HeartFilled, HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Button } from "@mui/material";
 
 export function Post(props) {
@@ -25,11 +24,10 @@ export function Post(props) {
 
                 const tempUserData = await api.get("/users/" + data.user_id)
                 if(loadPost){
-                    // const tempPostData = await api.get("/test")
-                    console.log("here")
+                    const tempPostData = await api.get("/post/"+data._id,{headers: {Authorization: 'Bearer ' + authToken}})
+                    setData(tempPostData.data.payload)
                     setLoadPost(false)
                 }
-                
                 setUserData(tempUserData.data.payload)
             } catch (error) {
                 console.log("error while getting user data in post component")
@@ -40,7 +38,7 @@ export function Post(props) {
 
     const tagsHtml = data.tags.map((tag, i) => {
         return (
-            <div key={i} className="rounded-pill px-3 py-2 tag-single-div Poppins">
+            <div key={i} className="rounded-pill px-2 py-1 tag-single-div Poppins-tag">
                 {tag}
             </div>
         )
@@ -86,13 +84,13 @@ export function Post(props) {
             <Card style={{ "width": "100%", "backgroundColor": colour, "border": "none", "borderRadius": "20px" }}>
                 <div className="mx-2">
                     <Flex gap="middle" align="center" style={{ "marginBottom": "1vi" }} >
-                        <Flex justify="flex-start" align="center" style={{ "width": "70%" }}>
-                            <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "17%", "height": "17%" }} />
-                            <div style={{ "color": "#FFFFFF" }} className="Poppins">
-                                <h4 className="Poppins-big">
+                        <Flex justify="flex-start" align="start" style={{ "width": "70%"}}>
+                            <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "12%", "height": "12%" }} />
+                            <div style={{ "color": "#FFFFFF" }} className="Poppins d-flex flex-column post-name-div">
+                                <h4 className="Poppins-big ">
                                     {userData.fullname}
                                 </h4>
-                                <p className="Poppins-bio">
+                                <p className="Poppins-bio ">
                                     {userData.bio}
                                 </p>
                             </div>
@@ -100,12 +98,11 @@ export function Post(props) {
 
                         <Flex justify="flex-end" style={{ "width": "30%" }}>
                             <button className="post-follow-button" onClick={() => handleView(userData.name)}>View</button>
-
                         </Flex>
                     </Flex>
 
                     <Flex style={{ "marginBottom": "1.5vi", "marginTop": "1.5vi" }}>
-                        <p style={{ "color": "#FFFFFF" }} className="Poppins">
+                        <p style={{ "color": "#FFFFFF" }} className="Poppins-content">
                             {data.content}
                         </p>
                     </Flex>
@@ -121,8 +118,8 @@ export function Post(props) {
                             {tagsHtml}
                         </Flex>
                         <Flex gap="middle" align="flex-end" justify="flex-end" style={{ "height": "50%" }}>
-                            <Button className="border rounded-pill" onClick={() => handleShare()}>Share</Button>
-                            <Button className="border rounded-pill" onClick={() => handleLike()} startIcon={data.has_liked? <HeartFilled style={{color:"red",fontSize:"20px"}}/>: <HeartOutlined style={{color:"red",fontSize:"20px"}}/>}>Like &middot; {data.likes}</Button>
+                            <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleShare()} style={{textTransform:"none"}} startIcon={<ShareAltOutlined />} >Share</Button>
+                            <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleLike()} style={{textTransform:"none"}} startIcon={data.has_liked? <HeartFilled style={{color:"red",fontSize:"20px"}}/>: <HeartOutlined style={{color:"red",fontSize:"20px"}}/>}>Like {data.likes?<>&middot;</>:""} {data.likes?data.likes:""} </Button>
                         </Flex>
                     </Flex>
                 </div>

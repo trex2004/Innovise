@@ -44,7 +44,7 @@ export function Suggestion(props){
                     <div className="uname-div align-self-center Poppins-sugg" onClick={() => handleClick(user.name)}>{user.fullname}</div>
                 </div>  
                 <div className="d-flex me-2">
-                    <button className="rounded-pill border px-2 py-1 visit-div-suggestions align-self-center Poppins-sugg" onClick={() => handleClick(user.name)}>View</button>
+                    <button className="rounded-pill border px-2 py-1 visit-div-suggestions align-self-center Poppins-sugg-btn" onClick={() => handleClick(user.name)}>View</button>
                 </div>
             </div>
         )

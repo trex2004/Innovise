@@ -74,13 +74,13 @@
 
 .create-post-button-div{
     height: 100% ;
-    width: 60%;
+    width: 80%;
 }
 
 .main-create-post-button{
     background-color: rgba(0, 0, 0, 0.375);
     color: white !important;
-    border: white solid 2px !important;
+    border: rgb(60, 60, 60) solid 1px !important;
     width: 100% !important;
     height: 100% !important;
     border-radius: 25px !important;
@@ -90,9 +90,10 @@
 
 .Poppins-create-post-button{
     font-family: "Poppins" !important;
-    font-weight: 400 !important;
+    font-weight: 300 !important;
     font-style: normal !important;
     font-size: 1.5vmax !important;
+    color: rgba(255, 255, 255, 0.421) !important;
 }
 
 .Poppins-create-post-sub-button{

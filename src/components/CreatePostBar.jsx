@@ -94,7 +94,7 @@ export function CreatePostBar(){
     }
 
     return (
-        <div className="create-div d-flex flex-column align-items-center gap-4 py-4 Poppins">
+        <div className="create-div d-flex flex-column align-items-center gap-3 py-3 Poppins">
             <div className="create-div-top d-flex flex-row gap-4 justify-content-center ">
                 <div className="create-bar-picture-div d-flex justify-content-center">
                     <img src={testProfilepic} alt="profile picture" className="rounded-circle create-bar-picture-internal-div m-auto"></img>
