@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./ProfilePageHeader.css";
 import testProfilepic from "./test-profile-pic.jpg"
 import api from "./axiosbaseurl";
+import Loader from "./Loader";
 
 export function ProfilePageHeaderOtherUser(props) {
 
@@ -11,6 +12,7 @@ export function ProfilePageHeaderOtherUser(props) {
     const [userTags, setUserTags] = useState([]);
     const [userId, setUserId] = useState();
     const [isFollowing, setIsFollowing] = useState();
+    
 
     useEffect(() => {
         const getUserDetails = async () => {
@@ -31,6 +33,7 @@ export function ProfilePageHeaderOtherUser(props) {
             }
         }
         getUserDetails()
+        
     }, [userName,userId])
 
     const handleFollow = async () => {
@@ -62,6 +65,13 @@ export function ProfilePageHeaderOtherUser(props) {
 
     let data_b64 = userDetails["picture"];
     data_b64 = "data:image;base64,"+data_b64
+
+    
+    if(!userDetails){
+        return (
+            <Loader/>
+        );
+    }
 
     return (
         <>

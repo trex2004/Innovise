@@ -6,11 +6,12 @@ import { useParams } from "react-router-dom";
 import { ProfilePageHeaderOtherUser } from "../components/ProfilePageHeaderOtherUser";
 import { PostContainer } from "../components/PostContainer";
 import api from "../components/axiosbaseurl";
-
+import Loader from "../components/Loader";
 const ProfilePageOtherUser = (props) =>{
 
     const [userId, setUserId] = useState();
     const userName = useParams().username
+    
 
     
     useEffect(() => {
@@ -23,8 +24,11 @@ const ProfilePageOtherUser = (props) =>{
                 console.log("Error while trying to get userid in other user profile page")
             }
         }
-        getUserID()
+        getUserID();
+        
     },[userName])
+
+    
 
     return(
         <>

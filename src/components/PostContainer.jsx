@@ -38,7 +38,7 @@ export function PostContainer(props) {
   });
 
   // Render loader when data is loading
-  if (loading) {
+  if (loading ) {
     return (
       <div className="tw-mt-12">
         <Loader />
@@ -49,7 +49,7 @@ export function PostContainer(props) {
   return (
     <>
       <div style={{ marginTop: "1vi" }}>
-        {postHtml.length > 0 ? postHtml : <p>No posts available.</p>}
+        { postHtml }
       </div>
     </>
   );
