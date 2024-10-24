@@ -65,8 +65,19 @@
   backdrop-filter: blur(2px);
 }
 
-
-
 .post-name-div{
   margin-top: 3.5%;
+}
+
+.post-link-div{
+  background-color: #2E2E2E;
+}
+
+/* .post-link-main-div{
+  padding-top: 2%;
+  color: #8F8F8F;
+} */
+
+.post-link-copy-div{
+  padding-bottom: 0;
 }

@@ -3,8 +3,9 @@ import { useEffect, useState } from "react"
 import api from "./axiosbaseurl"
 import "./Post.css"
 import { useNavigate } from "react-router-dom";
-import { HeartFilled, HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
+import { HeartFilled, HeartOutlined, LinkOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Button } from "@mui/material";
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 
 export function Post(props) {
 
@@ -68,14 +69,18 @@ export function Post(props) {
     data_b64 = "data:image;base64," + data_b64
     
     let colour = "#000000";
+    let linkColour = "#000000";
     if (data.type === "post") {
         colour = "#1D1D1D";
+        linkColour = "#333333";
     }
     if (data.type === "internship") {
         colour = "#081F20";
+        linkColour = "#06322F";
     }
     if (data.type === "project") {
         colour = "#09122D";
+        linkColour = "#0B1745";
     }
 
 
@@ -110,7 +115,15 @@ export function Post(props) {
                     <Flex vertical gap="middle">
                         <Flex gap="middle" align="flex-start" justify="flex-start" style={{ "height": "50%", "color": "#FFFFFF" }}>
                             {data.links.map((x, i) => {
-                                return <a href={x} key={i}>Link {i + 1}</a>
+                                return (
+                                    <div className="p-1 rounded d-flex gap-2 post-link-div " style={{backgroundColor: linkColour}}>
+                                        <div className="d-flex gap-1 post-link-main-div" style={{color: "#8F8F8F"}}>
+                                            <div className=""><LinkOutlined /></div>
+                                            <a href={x} key={i} className="">Link {i + 1}</a>
+                                        </div>
+                                        <div className="post-link-copy-div"><ContentCopyRoundedIcon style={{color:"#8F8F8F"}} fontSize="small"/></div>
+                                    </div>
+                                )
                             })}
 
                         </Flex>
