@@ -1,6 +1,6 @@
 .create-div{
     background-image: url(../assets/search_bar_pic.jpg);
-    
+    background-position:top;
     background-repeat: no-repeat;
     border-radius: 20px;
     /* border: solid black 3px; */
