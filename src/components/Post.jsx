@@ -11,8 +11,6 @@ export function Post(props) {
 
     const [userData, setUserData] = useState([]);
     const [data, setData] = useState(props.data);
-    const [reload, setReload] = useState(false);
-    const [loadPost, setLoadPost] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
 
     const navigate = useNavigate();
@@ -20,20 +18,14 @@ export function Post(props) {
     useEffect(() => {
         const getUserData = async () => {
             try {
-
                 const tempUserData = await api.get("/users/" + data.user_id)
-                if(loadPost){
-                    const tempPostData = await api.get("/post/"+data._id,{headers: {Authorization: 'Bearer ' + authToken}})
-                    setData(tempPostData.data.payload)
-                    setLoadPost(false)
-                }
                 setUserData(tempUserData.data.payload)
             } catch (error) {
                 console.log("error while getting user data in post component")
             }
         }
         getUserData()
-    }, [reload,loadPost])
+    }, [data.user_id])
 
     const tagsHtml = data.tags.map((tag, i) => {
         return (
@@ -52,12 +44,17 @@ export function Post(props) {
     }
     const handleLike = async () => {
         try {
+            const updatedData = {
+                ...data,
+                has_liked: !data.has_liked,
+                likes: data.has_liked ? data.likes - 1 : data.likes + 1,
+            };
+            setData(updatedData);
+
             var bodyFormData = new FormData();
             bodyFormData.append("post_id",data._id)
             bodyFormData.append("like",+ !data.has_liked)
             api.post("/users/like",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
-            setReload(!reload)
-            setLoadPost(true)
         } catch (error) {
             console.log("error while liking")
         }

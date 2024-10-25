@@ -1,11 +1,8 @@
-import { useEffect, useState, message } from "react";
+import { useEffect, useState } from "react";
 import "./ProfilePageHeader.css";
-import testProfilepic from "./test-profile-pic.jpg"
 import api from "./axiosbaseurl";
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { Button, Form, Input, Modal, Space, AutoComplete, Select, Upload, ConfigProvider } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Modal, Select, Upload, ConfigProvider } from 'antd';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import ImgCrop from 'antd-img-crop';
 import Loader from "./Loader";
@@ -21,29 +18,25 @@ export function ProfilePageHeader() {
     const [reload,setReload] = useState(false);
 
     const [options,setOptions] = useState([]);
-    const [selectedOptions,setSelectedOptions] = useState([]);
     const[pic,setPic] =  useState({})
     
     const userId = localStorage.getItem("id")
 
-    
-    
 
     useEffect(()=>{
         const getTags = async() => {
-            const x = await api.get("/users/tags")
-            let new_options = x.data.payload.map((i)=>{
-                return {
-                    value: i
-                }
-            })
-            setOptions(new_options);
+            try {
+                const x = await api.get("/users/tags")
+                let new_options = x.data.payload.map((i)=>{
+                    return {
+                        value: i
+                    }
+                })
+                setOptions(new_options);
+            } catch (error) {
+                console.log("Error fetching tags");
+            }
         }
-        getTags();
-    },[reload])
-    // console.log(userId)
-
-    useEffect(() => {
         const getUserDetails = async () => {
             try {
                 const x = await api.get("/users/" + userId)
@@ -53,11 +46,11 @@ export function ProfilePageHeader() {
             }
             catch (error) {
                 console.log("something went wrong while retriving user data, profile page header component")
-
             }
         }
+        getTags();
         getUserDetails()
-    }, [reload])
+    },[reload,userId])
 
 
     const tagsHtml = userTags.map((tag, i) => {
@@ -112,16 +105,11 @@ export function ProfilePageHeader() {
     let data_b64 = userDetails["picture"];
     data_b64 = "data:image;base64,"+data_b64
 
-    const handlesub = (values) =>{
-        console.log("Like")
-    }
-
     let colour="#1D1D1D";
     let activeColour = "#131313";
     let passiveColour = "#181818";
     let dropDownColour = "#333333";
     
-
     return !userDetails?(
         <Loader/>
     ):(
