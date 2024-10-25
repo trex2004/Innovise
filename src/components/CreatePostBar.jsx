@@ -138,11 +138,11 @@ export function CreatePostBar(){
                         <Form.Item name="textContent" label="Content" rules={[{ required: true,message: 'Please enter text!'}]} >
                             <Input.TextArea placeholder="Lorem ipsum" />
                         </Form.Item>
-                        <Form.Item name="link1" label="Link 1" rules={[{ type: 'url'}, { type: 'string', min: 6 }]}>
-                            <Input placeholder="www.example.com" />
+                        <Form.Item name="link1" label="Link 1" rules={[{ type: 'url'}, { type: 'string', min: 6 }, {pattern: new RegExp(/(https):\/\/([\w.]+\/?)\S*/), message: "Url is not valid"}]}>
+                            <Input placeholder="https://www.example.com" />
                         </Form.Item>
                         <Form.Item name="link2" label="Link 2" rules={[{ type: 'url'}, { type: 'string', min: 6 }]}>
-                            <Input placeholder="www.example.com" />
+                            <Input placeholder="https://www.example.com" />
                         </Form.Item>
                         <Form.Item name="tags" label="Tags" >
                             <Select mode="multiple" placeholder="Please Select Tags" options={options}/>

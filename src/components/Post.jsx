@@ -1,4 +1,4 @@
-import { Card, Avatar, Flex } from "antd"
+import { Card, Avatar, Flex, message, App } from "antd"
 import { useEffect, useState } from "react"
 import api from "./axiosbaseurl"
 import "./Post.css"
@@ -12,6 +12,7 @@ export function Post(props) {
     const [userData, setUserData] = useState([]);
     const [data, setData] = useState(props.data);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
+    const [messageApi, contextHolder] = message.useMessage();
 
     const navigate = useNavigate();
 
@@ -41,6 +42,12 @@ export function Post(props) {
     }
     const handleShare = () => {
         console.log("Share")
+    }
+
+    
+    const handleCopyClick = (link) => {
+        navigator.clipboard.writeText(link)
+        messageApi.open({type: 'success',content: 'Link Copied',className: 'Poppins-message',style:{}});
     }
     const handleLike = async () => {
         try {
@@ -112,11 +119,14 @@ export function Post(props) {
                             {data.links.map((x, i) => {
                                 return (
                                     <div key={i} className="p-1 rounded d-flex gap-2 post-link-div " style={{backgroundColor: linkColour}}>
-                                        <div className="d-flex gap-1 post-link-main-div" style={{color: "#8F8F8F"}}>
-                                            <div className=""><LinkOutlined /></div>
-                                            <a href={x} className="">Link {i + 1}</a>
+                                        <div className="d-flex gap-1 post-link-main-div" style={{color: "#8F8F8F" , cursor:"pointer"}} onClick={() => window.open(x, '_blank')}>
+                                            <div className="post-link-icon"><LinkOutlined /></div>
+                                            <p className="post-link-link" >Link {i + 1}</p>
                                         </div>
-                                        <div className="post-link-copy-div"><ContentCopyRoundedIcon style={{color:"#8F8F8F"}} fontSize="small"/></div>
+                                        <div className="post-link-copy-div" onClick={() => handleCopyClick(x)}>
+                                            {contextHolder}
+                                            <ContentCopyRoundedIcon className="post-link-copy-div-icon" style={{color:"#8F8F8F"}} fontSize="small"/>
+                                        </div>
                                     </div>
                                 )
                             })}

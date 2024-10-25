@@ -81,3 +81,21 @@
 .post-link-copy-div{
   padding-bottom: 0;
 }
+
+.post-link-copy-div-icon:hover{
+  transition: 0.3s;
+  color: #69b1ff !important;
+}
+
+.post-link-main-div:hover{
+  transition: 0.3s;
+  color: #69b1ff !important;
+
+}
+
+.Poppins-message{
+  font-family: "Poppins" !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: small !important;
+}

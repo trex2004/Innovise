@@ -27,6 +27,7 @@ export function PostContainer(props) {
                     setPostData(data.data.payload);
                 }
             } catch (error) {
+                console.log(error)
                 console.log("error in post container");
             } finally {
                 setLoading(false); // Stop loading after data fetch

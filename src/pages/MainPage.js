@@ -8,6 +8,7 @@ import api from "../components/axiosbaseurl.js"; //import this to send request
 import { useNavigate } from "react-router-dom";
 import TopNavbar from "../components/TopNavbar.jsx";
 import { CreatePostBar } from "../components/CreatePostBar.jsx";
+import { ConfigProvider } from "antd";
 
 const MainPage = () =>{
 
@@ -41,33 +42,35 @@ const MainPage = () =>{
 
     return(
         <>
-            <div className="d-flex mx-3 justify-content-evenly responsive-flex ">
-                <div className="d-flex flex-column">
-                    <div className="nav-top">
-                        <div className='border d-flex justify-content-between'>
-                            <button onClick={() => handleClick("nav-left")}>left</button>
-                            <button onClick={() => handleClick("nav-right")}>right</button>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="nav-left d-flex justify-content-center mx-2 rounded">
-                            {isOpen && <NavBar/>}
-                        </div>
-                        <div className="middle-column d-flex flex-column mx-2">
-                            <CreatePostBar/>
-                            <PostContainer id={"main"}/>
-                        </div>
-                        <div className="nav-right mx-2">
-                            <div className="mb-4">
-                                <SideProfile/> 
+            <ConfigProvider theme={{components: {Message: {contentBg:"#2c2c2e",colorText:"white"},},}}>
+                <div className="d-flex mx-3 justify-content-evenly responsive-flex ">
+                    <div className="d-flex flex-column">
+                        <div className="nav-top">
+                            <div className='border d-flex justify-content-between'>
+                                <button onClick={() => handleClick("nav-left")}>left</button>
+                                <button onClick={() => handleClick("nav-right")}>right</button>
                             </div>
-                            <div className="tw-mt-5">
-                                <Suggestion/>
+                        </div>
+                        <div>
+                            <div className="nav-left d-flex justify-content-center mx-2 rounded">
+                                {isOpen && <NavBar/>}
+                            </div>
+                            <div className="middle-column d-flex flex-column mx-2">
+                                <CreatePostBar/>
+                                <PostContainer id={"main"}/>
+                            </div>
+                            <div className="nav-right mx-2">
+                                <div className="mb-4">
+                                    <SideProfile/> 
+                                </div>
+                                <div className="tw-mt-5">
+                                    <Suggestion/>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </ConfigProvider>
         </>
     );
 }
