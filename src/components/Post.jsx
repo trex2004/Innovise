@@ -17,8 +17,6 @@ export function Post(props) {
 
     const navigate = useNavigate();
 
-
-
     useEffect(() => {
         const getUserData = async () => {
             try {
@@ -90,8 +88,8 @@ export function Post(props) {
                 <div className="mx-2">
                     <Flex gap="middle" align="center" style={{ "marginBottom": "1vi" }} >
                         <Flex justify="flex-start" align="start" style={{ "width": "70%"}}>
-                            <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "12%", "height": "12%" }} />
-                            <div style={{ "color": "#FFFFFF" }} className="Poppins d-flex flex-column post-name-div">
+                            <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "12%", "height": "12%" }} onClick={() => handleView(userData.name)}/>
+                            <div style={{ "color": "#FFFFFF" }} className="Poppins d-flex flex-column post-name-div" onClick={() => handleView(userData.name)}>
                                 <h4 className="Poppins-big ">
                                     {userData.fullname}
                                 </h4>
@@ -116,10 +114,10 @@ export function Post(props) {
                         <Flex gap="middle" align="flex-start" justify="flex-start" style={{ "height": "50%", "color": "#FFFFFF" }}>
                             {data.links.map((x, i) => {
                                 return (
-                                    <div className="p-1 rounded d-flex gap-2 post-link-div " style={{backgroundColor: linkColour}}>
+                                    <div key={i} className="p-1 rounded d-flex gap-2 post-link-div " style={{backgroundColor: linkColour}}>
                                         <div className="d-flex gap-1 post-link-main-div" style={{color: "#8F8F8F"}}>
                                             <div className=""><LinkOutlined /></div>
-                                            <a href={x} key={i} className="">Link {i + 1}</a>
+                                            <a href={x} className="">Link {i + 1}</a>
                                         </div>
                                         <div className="post-link-copy-div"><ContentCopyRoundedIcon style={{color:"#8F8F8F"}} fontSize="small"/></div>
                                     </div>
