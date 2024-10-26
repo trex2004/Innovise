@@ -9,6 +9,7 @@ export function PostContainer(props) {
     const [postData, setPostData] = useState([]);
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
     const [loading, setLoading] = useState(true); // Add loading state
+    const typeFilter = props.type;
     const uid = props.id;
 
     useEffect(() => {
