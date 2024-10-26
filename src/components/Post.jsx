@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { HeartFilled, HeartOutlined, LinkOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Button } from "@mui/material";
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import Confetti from "./Confetti";
 
 export function Post(props) {
 
@@ -13,7 +14,7 @@ export function Post(props) {
     const [data, setData] = useState(props.data);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [messageApi, contextHolder] = message.useMessage();
-
+    const [showConfetti,setShowConfetti]=useState(false);
     const pic = props.pic;
     const navigate = useNavigate();
 
@@ -31,8 +32,8 @@ export function Post(props) {
 
     const tagsHtml = data.tags.map((tag, i) => {
         return (
-            <div key={i} className="rounded-pill px-2 py-1 tag-single-div Poppins-tag">
-                {tag}
+            <div key={i} className="rounded-pill tw-px-0 py-1 tag-single-div Poppins-tag">
+                {"# "+tag}
             </div>
         )
     })
@@ -51,6 +52,7 @@ export function Post(props) {
         messageApi.open({type: 'success',content: 'Link Copied',className: 'Poppins-message',style:{}});
     }
     const handleLike = async () => {
+        
         try {
             const updatedData = {
                 ...data,
@@ -58,6 +60,7 @@ export function Post(props) {
                 likes: data.has_liked ? data.likes - 1 : data.likes + 1,
             };
             setData(updatedData);
+            !data.has_liked? setShowConfetti(true) : setShowConfetti(false);
 
             var bodyFormData = new FormData();
             bodyFormData.append("post_id",data._id)
@@ -88,9 +91,14 @@ export function Post(props) {
 
 
     return (
+        <>
+        {showConfetti? <Confetti /> : <></>}
         <Flex gap="middle" vertical align="center" style={{ "marginBottom": "1vi" }}>
+            
             <Card style={{ "width": "100%", "backgroundColor": colour, "border": "none", "borderRadius": "20px" }}>
+                
                 <div className="mx-2">
+                
                     <Flex gap="middle" align="center" style={{ "marginBottom": "1vi" }} >
                         <Flex justify="flex-start" align="start" style={{ "width": "70%"}}>
                             <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "12%", "height": "12%" }} onClick={() => handleView(data.user_name)}/>
@@ -115,6 +123,10 @@ export function Post(props) {
                         </p>
                     </Flex>
 
+                    <Flex  gap="small" align="flex-end" style={{ "height": "50%" , "marginBottom": "1.5vi" }} wrap >
+                            {tagsHtml}
+                        </Flex>
+
                     <Flex vertical gap="middle">
                         <Flex gap="middle" align="flex-start" justify="flex-start" style={{ "height": "50%", "color": "#FFFFFF" }}>
                             {data.links.map((x, i) => {
@@ -133,9 +145,7 @@ export function Post(props) {
                             })}
 
                         </Flex>
-                        <Flex gap="small" align="flex-end" style={{ "height": "50%" }} wrap >
-                            {tagsHtml}
-                        </Flex>
+                       
                         <Flex gap="middle" align="flex-end" justify="flex-end" style={{ "height": "50%" }}>
                             <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleShare()} style={{textTransform:"none"}} startIcon={<ShareAltOutlined />} >Share</Button>
                             <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleLike()} style={{textTransform:"none"}} startIcon={data.has_liked? <HeartFilled style={{color:"red",fontSize:"20px"}}/>: <HeartOutlined style={{color:"red",fontSize:"20px"}}/>}>Like {data.likes?<>&middot;</>:""} {data.likes?data.likes:""} </Button>
@@ -144,5 +154,6 @@ export function Post(props) {
                 </div>
             </Card>
         </Flex>
+        </>
     )
 }
