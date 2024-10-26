@@ -18,7 +18,7 @@ export function PostContainer(props) {
             setPostData([]);
             try {
                 if (uid === "main") {
-                    // if(typeFilter!=""){
+                    if(typeFilter!=""){
                         let bodyFormData = new FormData();
                         // var i=1;
                         // values.tags.forEach(tag => {
@@ -31,14 +31,14 @@ export function PostContainer(props) {
                         bodyFormData.append("num",0)
                         const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
                         console.log(x)
-                        // setPostData(data.data.payload);
-                        // setMapping(data.data.mapping)
-                    // }
-                    // else{
+                        setPostData(x.data.payload);
+                        setMapping(x.data.mapping)
+                    }
+                    else{
                         const data = await api.get("/users/post/suggestions", {headers: { Authorization: "Bearer " + authToken },});
                         setPostData(data.data.payload);
                         setMapping(data.data.mapping)
-                    // }
+                    }
                 } else {
                     const data = await api.get("/users/post/" + uid, {
                         headers: { Authorization: "Bearer " + authToken },
