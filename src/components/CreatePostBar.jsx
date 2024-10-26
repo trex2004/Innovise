@@ -3,9 +3,8 @@ import testProfilepic from "./test-profile-pic.jpg"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useEffect, useState } from "react";
-import { AutoComplete, Button, ConfigProvider, Form, Input, Modal, Select, Space } from "antd";
+import { Button, ConfigProvider, Form, Input, Modal, Select } from "antd";
 import api from "./axiosbaseurl";
-import {PlusOutlined,MinusCircleOutlined } from '@ant-design/icons';
 
 
 export function CreatePostBar(props){
@@ -36,7 +35,6 @@ export function CreatePostBar(props){
         try {
             setTypeOfPost(value)
             setShowCreatePostModal(true)
-            console.log(value)
         } catch (error) {
             console.log("Error in create post component")
         }

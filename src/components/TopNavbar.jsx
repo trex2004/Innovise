@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './SideProfile.css';
-import { NavBar } from './NavBar';
 
 export function TopNavbar() {
     return(

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./ProfilePageHeader.css";
-import testProfilepic from "./test-profile-pic.jpg"
 import api from "./axiosbaseurl";
 import Loader from "./Loader";
 

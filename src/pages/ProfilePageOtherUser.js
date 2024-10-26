@@ -6,7 +6,8 @@ import { useParams } from "react-router-dom";
 import { ProfilePageHeaderOtherUser } from "../components/ProfilePageHeaderOtherUser";
 import { PostContainer } from "../components/PostContainer";
 import api from "../components/axiosbaseurl";
-import Loader from "../components/Loader";
+
+
 const ProfilePageOtherUser = (props) =>{
 
     const [userId, setUserId] = useState();

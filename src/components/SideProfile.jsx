@@ -48,7 +48,7 @@ export function SideProfile() {
     if (userDetails) {
         return (
             <div className="profile-card Poppins">
-                <div onClick={() => handleClick("profile")}>
+                <div onClick={() => handleClick("profile")} style={{cursor:"pointer"}}>
                     <div className="profile-image">
                         <img
                             src={testProfilepic}

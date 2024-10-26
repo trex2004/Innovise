@@ -1,9 +1,9 @@
-import { Card, Avatar, Flex, message, App } from "antd"
-import { useEffect, useState } from "react"
+import { Card, Avatar, Flex, message } from "antd"
+import { useState } from "react"
 import api from "./axiosbaseurl"
 import "./Post.css"
 import { useNavigate } from "react-router-dom";
-import { HeartFilled, HeartOutlined, LinkOutlined, ShareAltOutlined } from '@ant-design/icons';
+import { LinkOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Button } from "@mui/material";
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import LikeButton from "./Like";

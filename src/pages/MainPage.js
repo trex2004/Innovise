@@ -6,7 +6,6 @@ import { Suggestion } from "../components/Suggestion";
 import { PostContainer } from "../components/PostContainer.jsx";
 import api from "../components/axiosbaseurl.js"; //import this to send request
 import { useNavigate } from "react-router-dom";
-import TopNavbar from "../components/TopNavbar.jsx";
 import { CreatePostBar } from "../components/CreatePostBar.jsx";
 import { ConfigProvider } from "antd";
 
