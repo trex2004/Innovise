@@ -18,11 +18,27 @@ export function PostContainer(props) {
             setPostData([]);
             try {
                 if (uid === "main") {
-                    const data = await api.get("/users/post/suggestions", {
-                        headers: { Authorization: "Bearer " + authToken },
-                    });
-                    setPostData(data.data.payload);
-                    setMapping(data.data.mapping)
+                    // if(typeFilter!=""){
+                        let bodyFormData = new FormData();
+                        // var i=1;
+                        // values.tags.forEach(tag => {
+                        //     bodyFormData.append(`interest[${i}]`,tag)
+                        //     i++;
+                        // });
+                        // bodyFormData.append("num",values.tags.length)
+                        console.log("here" + typeFilter)
+                        bodyFormData.append("type",typeFilter)
+                        bodyFormData.append("num",0)
+                        const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
+                        console.log(x)
+                        // setPostData(data.data.payload);
+                        // setMapping(data.data.mapping)
+                    // }
+                    // else{
+                        const data = await api.get("/users/post/suggestions", {headers: { Authorization: "Bearer " + authToken },});
+                        setPostData(data.data.payload);
+                        setMapping(data.data.mapping)
+                    // }
                 } else {
                     const data = await api.get("/users/post/" + uid, {
                         headers: { Authorization: "Bearer " + authToken },
@@ -39,7 +55,7 @@ export function PostContainer(props) {
         };
 
         getPostDetails();
-    }, [uid, authToken]);
+    }, [uid, authToken, typeFilter]);
 
 
     const postHtml = postData.map((data, i) => {

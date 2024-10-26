@@ -23,13 +23,13 @@ export function NavBar(props){
             navigate("/")
         }
         if(value=='Post'){
-            props.filterSetter('Post')
+            props.filterSetter('post')
         }
         if(value=='Internships'){
-            props.filterSetter('Internships')
+            props.filterSetter('internship')
         }
         if(value=='Project'){
-            props.filterSetter('Project')
+            props.filterSetter('project')
         }
     }
 

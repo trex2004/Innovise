@@ -49,8 +49,8 @@ export function Post(props) {
         navigator.clipboard.writeText(link)
         messageApi.open({type: 'success',content: 'Link Copied',className: 'Poppins-message',style:{}});
     }
+
     const handleLike = async () => {
-        
         try {
             const updatedData = {
                 ...data,
