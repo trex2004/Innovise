@@ -47,10 +47,10 @@
 }
 
 .tag-single-div{
-    background-color: aqua;
-    color: #111111;
-    box-shadow: 1px 1px 20.6277px rgba(54, 166, 178, 0.5);
-    backdrop-filter: blur(2px);
+    
+    color: rgba(0, 255, 255, 0.621);
+    
+   
 }
 
 .edit-div-profile-header{
