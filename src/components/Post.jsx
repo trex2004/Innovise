@@ -22,8 +22,8 @@ export function Post(props) {
     if(!deleted){
         tagsHtml = data.tags.map((tag, i) => {
             return (
-                <div key={i} className="rounded-pill px-2 py-1 tag-single-div Poppins-tag">
-                    {tag}
+                <div key={i} className="rounded-pill px-0 py-1 tag-single-div Poppins-tag">
+                    {"#"+tag}
                 </div>
             )
         })
