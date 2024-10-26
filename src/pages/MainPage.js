@@ -17,6 +17,7 @@ const MainPage = () =>{
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(true);
     const [typeFilter,setTypeFilter] = useState("")
+    const [tagFilter,setTagFilter] = useState([])
 
     const toProfilePage = () => {
         navigate("/profile")
@@ -57,8 +58,8 @@ const MainPage = () =>{
                                 {isOpen && <NavBar filterSetter={setTypeFilter}/>}
                             </div>
                             <div className="middle-column d-flex flex-column mx-2">
-                                <CreatePostBar/>
-                                <PostContainer id={"main"} self={false} type={typeFilter}/>
+                                <CreatePostBar tagSetter={setTagFilter}/>
+                                <PostContainer id={"main"} self={false} type={typeFilter} tags={tagFilter}/>
                             </div>
                             <div className="nav-right mx-2">
                                 <div className="mb-4">

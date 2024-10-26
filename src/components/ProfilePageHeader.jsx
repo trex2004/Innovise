@@ -164,7 +164,7 @@ export function ProfilePageHeader() {
                         </Form.Item>
                     </Form>
                 </Modal>
-                <Modal title="Edit Porfile" open={showEditProfileModal} onCancel={() => setShowEditProfileModal(false)} destroyOnClose={true} footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
+                <Modal title="Edit Profile" open={showEditProfileModal} onCancel={() => setShowEditProfileModal(false)} destroyOnClose={true} footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
                     <Form name="dynamic_form_nest_item"  onFinish={editProfile} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} autoComplete="off" initialValues={{["fullname"]:userDetails.fullname,["bio"]:userDetails.bio,["email"]:userDetails.email,["tags"]:userTags}}>
                         <Form.Item name="fullname" label="FullName" rules={[{ required: true,message: 'Please enter name!'}]}>
                             <Input placeholder="Fullname"/>

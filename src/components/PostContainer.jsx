@@ -10,6 +10,7 @@ export function PostContainer(props) {
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
     const [loading, setLoading] = useState(true); // Add loading state
     const typeFilter = props.type;
+    const tagFilter = props.tags;
     const uid = props.id;
 
     useEffect(() => {
@@ -18,19 +19,16 @@ export function PostContainer(props) {
             setPostData([]);
             try {
                 if (uid === "main") {
-                    if(typeFilter!=""){
+                    if(typeFilter!="" || tagFilter.length>0){
                         let bodyFormData = new FormData();
-                        // var i=1;
-                        // values.tags.forEach(tag => {
-                        //     bodyFormData.append(`interest[${i}]`,tag)
-                        //     i++;
-                        // });
-                        // bodyFormData.append("num",values.tags.length)
-                        console.log("here" + typeFilter)
+                        let i=1;
+                        tagFilter.forEach(tag => {
+                            bodyFormData.append(`tag[${i}]`,tag)
+                            i++;
+                        });
+                        bodyFormData.append("num",tagFilter.length)
                         bodyFormData.append("type",typeFilter)
-                        bodyFormData.append("num",0)
                         const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
-                        console.log(x)
                         setPostData(x.data.payload);
                         setMapping(x.data.mapping)
                     }
@@ -40,14 +38,27 @@ export function PostContainer(props) {
                         setMapping(data.data.mapping)
                     }
                 } else {
-                    const data = await api.get("/users/post/" + uid, {
-                        headers: { Authorization: "Bearer " + authToken },
-                    });
-                    setPostData(data.data.payload);
-                    setMapping(data.data.mapping)
+                    if(typeFilter!=""){
+                        let bodyFormData = new FormData();
+                        // let i=1;
+                        // tagFilter.forEach(tag => {
+                        //     bodyFormData.append(`tag[${i}]`,tag)
+                        //     i++;
+                        // });
+                        // bodyFormData.append("num",tagFilter.length)
+                        bodyFormData.append("owner",uid)
+                        bodyFormData.append("type",typeFilter)
+                        const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
+                        setPostData(x.data.payload);
+                        setMapping(x.data.mapping)
+                    }
+                    else{
+                        const data = await api.get("/users/post/" + uid, {headers: { Authorization: "Bearer " + authToken },});
+                        setPostData(data.data.payload);
+                        setMapping(data.data.mapping)
+                    }
                 }
             } catch (error) {
-                console.log(error)
                 console.log("error in post container");
             } finally {
                 setLoading(false); // Stop loading after data fetch
@@ -55,7 +66,7 @@ export function PostContainer(props) {
         };
 
         getPostDetails();
-    }, [uid, authToken, typeFilter]);
+    }, [uid, authToken, typeFilter, tagFilter]);
 
 
     const postHtml = postData.map((data, i) => {
