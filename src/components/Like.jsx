@@ -1,146 +1,235 @@
 import React from "react";
 import styled from "styled-components";
 
-const LikeButton = ({ isLiked, setLiked, handleLike }) => {
-  const handleToggle = () => {
-   
-    handleLike();
-  };
-
+const LikeButton = ({isLiked}) => {
   return (
     <StyledWrapper>
-      <div title="Like" className="heart-container">
-        <input
-          id="Give-It-An-Id"
-          className="checkbox"
-          type="checkbox"
-          checked={isLiked}
-          onChange={handleToggle}
-        />
-        <div className="svg-container">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="svg-outline"
-            viewBox="0 0 24 24"
-            width="20"
-            height="20"  // Reduce the size
-          >
-            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="svg-filled"
-            viewBox="0 0 24 24"
-            width="20"
-            height="20" // Reduce the size
-          >
-            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="30"   // Further reduced size
-            width="30"
-            className="svg-celebrate"
-          >
-            <polygon points="10,10 20,20" />
-            <polygon points="10,50 20,50" />
-            <polygon points="20,80 30,70" />
-            <polygon points="90,10 80,20" />
-            <polygon points="90,50 80,50" />
-            <polygon points="80,80 70,70" />
+      <label className="ui-like tw-justify-center ">
+        <input type="checkbox" checked={isLiked} disabled />
+        <div className="like">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="">
+            <g strokeWidth={0} id="SVGRepo_bgCarrier" />
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              id="SVGRepo_tracerCarrier"
+            />
+            <g id="SVGRepo_iconCarrier">
+              <path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z" />
+            </g>
           </svg>
         </div>
-      </div>
+      </label>
     </StyledWrapper>
   );
 };
 
 const StyledWrapper = styled.div`
-  .heart-container {
-    --heart-color:#B01E28;
-    position: relative;
-    width: 30px;  /* Reduced size */
-    height: 30px;
-    transition: 0.3s;
-  }
-
-  .heart-container .checkbox {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 20;
-    cursor: pointer;
-  }
-
-  .heart-container .svg-container {
-    width: 100%;
-    height: 100%;
+  .ui-like {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: center; // Align heart icon in the center
+    justify-content: center; // Center icon horizontally
+   
+  --icon-size: 24px;
+  --icon-secondary-color: rgb(255, 255, 255);
+  --icon-hover-color: rgb(211, 205, 205);
+  --icon-primary-color: rgb(230, 26, 26);
+  --icon-circle-border: 1px solid var(--icon-primary-color);
+  --icon-circle-size: 35px;
+  --icon-anmt-duration: 0.3s;
+}
+
+.ui-like input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.ui-like .like {
+  width: var(--icon-size);
+  height: auto;
+  fill: var(--icon-secondary-color);
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+}
+
+.like::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  -webkit-box-shadow: 0 30px 0 -4px var(--icon-primary-color),
+    30px 0 0 -4px var(--icon-primary-color),
+    0 -30px 0 -4px var(--icon-primary-color),
+    -30px 0 0 -4px var(--icon-primary-color),
+    -22px 22px 0 -4px var(--icon-primary-color),
+    -22px -22px 0 -4px var(--icon-primary-color),
+    22px -22px 0 -4px var(--icon-primary-color),
+    22px 22px 0 -4px var(--icon-primary-color);
+  box-shadow: 0 30px 0 -4px var(--icon-primary-color),
+    30px 0 0 -4px var(--icon-primary-color),
+    0 -30px 0 -4px var(--icon-primary-color),
+    -30px 0 0 -4px var(--icon-primary-color),
+    -22px 22px 0 -4px var(--icon-primary-color),
+    -22px -22px 0 -4px var(--icon-primary-color),
+    22px -22px 0 -4px var(--icon-primary-color),
+    22px 22px 0 -4px var(--icon-primary-color);
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+
+.like::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: var(--icon-circle-border);
+  opacity: 0;
+}
+
+/* actions */
+
+.ui-like:hover .like {
+  fill: var(--icon-hover-color);
+}
+
+.ui-like input:checked + .like::after {
+  -webkit-animation: circles var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circles var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  -webkit-animation-delay: var(--icon-anmt-duration);
+  animation-delay: var(--icon-anmt-duration);
+}
+
+.ui-like input:checked + .like {
+  fill: var(--icon-primary-color);
+  -webkit-animation: like var(--icon-anmt-duration) forwards;
+  animation: like var(--icon-anmt-duration) forwards;
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.ui-like input:checked + .like::before {
+  -webkit-animation: circle var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circle var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  -webkit-animation-delay: var(--icon-anmt-duration);
+  animation-delay: var(--icon-anmt-duration);
+}
+
+@-webkit-keyframes like {
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
   }
 
-  .heart-container .svg-outline,
-  .heart-container .svg-filled {
-    fill: var(--heart-color);
-    position: absolute;
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@keyframes like {
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
   }
 
-  .heart-container .svg-filled {
-    animation: keyframes-svg-filled 1s;
-    display: none;
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@-webkit-keyframes circle {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0;
   }
 
-  .heart-container .svg-celebrate {
-    position: absolute;
-    animation: keyframes-svg-celebrate 0.5s;
-    animation-fill-mode: forwards;
-    display: none;
-    stroke: var(--heart-color);
-    fill: var(--heart-color);
-    stroke-width: 2px;
+  90% {
+    width: var(--icon-circle-size);
+    height: var(--icon-circle-size);
+    opacity: 1;
   }
 
-  .heart-container .checkbox:checked ~ .svg-container .svg-filled {
-    display: block;
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes circle {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0;
   }
 
-  .heart-container .checkbox:checked ~ .svg-container .svg-celebrate {
-    display: block;
+  90% {
+    width: var(--icon-circle-size);
+    height: var(--icon-circle-size);
+    opacity: 1;
   }
 
-  @keyframes keyframes-svg-filled {
-    0% {
-      transform: scale(0);
-    }
+  to {
+    opacity: 0;
+  }
+}
 
-    25% {
-      transform: scale(1.2);
-    }
-
-    50% {
-      transform: scale(1);
-      filter: brightness(1.5);
-    }
+@-webkit-keyframes circles {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
   }
 
-  @keyframes keyframes-svg-celebrate {
-    0% {
-      transform: scale(0);
-    }
-
-    50% {
-      opacity: 1;
-      filter: brightness(1.5);
-    }
-
-    100% {
-      transform: scale(1.4);
-      opacity: 0;
-      display: none;
-    }
+  40% {
+    opacity: 1;
   }
+
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes circles {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
 `;
 
 export default LikeButton;

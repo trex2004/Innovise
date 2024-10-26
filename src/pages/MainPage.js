@@ -10,6 +10,8 @@ import TopNavbar from "../components/TopNavbar.jsx";
 import { CreatePostBar } from "../components/CreatePostBar.jsx";
 import { ConfigProvider } from "antd";
 
+
+
 const MainPage = () =>{
 
     const navigate = useNavigate();
@@ -37,11 +39,12 @@ const MainPage = () =>{
     const handleClick = (value) =>{
         console.log(value)
     }
+   
 
     return(
         <>
             <ConfigProvider theme={{components: {Message: {contentBg:"#2c2c2e",colorText:"white"},},}}>
-                <div className="d-flex mx-3 justify-content-evenly responsive-flex ">
+                <div className=" d-flex mx-3 justify-content-evenly responsive-flex ">
                     <div className="d-flex flex-column">
                         <div className="nav-top">
                             <div className='border d-flex justify-content-between'>
@@ -50,7 +53,7 @@ const MainPage = () =>{
                             </div>
                         </div>
                         <div>
-                            <div className="nav-left d-flex justify-content-center mx-2 rounded">
+                            <div className="nav-left d-flex justify-content-center mx-2 rounded " >
                                 {isOpen && <NavBar filterSetter={setTypeFilter}/>}
                             </div>
                             <div className="middle-column d-flex flex-column mx-2">
