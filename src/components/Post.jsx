@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { HeartFilled, HeartOutlined, LinkOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Button } from "@mui/material";
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
-import Confetti from "./Confetti";
+import LikeButton from "./Like";
+
 
 export function Post(props) {
 
@@ -14,7 +15,8 @@ export function Post(props) {
     const [deleted, setDeleted] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [messageApi, contextHolder] = message.useMessage();
-    const [showConfetti,setShowConfetti]=useState(false);
+    const [isLiked,setLiked]=useState(data.has_liked);
+    
     const pic = props.pic;
     const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ export function Post(props) {
     if(!deleted){
         tagsHtml = data.tags.map((tag, i) => {
             return (
-                <div key={i} className="rounded-pill px-0 py-1 tag-single-div Poppins-tag">
+                <div key={i} className="rounded-pill px-0 py-1 Poppins-tag">
                     {"#"+tag}
                 </div>
             )
@@ -56,7 +58,7 @@ export function Post(props) {
                 likes: data.has_liked ? data.likes - 1 : data.likes + 1,
             };
             setData(updatedData);
-            !data.has_liked? setShowConfetti(true) : setShowConfetti(false);
+            !data.has_liked? setLiked(true):setLiked(false);
 
             var bodyFormData = new FormData();
             bodyFormData.append("post_id",data._id)
@@ -94,7 +96,7 @@ export function Post(props) {
 
     return (
         <>
-        {showConfetti? <Confetti /> : <></>}
+        
         <Flex gap="middle" vertical align="center" style={{ "marginBottom": "1vi" }}>
             
             <Card style={{ "width": "100%", "backgroundColor": colour, "border": "none", "borderRadius": "20px" }}>
@@ -152,7 +154,7 @@ export function Post(props) {
                        
                         <Flex gap="middle" align="flex-end" justify="flex-end" style={{ "height": "50%" }}>
                             <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleShare()} style={{textTransform:"none"}} startIcon={<ShareAltOutlined />} >Share</Button>
-                            <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleLike()} style={{textTransform:"none"}} startIcon={data.has_liked? <HeartFilled style={{color:"red",fontSize:"20px"}}/>: <HeartOutlined style={{color:"red",fontSize:"20px"}}/>}>Like {data.likes?<>&middot;</>:""} {data.likes?data.likes:""} </Button>
+                            <Button className=" border rounded-pill border-secondary text-secondary Poppins-btn  " onClick={null} style={{textTransform:"none"}} startIcon={<LikeButton  isLiked={isLiked} setLiked={setLiked} handleLike={handleLike}  />}>Like {data.likes?<>&middot;</>:""} {data.likes?data.likes:""} </Button>
                         </Flex>
                     </Flex>
                 </div>
