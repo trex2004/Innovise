@@ -123,7 +123,7 @@ export function Post(props) {
                         </Flex>
                     </Flex>
 
-                    <Flex style={{ "marginBottom": "1.5vi", "marginTop": "1.5vi" }}>
+                    <Flex style={{ "marginBottom": "0px", "marginTop": "1.5vi" }}>
                         <p style={{ "color": "#FFFFFF" }} className="Poppins-content">
                             {data.content}
                         </p>
@@ -133,7 +133,7 @@ export function Post(props) {
                             {tagsHtml}
                         </Flex>
 
-                    <Flex vertical gap="middle">
+                    <Flex  vertical gap="middle">
                         <Flex gap="middle" align="flex-start" justify="flex-start" style={{ "height": "50%", "color": "#FFFFFF" }}>
                             {data.links.map((x, i) => {
                                 return (
@@ -154,7 +154,7 @@ export function Post(props) {
                        
                         <Flex gap="middle" align="flex-end" justify="flex-end" style={{ "height": "50%" }}>
                             <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleShare()} style={{textTransform:"none"}} startIcon={<ShareAltOutlined />} >Share</Button>
-                            <Button className=" border rounded-pill border-secondary text-secondary Poppins-btn  " onClick={null} style={{textTransform:"none"}} startIcon={<LikeButton  isLiked={isLiked} setLiked={setLiked} handleLike={handleLike}  />}>Like {data.likes?<>&middot;</>:""} {data.likes?data.likes:""} </Button>
+                            <Button className="border rounded-pill border-secondary text-secondary Poppins-btn" onClick={handleLike} style={{textTransform:"none"}} startIcon={<LikeButton isLiked={isLiked}  />}> {data.likes?data.likes:"Like"} </Button>
                         </Flex>
                     </Flex>
                 </div>
