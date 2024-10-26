@@ -8,20 +8,22 @@ export function ProfilePageHeaderOtherUser(props) {
 
     const userName = props.userName
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'))
-    const [userDetails, setUserDetails] = useState("");
+    const [userDetails, setUserDetails] = useState([]);
     const [userTags, setUserTags] = useState([]);
     const [userId, setUserId] = useState();
-    const [isFollowing, setIsFollowing] = useState();
+    const [isFollowing, setIsFollowing] = useState(false);
+    const [loading, setLoading] = useState(true); 
     
 
     useEffect(() => {
         const getUserDetails = async () => {
+            setLoading(true)
             try {
                 const temp = await api.get("/users/name/"+userName)
                 const tempUserId = temp.data.payload._id
                 const x = await api.get("/users/" + tempUserId)
                 const y = await api.get("/users/" + tempUserId + "/interests")
-                const z = await api.get("/users/following/"+userId,{headers: {Authorization: 'Bearer ' + authToken}})
+                const z = await api.get("/users/following/"+tempUserId,{headers: {Authorization: 'Bearer ' + authToken}})
                 setIsFollowing(z.data.payload)
                 setUserId(tempUserId)
                 setUserTags(y.data.payload)
@@ -29,12 +31,14 @@ export function ProfilePageHeaderOtherUser(props) {
             }
             catch (error) {
                 console.log("something went wrong while retriving user data, profile page header other user component")
-
+            }
+            finally{
+                setLoading(false)
             }
         }
         getUserDetails()
         
-    }, [userName,userId])
+    }, [userName])
 
     const handleFollow = async () => {
         try {
@@ -42,13 +46,13 @@ export function ProfilePageHeaderOtherUser(props) {
             bodyFormData.append("name",userName)
             if(isFollowing){
                 bodyFormData.append("delete",1)
-                await api.post("/users/following",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
                 setIsFollowing(false)
+                await api.post("/users/following",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
             }
             else{
                 bodyFormData.append("delete",0)
-                await api.post("/users/following",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
                 setIsFollowing(true)
+                await api.post("/users/following",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
             }
         } catch (error) {
             console.log("Some error in following: other user header")
@@ -67,7 +71,7 @@ export function ProfilePageHeaderOtherUser(props) {
     data_b64 = "data:image;base64,"+data_b64
 
     
-    if(!userDetails){
+    if(loading){
         return (
             <Loader/>
         );

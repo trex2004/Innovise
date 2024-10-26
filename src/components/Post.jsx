@@ -105,7 +105,7 @@ export function Post(props) {
                         </Flex>
 
                         <Flex justify="flex-end" style={{ "width": "30%" }}>
-                            <button className="post-follow-button" onClick={() => handleView(data.name)}>View</button>
+                            <button className="post-follow-button" onClick={() => handleView(data.user_name)}>View</button>
                         </Flex>
                     </Flex>
 

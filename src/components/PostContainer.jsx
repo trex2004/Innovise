@@ -39,6 +39,7 @@ export function PostContainer(props) {
         getPostDetails();
     }, [uid, authToken]);
 
+
     const postHtml = postData.map((data, i) => {
         return <Post data={data} pic={mapping[data.user_id]} key={i}></Post>;
     });
