@@ -9,33 +9,24 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 
 export function Post(props) {
 
-    // const [userData, setUserData] = useState([]);
     const [data, setData] = useState(props.data);
+    const [deleted, setDeleted] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [messageApi, contextHolder] = message.useMessage();
 
     const pic = props.pic;
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const getUserData = async () => {
-    //         try {
-    //             const tempUserData = await api.get("/users/" + data.user_id)
-    //             setUserData(tempUserData.data.payload)
-    //         } catch (error) {
-    //             console.log("error while getting user data in post component")
-    //         }
-    //     }
-    //     getUserData()
-    // }, [data.user_id])
-
-    const tagsHtml = data.tags.map((tag, i) => {
-        return (
-            <div key={i} className="rounded-pill px-2 py-1 tag-single-div Poppins-tag">
-                {tag}
-            </div>
-        )
-    })
+    let tagsHtml=[]
+    if(!deleted){
+        tagsHtml = data.tags.map((tag, i) => {
+            return (
+                <div key={i} className="rounded-pill px-2 py-1 tag-single-div Poppins-tag">
+                    {tag}
+                </div>
+            )
+        })
+    }
 
     
     const handleView = (value) => {
@@ -45,6 +36,11 @@ export function Post(props) {
         console.log("Share")
     }
 
+    const handleDelete = () => {
+        setDeleted(true)
+        api.delete("/post/"+data._id,{headers: {Authorization: 'Bearer ' + authToken}})
+        setData([])
+    }
     
     const handleCopyClick = (link) => {
         navigator.clipboard.writeText(link)
@@ -87,6 +83,12 @@ export function Post(props) {
     }
 
 
+    if(deleted){
+        return(
+            <></>
+        )
+    }
+
     return (
         <Flex gap="middle" vertical align="center" style={{ "marginBottom": "1vi" }}>
             <Card style={{ "width": "100%", "backgroundColor": colour, "border": "none", "borderRadius": "20px" }}>
@@ -105,7 +107,9 @@ export function Post(props) {
                         </Flex>
 
                         <Flex justify="flex-end" style={{ "width": "30%" }}>
-                            <button className="post-follow-button" onClick={() => handleView(data.user_name)}>View</button>
+                            {props.self?
+                            <button className="post-follow-button " onClick={() => handleDelete()}>Delete</button>:
+                            <button className="post-follow-button " onClick={() => handleView(data.user_name)}>View</button>}
                         </Flex>
                     </Flex>
 

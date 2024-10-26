@@ -37,7 +37,7 @@ const ProfilePageOtherUser = (props) =>{
                     <NavBar/>
                 </div>
                 <div className="middle-column-profile-page d-flex flex-column justify-content-center mx-2">
-                    <ProfilePageHeaderOtherUser userName={userName}/>
+                    <ProfilePageHeaderOtherUser userName={userName} self={false}/>
                     <PostContainer id={userId}/>
                 </div>
                 <div className="nav-right mx-2 ">
