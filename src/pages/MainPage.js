@@ -14,6 +14,7 @@ const MainPage = () =>{
 
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(true);
+    const [typeFilter,setTypeFilter] = useState("")
 
     const toProfilePage = () => {
         navigate("/profile")
@@ -33,10 +34,7 @@ const MainPage = () =>{
         
     },[])
 
-
-    
     const handleClick = (value) =>{
-        
         console.log(value)
     }
 
@@ -53,11 +51,11 @@ const MainPage = () =>{
                         </div>
                         <div>
                             <div className="nav-left d-flex justify-content-center mx-2 rounded">
-                                {isOpen && <NavBar/>}
+                                {isOpen && <NavBar filterSetter={setTypeFilter}/>}
                             </div>
                             <div className="middle-column d-flex flex-column mx-2">
                                 <CreatePostBar/>
-                                <PostContainer id={"main"} self={false}/>
+                                <PostContainer id={"main"} self={false} type={typeFilter}/>
                             </div>
                             <div className="nav-right mx-2">
                                 <div className="mb-4">

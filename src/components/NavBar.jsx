@@ -9,15 +9,28 @@ import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import { useNavigate } from "react-router-dom";
 
 
-export function NavBar(){
+export function NavBar(props){
     
     const navigate = useNavigate();
 
     const handleClick = (value) =>{
         if(value=='Trending'){
+            props.filterSetter("")
             navigate("/")
         }
-        console.log(value)
+        if(value=='Following'){
+            props.filterSetter('Following')
+            navigate("/")
+        }
+        if(value=='Post'){
+            props.filterSetter('Post')
+        }
+        if(value=='Internships'){
+            props.filterSetter('Internships')
+        }
+        if(value=='Project'){
+            props.filterSetter('Project')
+        }
     }
 
     return (
@@ -27,8 +40,8 @@ export function NavBar(){
             </div>
             <div className="nav-div gap-3 d-flex flex-column">
                 <Button className="navbar-Button Poppins py-2" onClick={() => handleClick('Trending')}><MovingRoundedIcon className="icon"/> &nbsp; Trending</Button>
-                <Button className="navbar-Button Poppins py-2" onClick={() => handleClick('Search')}><SearchRoundedIcon className="icon"/> &nbsp; Search</Button>
                 <Button className="navbar-Button Poppins py-2" onClick={() => handleClick('Following')}><HowToRegRoundedIcon className="icon"/> &nbsp; Following</Button>
+                <Button className="navbar-Button Poppins py-2" onClick={() => handleClick('Post')}> &nbsp; Post</Button>
                 <Button className="navbar-Button Poppins py-2" onClick={() => handleClick('Internships')}><WorkOutlineOutlinedIcon className="icon"/> &nbsp; Internships</Button>
                 <Button className="navbar-Button Poppins py-2" onClick={() => handleClick('Project')}><Groups3OutlinedIcon className="icon" /> &nbsp; Project Collab</Button>
             </div>

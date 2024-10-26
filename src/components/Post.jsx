@@ -103,8 +103,8 @@ export function Post(props) {
                 
                     <Flex gap="middle" align="center" style={{ "marginBottom": "1vi" }} >
                         <Flex justify="flex-start" align="start" style={{ "width": "70%"}}>
-                            <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "12%", "height": "12%" }} onClick={() => handleView(data.user_name)}/>
-                            <div style={{ "color": "#FFFFFF" }} className="Poppins d-flex flex-column post-name-div" onClick={() => handleView(data.user_name)}>
+                            <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "12%", "height": "12%","cursor":"pointer" }} onClick={() => handleView(data.user_name)}/>
+                            <div style={{ "color": "#FFFFFF","cursor":"pointer" }} className="Poppins d-flex flex-column post-name-div" onClick={() => handleView(data.user_name)}>
                                 <h4 className="Poppins-big ">
                                     {data.user_fullname}
                                 </h4>
