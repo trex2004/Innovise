@@ -9,24 +9,25 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 
 export function Post(props) {
 
-    const [userData, setUserData] = useState([]);
+    // const [userData, setUserData] = useState([]);
     const [data, setData] = useState(props.data);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [messageApi, contextHolder] = message.useMessage();
 
+    const pic = props.pic;
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const getUserData = async () => {
-            try {
-                const tempUserData = await api.get("/users/" + data.user_id)
-                setUserData(tempUserData.data.payload)
-            } catch (error) {
-                console.log("error while getting user data in post component")
-            }
-        }
-        getUserData()
-    }, [data.user_id])
+    // useEffect(() => {
+    //     const getUserData = async () => {
+    //         try {
+    //             const tempUserData = await api.get("/users/" + data.user_id)
+    //             setUserData(tempUserData.data.payload)
+    //         } catch (error) {
+    //             console.log("error while getting user data in post component")
+    //         }
+    //     }
+    //     getUserData()
+    // }, [data.user_id])
 
     const tagsHtml = data.tags.map((tag, i) => {
         return (
@@ -67,7 +68,7 @@ export function Post(props) {
         }
     }
     
-    let data_b64 = userData["picture"];
+    let data_b64 = pic;
     data_b64 = "data:image;base64," + data_b64
     
     let colour = "#000000";
@@ -92,19 +93,19 @@ export function Post(props) {
                 <div className="mx-2">
                     <Flex gap="middle" align="center" style={{ "marginBottom": "1vi" }} >
                         <Flex justify="flex-start" align="start" style={{ "width": "70%"}}>
-                            <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "12%", "height": "12%" }} onClick={() => handleView(userData.name)}/>
-                            <div style={{ "color": "#FFFFFF" }} className="Poppins d-flex flex-column post-name-div" onClick={() => handleView(userData.name)}>
+                            <Avatar src={data_b64} style={{ "marginRight": "1vi", "width": "12%", "height": "12%" }} onClick={() => handleView(data.user_name)}/>
+                            <div style={{ "color": "#FFFFFF" }} className="Poppins d-flex flex-column post-name-div" onClick={() => handleView(data.user_name)}>
                                 <h4 className="Poppins-big ">
-                                    {userData.fullname}
+                                    {data.user_fullname}
                                 </h4>
                                 <p className="Poppins-bio ">
-                                    {userData.bio}
+                                    {data.user_bio}
                                 </p>
                             </div>
                         </Flex>
 
                         <Flex justify="flex-end" style={{ "width": "30%" }}>
-                            <button className="post-follow-button" onClick={() => handleView(userData.name)}>View</button>
+                            <button className="post-follow-button" onClick={() => handleView(data.name)}>View</button>
                         </Flex>
                     </Flex>
 

@@ -4,6 +4,7 @@ import api from "./axiosbaseurl.js";
 import Loader from "./Loader.jsx";
 
 export function PostContainer(props) {
+    const [mapping,setMapping] = useState({})
     const [postData, setPostData] = useState([]);
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
     const [loading, setLoading] = useState(true); // Add loading state
@@ -19,12 +20,13 @@ export function PostContainer(props) {
                         headers: { Authorization: "Bearer " + authToken },
                     });
                     setPostData(data.data.payload);
+                    setMapping(data.data.mapping)
                 } else {
                     const data = await api.get("/users/post/" + uid, {
                         headers: { Authorization: "Bearer " + authToken },
                     });
-                    // console.log(data.data.payload)
                     setPostData(data.data.payload);
+                    setMapping(data.data.mapping)
                 }
             } catch (error) {
                 console.log(error)
@@ -38,7 +40,7 @@ export function PostContainer(props) {
     }, [uid, authToken]);
 
     const postHtml = postData.map((data, i) => {
-        return <Post data={data} key={i}></Post>;
+        return <Post data={data} pic={mapping[data.user_id]} key={i}></Post>;
     });
 
 
