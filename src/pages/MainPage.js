@@ -57,7 +57,7 @@ const MainPage = () =>{
                             </div>
                             <div className="middle-column d-flex flex-column mx-2">
                                 <CreatePostBar/>
-                                <PostContainer id={"main"}/>
+                                <PostContainer id={"main"} self={false}/>
                             </div>
                             <div className="nav-right mx-2">
                                 <div className="mb-4">

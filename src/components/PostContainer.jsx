@@ -4,6 +4,7 @@ import api from "./axiosbaseurl.js";
 import Loader from "./Loader.jsx";
 
 export function PostContainer(props) {
+
     const [mapping,setMapping] = useState({})
     const [postData, setPostData] = useState([]);
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
@@ -41,7 +42,7 @@ export function PostContainer(props) {
 
 
     const postHtml = postData.map((data, i) => {
-        return <Post data={data} pic={mapping[data.user_id]} key={i}></Post>;
+        return <Post data={data} pic={mapping[data.user_id]} key={i} self={props.self}></Post>;
     });
 
 

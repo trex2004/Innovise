@@ -1,14 +1,18 @@
 .post-follow-button {
-  padding: 12.5px 30px;
+  padding: 12px 30px;
   border: 0;
   border-radius: 100px;
   background-color: rgba(54, 166, 178, 0);
   border: rgba(54, 166, 178, 1) solid 1px;
-  color: #ffffff;
-  font-weight: Bold;
+  /* font-weight: Bold; */
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   scale: 80%;
+  font-family: "Poppins" !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  font-size: 100% !important;
+  color: lightgray;
 }
 
 .post-follow-button:hover {
