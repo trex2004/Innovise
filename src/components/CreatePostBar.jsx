@@ -15,7 +15,7 @@ export function CreatePostBar(props){
     const [showSearchModal, setShowSearchModal] = useState(false);
     const [reload,setReload] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
-
+    const [pic,setPic] = useState("");
 
     useEffect(()=>{
         const getTags = async() => {
@@ -107,7 +107,7 @@ export function CreatePostBar(props){
         <div className="create-div d-flex flex-column align-items-center gap-3 py-3 Poppins">
             <div className="create-div-top d-flex flex-row gap-4 justify-content-center ">
                 <div className="create-bar-picture-div d-flex justify-content-center">
-                    <img src={testProfilepic} alt="profile picture" className="rounded-circle create-bar-picture-internal-div m-auto"></img>
+                    <img src={ "data:image;base64,"+localStorage.getItem("picture")} alt="profile picture" className="rounded-circle create-bar-picture-internal-div m-auto"></img>
                 </div>
                 <div className=" create-post-button-div align-self-center ">
                     <div className="main-create-post-button d-flex align-items-center Poppins-create-post-button px-4 gap-2 py-2" onClick={() => handleSearch("search")}><SearchRoundedIcon fontSize="large"/>Search </div>

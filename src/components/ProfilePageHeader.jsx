@@ -103,6 +103,7 @@ export function ProfilePageHeader() {
     }
 
     let data_b64 = userDetails["picture"];
+    localStorage.setItem("picture",data_b64)
     data_b64 = "data:image;base64,"+data_b64
 
     let colour="#1D1D1D";

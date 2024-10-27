@@ -26,6 +26,7 @@ const LoginPage = (props) => {
             localStorage.setItem("username", username);
             localStorage.setItem("id", userId.data.payload._id);
             localStorage.setItem("authToken", x.data.access_token);
+            localStorage.setItem("picture", userId.data.payload.picture);
             navigate("/");
             message.success("Login Successfull");
         } catch (error) {
