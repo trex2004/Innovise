@@ -1,5 +1,4 @@
 import "./CreatePostBar.css"
-import testProfilepic from "./test-profile-pic.jpg"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useEffect, useState } from "react";

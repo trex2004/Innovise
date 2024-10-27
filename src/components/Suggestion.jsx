@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import "./Suggestion.css"
 import api from "./axiosbaseurl";
-import testProfilepic from "./test-profile-pic.jpg"
 import { useNavigate } from "react-router-dom";
 
 
@@ -39,7 +38,7 @@ export function Suggestion(props){
             <div className="suggest-option  d-flex justify-content-between p-1 Poppins" key={i} >
                 <div className="d-flex">
                     <div className="suggestions-picture-div d-flex justify-content-center">
-                        <img src={testProfilepic} alt="profile picture" className="rounded-circle suggestions-picture-internal-div m-auto"></img>
+                        <img src={"data:image;base64,"+user.picture} alt="profile picture" className="rounded-circle suggestions-picture-internal-div m-auto"></img>
                     </div>
                     <div className="uname-div align-self-center Poppins-sugg" onClick={() => handleClick(user.name)}>{user.fullname}</div>
                 </div>  

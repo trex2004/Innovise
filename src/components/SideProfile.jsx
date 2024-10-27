@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './SideProfile.css';
-import testProfilepic from "./test-profile-pic.jpg"
 import api from './axiosbaseurl';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
