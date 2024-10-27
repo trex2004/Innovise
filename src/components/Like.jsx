@@ -1,21 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-
-const LikeButton = ({isLiked}) => {
+const LikeButton = ({ isLiked }) => {
   return (
     <StyledWrapper>
       <label className="ui-like tw-justify-center ">
         <input type="checkbox" checked={isLiked} disabled />
         <div className="like">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="">
-            <g strokeWidth={0} id="SVGRepo_bgCarrier" />
+            <g strokeWidth={1} id="SVGRepo_bgCarrier" />
             <g
               strokeLinejoin="round"
               strokeLinecap="round"
               id="SVGRepo_tracerCarrier"
             />
             <g id="SVGRepo_iconCarrier">
-              <path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z" />
+              <path
+                d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"
+                stroke="red"
+                strokeWidth="2"
+              />
             </g>
           </svg>
         </div>
@@ -24,6 +27,7 @@ const LikeButton = ({isLiked}) => {
   );
 };
 
+
 const StyledWrapper = styled.div`
   .ui-like {
     display: flex;
@@ -31,9 +35,9 @@ const StyledWrapper = styled.div`
     justify-content: center; // Center icon horizontally
    
   --icon-size: 24px;
-  --icon-secondary-color: rgb(255, 255, 255);
-  --icon-hover-color: rgb(211, 205, 205);
-  --icon-primary-color: rgb(230, 26, 26);
+  --icon-secondary-color:  rgba(255, 0, 0, 0);;
+  
+  --icon-primary-color: red;
   --icon-circle-border: 1px solid var(--icon-primary-color);
   --icon-circle-size: 35px;
   --icon-anmt-duration: 0.3s;

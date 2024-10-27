@@ -5,6 +5,10 @@
     padding: 0%;
 }
 
+.side-div{
+    background-color: rgba(43, 43, 43, 0.795);
+}
+
 .logo-div-img{
     /* width: 15vw !important; */
     max-width:100% !important;
