@@ -12,6 +12,7 @@ const ProfilePageOtherUser = (props) =>{
 
     const [userId, setUserId] = useState();
     const userName = useParams().username
+    const pid = useParams().pid
     const [typeFilter,setTypeFilter] = useState("")
 
     
@@ -39,7 +40,7 @@ const ProfilePageOtherUser = (props) =>{
                 </div>
                 <div className="middle-column-profile-page d-flex flex-column justify-content-center mx-2">
                     <ProfilePageHeaderOtherUser userName={userName}  />
-                    <PostContainer id={userId} self={false} type={typeFilter}/>
+                    <PostContainer id={userId} self={false} type={typeFilter} pid={pid}/>
                 </div>
                 <div className="nav-right mx-2 ">
                     <Suggestion/>

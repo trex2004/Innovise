@@ -22,25 +22,47 @@ export function NavBar(props){
             setActiveButton("Trending")
         }
         if(value=='Following'){
-            props.filterSetter('following')
-            navigate("/")
-            setActiveButton("Following")
+            if(activeButton=="Following"){
+                props.filterSetter("")
+                setActiveButton("Trending")
+            }
+            else{
+                props.filterSetter('following')
+                navigate("/")
+                setActiveButton("Following")
+            }
         }
         if(value=='Post'){
-            setActiveButton("Post")
-            props.filterSetter('post')
+            if(activeButton=="Post"){
+                props.filterSetter("")
+                setActiveButton("")
+            }
+            else{
+                setActiveButton("Post")
+                props.filterSetter('post')
+            }
         }
         if(value=='Internships'){
-            setActiveButton("Internships")
-            props.filterSetter('internship')
+            if(activeButton=="Internships"){
+                props.filterSetter("")
+                setActiveButton("")
+            }
+            else{
+                setActiveButton("Internships")
+                props.filterSetter('internship')
+            }
         }
         if(value=='Project'){
-            setActiveButton("Project")
-            props.filterSetter('project')
+            if(activeButton=="Project"){
+                props.filterSetter("")
+                setActiveButton("")
+            }
+            else{
+                setActiveButton("Project")
+                props.filterSetter('project')
+            }
         }
     }
-
-    console.log(activeButton)
 
     return (
         <div className="side-div d-flex flex-column  ">

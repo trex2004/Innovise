@@ -12,6 +12,7 @@ export function PostContainer(props) {
     const typeFilter = props.type;
     const tagFilter = props.tags;
     const uid = props.id;
+    const pid = props.pid;
 
     useEffect(() => {
         const getPostDetails = async () => {
@@ -58,9 +59,16 @@ export function PostContainer(props) {
                         setMapping(x.data.mapping)
                     }
                     else{
-                        const data = await api.get("/users/post/" + uid, {headers: { Authorization: "Bearer " + authToken },});
-                        setPostData(data.data.payload);
-                        setMapping(data.data.mapping)
+                        if(pid){
+                            const data = await api.get("/post/" + pid, {headers: { Authorization: "Bearer " + authToken },});
+                            setPostData(data.data.payload);
+                            setMapping(data.data.mapping)
+                        }
+                        else{
+                            const data = await api.get("/users/post/" + uid, {headers: { Authorization: "Bearer " + authToken },});
+                            setPostData(data.data.payload);
+                            setMapping(data.data.mapping)
+                        }
                     }
                 }
             } catch (error) {

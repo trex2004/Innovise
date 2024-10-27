@@ -36,7 +36,8 @@ export function Post(props) {
         navigate("/profile/" + value)
     }
     const handleShare = () => {
-        console.log("Share")
+        navigator.clipboard.writeText("http://localhost:3000/profile/"+data.user_name+"/"+data._id)
+        messageApi.open({type: 'success',content: 'Share Link Copied',className: 'Poppins-message',style:{}});
     }
 
     const handleDelete = () => {
@@ -153,6 +154,7 @@ export function Post(props) {
                         </Flex>
                        
                         <Flex gap="middle" align="flex-end" justify="flex-end" style={{ "height": "50%" }}>
+                            {contextHolder}
                             <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleShare()} style={{textTransform:"none"}} startIcon={<ShareAltOutlined />} >Share</Button>
                             <Button className="border rounded-pill border-secondary text-secondary Poppins-btn" onClick={handleLike} style={{textTransform:"none"}} startIcon={<LikeButton isLiked={isLiked}  />}> {data.likes?data.likes:"Like"} </Button>
                         </Flex>

@@ -16,6 +16,7 @@ function App() {
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/profile' element={<ProtectedRoute><ProfilePage/></ProtectedRoute>}/>
         <Route path='/profile/:username' element={<ProtectedRoute><ProfilePageOtherUser/></ProtectedRoute>}/>
+        <Route path='/profile/:username/:pid' element={<ProtectedRoute><ProfilePageOtherUser/></ProtectedRoute>}/>
       </Routes>
     </>
   );
