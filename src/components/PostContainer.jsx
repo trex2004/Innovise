@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Post } from "./Post.jsx";
 import api from "./axiosbaseurl.js";
 import Loader from "./Loader.jsx";
-import { Pagination } from "antd";
+import { ConfigProvider, Pagination } from "antd";
 
 export function PostContainer(props) {
 
@@ -97,6 +97,10 @@ export function PostContainer(props) {
         return <Post data={data} pic={mapping[data.user_id]} key={i} self={props.self}></Post>;
     });
 
+    let colour="#1D1D1D";
+    let activeColour = "#131313";
+    let passiveColour = "#181818";
+    let dropDownColour = "#333333";
 
     // Render loader when data is loading
     if (loading) {
@@ -112,7 +116,12 @@ export function PostContainer(props) {
             <div style={{ marginTop: "1vi" }}>
                 {postHtml}
             </div>
-            <Pagination defaultCurrent={1} current={page} total={noOfPages} onChange={(value) => setPage(value)}/>
+            <ConfigProvider theme={{components: {
+                                    Pagination: {colorBgContainer : dropDownColour, colorText:"#FFFFFF",
+                                                colorTextDisabled:"#FFFFFF",itemBg:dropDownColour},}
+                            ,}}>
+                <Pagination defaultCurrent={1} current={page} total={noOfPages} onChange={(value) => setPage(value)}/>
+            </ConfigProvider>
         </>
     );
 }
