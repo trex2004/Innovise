@@ -5,7 +5,6 @@ import { SideProfile } from "../components/SideProfile"; // Change of component
 import { Suggestion } from "../components/Suggestion";
 import { PostContainer } from "../components/PostContainer.jsx";
 import api from "../components/axiosbaseurl.js"; //import this to send request
-import { useNavigate } from "react-router-dom";
 import { CreatePostBar } from "../components/CreatePostBar.jsx";
 import { ConfigProvider } from "antd";
 
@@ -13,14 +12,8 @@ import { ConfigProvider } from "antd";
 
 const MainPage = () =>{
 
-    const navigate = useNavigate();
-    const [isOpen, setIsOpen] = useState(true);
     const [typeFilter,setTypeFilter] = useState("")
     const [tagFilter,setTagFilter] = useState([])
-
-    const toProfilePage = () => {
-        navigate("/profile")
-    }
 
     useEffect(() => {
         async function test(){
@@ -54,7 +47,7 @@ const MainPage = () =>{
                         </div>
                         <div>
                             <div className="nav-left d-flex justify-content-center mx-2 rounded " >
-                                {isOpen && <NavBar filterSetter={setTypeFilter}/>}
+                                <NavBar filterSetter={setTypeFilter}/>
                             </div>
                             <div className="middle-column d-flex flex-column mx-2">
                                 <CreatePostBar tagSetter={setTagFilter}/>

@@ -134,7 +134,7 @@ export function ProfilePageHeader() {
             </div>
             <ConfigProvider theme={{components: {
                 Form: {labelColor:"#FFFFFF"}, 
-                Modal: {titleColor:"#FFFFFF",titleFontSize:17,titleLineHeight:2},
+                Modal: {titleColor:"#FFFFFF",titleFontSize:17,titleLineHeight:2,colorIcon:"#FFFFFF"},
                 Input: {activeBg: activeColour,activeBorderColor: activeColour,
                         hoverBg: activeColour,hoverBorderColor: activeColour,
                         colorBgContainer: passiveColour,colorBorder: passiveColour,

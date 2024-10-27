@@ -32,6 +32,11 @@
     justify-content: flex-start;
 }
 
+.navbar-Button-active{
+    color: #000000 !important;
+    background-color: aqua !important;
+}
+
 .nav-div{
     margin-left: 10%;
     margin-right: 10%;

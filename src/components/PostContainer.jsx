@@ -27,9 +27,14 @@ export function PostContainer(props) {
                             i++;
                         });
                         bodyFormData.append("num",tagFilter.length)
-                        bodyFormData.append("type",typeFilter)
+                        if(typeFilter=="following"){
+                            bodyFormData.append("following",1)
+                        }
+                        else{
+                            bodyFormData.append("type",typeFilter)
+                        }
                         const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
-                        setPostData(x.data.payload);
+                        setPostData(x.data.payload.reverse());
                         setMapping(x.data.mapping)
                     }
                     else{

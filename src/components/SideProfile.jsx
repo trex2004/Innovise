@@ -7,7 +7,7 @@ import Loader from './Loader';
 
 export function SideProfile() {
     const [userId, setUserId] = useState(localStorage.getItem("id"));
-    const [userDetails, setUserDetails] = useState();
+    const [userDetails, setUserDetails] = useState([]);
     const [userLogout, setUserLogout] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const navigate = useNavigate();
@@ -22,6 +22,9 @@ export function SideProfile() {
         dataFetch();
     }, [userId])
 
+    let data_b64 = userDetails["picture"];
+    data_b64 = "data:image;base64,"+data_b64
+
     useEffect(() => {
         const logout = async () => {
             if(userLogout){
@@ -29,6 +32,7 @@ export function SideProfile() {
                 localStorage.removeItem("authToken")
                 localStorage.removeItem("id")
                 localStorage.removeItem("username")
+                localStorage.removeItem("picture")
                 navigate("/login")
             }
         }
@@ -51,7 +55,7 @@ export function SideProfile() {
                 <div onClick={() => handleClick("profile")} style={{cursor:"pointer"}}>
                     <div className="profile-image">
                         <img
-                            src={testProfilepic}
+                            src={data_b64}
                             alt="Profile"
                         />
                     </div>
