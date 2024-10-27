@@ -19,7 +19,7 @@
 }
 .nav-right-profile-page{
     width: 17vw !important;
-    position: fixed;
+    position: absolute;
     top: 3vh;
     right: 5vw;
 }

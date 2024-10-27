@@ -70,7 +70,7 @@ export function ProfilePageHeader() {
                 i++;
             });
             bodyFormData.append("num",values.tags.length)
-            await api.post("/users/interests",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
+            await api.put("/users/",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
             setReload(!reload)
             setShowAddTagModal(false)
         } catch (error) {
@@ -154,7 +154,7 @@ export function ProfilePageHeader() {
                         colorIcon: "#FFFFFF"},
                 },}}>
                 <Modal title="Add Tags" open={showAddTagModal} onCancel={() => setShowAddTagModal(false)} destroyOnClose={true} footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
-                    <Form name="dynamic_form_nest_item"  onFinish={addTags} autoComplete="off" >
+                    <Form name="dynamic_form_nest_item"  onFinish={addTags} autoComplete="off" initialValues={{["tags"]:userTags}}>
                         <Form.Item name="tags" label="Tags" >
                             <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
                         </Form.Item>
