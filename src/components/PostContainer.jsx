@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Post } from "./Post.jsx";
 import api from "./axiosbaseurl.js";
 import Loader from "./Loader.jsx";
+import { Pagination } from "antd";
 
 export function PostContainer(props) {
 
@@ -9,6 +10,8 @@ export function PostContainer(props) {
     const [postData, setPostData] = useState([]);
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
     const [loading, setLoading] = useState(true); // Add loading state
+    const [page, setPage] = useState(1);
+    const [noOfPages, setNoOfPages] = useState(1);
     const typeFilter = props.type;
     const tagFilter = props.tags;
     const uid = props.id;
@@ -34,12 +37,15 @@ export function PostContainer(props) {
                         else{
                             bodyFormData.append("type",typeFilter)
                         }
+                        bodyFormData.append("page",page)
                         const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
+                        setNoOfPages(x.data.pages)
                         setPostData(x.data.payload.reverse());
                         setMapping(x.data.mapping)
                     }
                     else{
-                        const data = await api.get("/users/post/suggestions", {headers: { Authorization: "Bearer " + authToken },});
+                        const data = await api.get("/users/post/suggestions"+"?page="+page, {headers: { Authorization: "Bearer " + authToken },});
+                        setNoOfPages(data.data.pages)
                         setPostData(data.data.payload);
                         setMapping(data.data.mapping)
                     }
@@ -48,24 +54,29 @@ export function PostContainer(props) {
                         let bodyFormData = new FormData();
                         // let i=1;
                         // tagFilter.forEach(tag => {
-                        //     bodyFormData.append(`tag[${i}]`,tag)
-                        //     i++;
-                        // });
-                        // bodyFormData.append("num",tagFilter.length)
-                        bodyFormData.append("owner",uid)
-                        bodyFormData.append("type",typeFilter)
-                        const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
-                        setPostData(x.data.payload);
-                        setMapping(x.data.mapping)
-                    }
+                            //     bodyFormData.append(`tag[${i}]`,tag)
+                            //     i++;
+                            // });
+                            // bodyFormData.append("num",tagFilter.length)
+                            bodyFormData.append("owner",uid)
+                            bodyFormData.append("type",typeFilter)
+                            bodyFormData.append("page",page)
+                            const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
+                            setNoOfPages(x.data.pages)
+                            setPostData(x.data.payload);
+                            setMapping(x.data.mapping);
+                        }
                     else{
                         if(pid){
                             const data = await api.get("/post/" + pid, {headers: { Authorization: "Bearer " + authToken },});
+                            setNoOfPages(data.data.pages)
                             setPostData(data.data.payload);
                             setMapping(data.data.mapping)
                         }
                         else{
-                            const data = await api.get("/users/post/" + uid, {headers: { Authorization: "Bearer " + authToken },});
+                            const data = await api.get("/users/post/" + uid + "?page="+page, {headers: { Authorization: "Bearer " + authToken },});
+                            console.log(data)
+                            setNoOfPages(data.data.pages)
                             setPostData(data.data.payload);
                             setMapping(data.data.mapping)
                         }
@@ -79,7 +90,7 @@ export function PostContainer(props) {
         };
 
         getPostDetails();
-    }, [uid, authToken, typeFilter, tagFilter]);
+    }, [uid, authToken, typeFilter, tagFilter, page]);
 
 
     const postHtml = postData.map((data, i) => {
@@ -101,6 +112,7 @@ export function PostContainer(props) {
             <div style={{ marginTop: "1vi" }}>
                 {postHtml}
             </div>
+            <Pagination defaultCurrent={1} current={page} total={noOfPages} onChange={(value) => setPage(value)}/>
         </>
     );
 }
