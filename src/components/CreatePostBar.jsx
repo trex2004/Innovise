@@ -4,7 +4,6 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useEffect, useState } from "react";
 import { Button, ConfigProvider, Form, Input, Modal, Select, message } from "antd";
 import api from "./axiosbaseurl";
-import { message } from "antd";
 
 
 export function CreatePostBar(props){
@@ -17,7 +16,6 @@ export function CreatePostBar(props){
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [messageApi, contextHolder] = message.useMessage();
     const [pic,setPic] = useState("");
-    const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(()=>{
         const getTags = async() => {
