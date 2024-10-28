@@ -37,7 +37,7 @@ export function ProfilePageHeader() {
                 })
                 setOptions(new_options);
             } catch (error) {
-                message.error("Error fetching tags");
+                message.error({content: 'Failed to fetch tags!',className: 'Poppins-message',style: {}});
             }
         }
         const getUserDetails = async () => {
@@ -48,7 +48,7 @@ export function ProfilePageHeader() {
                 setUserDetails(x.data.payload)
             }
             catch (error) {
-                message.error("Unable to fetch user data in profile page header component");
+                message.error({content: 'Failed to fetch user data!',className: 'Poppins-message',style: {}});
             }
         }
         getTags();

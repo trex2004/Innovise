@@ -77,7 +77,6 @@ export function PostContainer(props) {
                         }
                         else{
                             const data = await api.get("/users/post/" + uid + "?page="+page, {headers: { Authorization: "Bearer " + authToken },});
-                            console.log(data)
                             setNoOfPages(data.data.pages)
                             setPostData(data.data.payload);
                             setMapping(data.data.mapping)
@@ -85,7 +84,7 @@ export function PostContainer(props) {
                     }
                 }
             } catch (error) {
-                console.log("error in post container");
+                messageApi.open({type: 'error',content: 'Couldn\'t fetch posts!',className: 'Poppins-message',style:{}});
             } finally {
                 setLoading(false); // Stop loading after data fetch
             }
@@ -94,15 +93,14 @@ export function PostContainer(props) {
         getPostDetails();
     }, [uid, authToken, typeFilter, tagFilter, page]);
 
-    let postHtml = (
-        <div style={{"display":"flex","justifyContent":"center","alignItems":"center"}}>
-            <img className="tw-opacity-25 tw-scale-50" src={not_found_src} alt="not-found-img" width="500vw"/>
-        </div>
-    );
-    if (postData.length > 0){
-        postHtml = postData.map((data, i) => {
+    let postHtml = postData.map((data, i) => {
             return <Post data={data} pic={mapping[data.user_id]} key={i} self={props.self}></Post>;
         });
+    
+    if (postData.length == 0){
+        postHtml =  <div style={{"display":"flex","justifyContent":"center","alignItems":"center"}}>
+                        <img className="tw-opacity-25 tw-scale-50" src={not_found_src} alt="not-found-img" width="500vw"/>
+                    </div>
     }
 
     let colour="#1D1D1D";
@@ -110,7 +108,6 @@ export function PostContainer(props) {
     let passiveColour = "#181818";
     let dropDownColour = "#333333";
 
-    // Render loader when data is loading
     if (loading) {
         return (
             <div className="tw-mt-12">

@@ -42,7 +42,7 @@ export function Post(props) {
 
     const handleDelete = async () => {
         try {
-            message.success({content: 'Post Deleted Successfully',className: 'Poppins-message',style: {}});
+            message.success({content: 'Post Deleted Successfully',className: 'Poppins-message',style: {color:"white"}});
             await api.delete(`/post/${data._id}`, {headers: { Authorization: 'Bearer ' + authToken }});
             setDeleted(true);
             setData([]);
@@ -72,7 +72,7 @@ export function Post(props) {
             bodyFormData.append("like",+ !data.has_liked)
             api.post("/users/like",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
         } catch (error) {
-            console.log("error while liking")
+            message.error({content: 'Failed to like post',className: 'Poppins-message',style: {}});
         }
     }
     

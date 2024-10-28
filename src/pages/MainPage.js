@@ -6,7 +6,7 @@ import { Suggestion } from "../components/Suggestion";
 import { PostContainer } from "../components/PostContainer.jsx";
 import api from "../components/axiosbaseurl.js"; //import this to send request
 import { CreatePostBar } from "../components/CreatePostBar.jsx";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, message } from "antd";
 
 
 
@@ -14,6 +14,8 @@ const MainPage = () =>{
 
     const [typeFilter,setTypeFilter] = useState("")
     const [tagFilter,setTagFilter] = useState([])
+    const [messageApi, contextHolder] = message.useMessage();
+
 
     useEffect(() => {
         async function test(){
@@ -21,7 +23,7 @@ const MainPage = () =>{
                 let data = await api.get('/test'); //sending request to backend with axios
                 console.log(data.data); 
             } catch (error) {
-                console.log("Opps!! something went wrong")
+                messageApi.open({type: 'error',content: 'Oops!! something went wrong!',className: 'Poppins-message',style:{}});
             }
         }
 
@@ -37,6 +39,7 @@ const MainPage = () =>{
     return(
         <>
             <ConfigProvider theme={{components: {Message: {contentBg:"#2c2c2e",colorText:"white"},},}}>
+                {contextHolder}
                 <div className=" d-flex mx-3 justify-content-evenly responsive-flex ">
                     <div className="d-flex flex-column">
                         <div className="nav-top">

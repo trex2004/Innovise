@@ -67,9 +67,6 @@ export function NavBar(props){
 
     return (
         <div className="side-div d-flex flex-column  ">
-
-        
-
             <div className="tw-z-10 logo-div d-flex my-3" onClick={() => handleClick('Trending')} style={{cursor:"pointer"}}>
                 <img className="logo-div-img rounded" src={innoviseLogo} alt="Innovise Logo" />
             </div>

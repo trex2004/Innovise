@@ -13,6 +13,7 @@ export function ProfilePageHeaderOtherUser(props) {
     const [userId, setUserId] = useState();
     const [isFollowing, setIsFollowing] = useState(false);
     const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(false); 
     const [messageApi, contextHolder] = message.useMessage();
 
 
@@ -29,9 +30,11 @@ export function ProfilePageHeaderOtherUser(props) {
                 setUserId(tempUserId)
                 setUserTags(y.data.payload)
                 setUserDetails(x.data.payload)
+                setError(false);
             }
             catch (error) {
-                console.log("something went wrong while retriving user data, profile page header other user component")
+                messageApi.open({type: 'error',content: 'User Does not exist!',className: 'Poppins-message',style:{}});
+                setError(true);
             }
             finally{
                 setLoading(false)
@@ -61,7 +64,6 @@ export function ProfilePageHeaderOtherUser(props) {
             }
 
         } catch (error) {
-            console.log("Some error in following: other user header")
         }
     }
 
@@ -82,9 +84,17 @@ export function ProfilePageHeaderOtherUser(props) {
             <Loader/>
         );
     }
+    if(error){
+        return (
+            <>
+                {contextHolder}
+            </>
+        );
+    }
 
     return (
         <>
+            {contextHolder}
             <div className="profile-header-main-div d-flex flex-column Poppins">
                 <div className="profilepage-display-div d-flex">
                     <div className="profilepage-picture-div d-flex justify-content-center">
@@ -96,7 +106,6 @@ export function ProfilePageHeaderOtherUser(props) {
                             <div className="h6">{userDetails.email}</div>
                             <div className="">{userDetails.bio}</div>
                         </div>
-                        {contextHolder}
                         <div className="rounded-pill border px-3 py-1 edit-div-profile-header" onClick={handleFollow}>{isFollowing?"Unfollow":"Follow"}</div>
                     </div>
                 </div>

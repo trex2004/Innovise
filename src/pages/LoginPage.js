@@ -31,7 +31,6 @@ const LoginPage = (props) => {
             message.success("Login Successfull");
         } catch (error) {
             message.error("Login Unsccessfull");
-            console.log("login page error: sending name, password");
         }
     };
 

@@ -39,8 +39,6 @@ export function SideProfile() {
         }
 
         logout()
-        
-
     },[userLogout])
 
     const handleClick = (value) =>{
@@ -60,7 +58,6 @@ export function SideProfile() {
                 <div onClick={() => handleClick("profile")} style={{cursor:"pointer"}}>
                     <div className="profile-image">
                         <img
-                            
                             src={data_b64}
                             alt="Profile"
                         />

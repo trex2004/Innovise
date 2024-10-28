@@ -2,13 +2,16 @@ import { useEffect, useState } from "react"
 import "./Suggestion.css"
 import api from "./axiosbaseurl";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 
 
 export function Suggestion(props){
 
     const [users,setUsers] = useState([]);
-    const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'))
+    const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
+    const [messageApi, contextHolder] = message.useMessage();
+
     const navigate = useNavigate();
 
 
@@ -19,18 +22,18 @@ export function Suggestion(props){
                 const data = x.data.payload
                 setUsers(data)
             } catch (error) {
-                console.log("Error in seggestions component while feting data")
+                messageApi.open({type: 'error',content: 'Unable to fetch suggestions !',className: 'Poppins-message',style:{}});
             }
         }
         getSuggestions();
     },[])
-
-
+    
+    
     const handleClick = (value) =>{
         try {
             navigate("/profile/"+value)
         } catch (error) {
-            console.log("Error in navigating to profile : suggestion component")
+            messageApi.open({type: 'error',content: 'Something went wrong!',className: 'Poppins-message',style:{}});
         }
     }
 
@@ -51,15 +54,18 @@ export function Suggestion(props){
     })
     
     return (
-        <div className="suggest-div d-flex flex-column gap-3 p-2  justify-content-center Poppins">
-            <div className="align-self-center mt-3">
-                <div className="h5">Suggested</div>
-            </div>
+        <>
+            {contextHolder}
+            <div className="suggest-div d-flex flex-column gap-3 p-2  justify-content-center Poppins">
+                <div className="align-self-center mt-3">
+                    <div className="h5">Suggested</div>
+                </div>
 
-            <div className="suggest-content d-flex flex-column gap-3">
-                {x}
+                <div className="suggest-content d-flex flex-column gap-3">
+                    {x}
+                </div>
+                
             </div>
-            
-        </div>
+        </>
     )
 }

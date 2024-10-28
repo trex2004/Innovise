@@ -2,12 +2,14 @@ import { useEffect, useState } from "react"
 import "./Suggestion.css"
 import api from "./axiosbaseurl";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 
 export function FollowerList(){
 
     const [users,setUsers] = useState([]);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'))
+    const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
 
 
@@ -18,7 +20,7 @@ export function FollowerList(){
                 const data = x.data.payload
                 setUsers(data)
             } catch (error) {
-                console.log("Error in seggestions component while feting data")
+                messageApi.open({type: 'error',content: 'Counld\'t fetch followers!',className: 'Poppins-message',style:{}});
             }
         }
         getSuggestions();
