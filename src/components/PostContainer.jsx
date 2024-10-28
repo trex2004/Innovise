@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Post } from "./Post.jsx";
 import api from "./axiosbaseurl.js";
 import Loader from "./Loader.jsx";
-import { ConfigProvider, Pagination } from "antd";
-import not_found_src from "./not_found.png"
+import { ConfigProvider, Pagination, message } from "antd";
+import not_found_src from "./not_found.jpg"
 
 export function PostContainer(props) {
 
@@ -13,6 +13,7 @@ export function PostContainer(props) {
     const [loading, setLoading] = useState(true); // Add loading state
     const [page, setPage] = useState(1);
     const [noOfPages, setNoOfPages] = useState(1);
+    const [messageApi, contextHolder] = message.useMessage();
     const typeFilter = props.type;
     const tagFilter = props.tags;
     const uid = props.id;
@@ -129,6 +130,7 @@ export function PostContainer(props) {
 
     return (
         <>
+            {contextHolder}
             <div style={{ marginTop: "1vi" }}>
                 {postHtml}
             </div>

@@ -18,10 +18,9 @@ export function ProfilePageHeader() {
     const [showEditProfileModal, setShowEditProfileModal] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [reload,setReload] = useState(false);
-
+    const [messageApi, contextHolder] = message.useMessage();
     const [options,setOptions] = useState([]);
     const[pic,setPic] =  useState({})
-    const [messageApi, contextHolder] = message.useMessage();
 
     
     const userId = localStorage.getItem("id")
@@ -38,7 +37,7 @@ export function ProfilePageHeader() {
                 })
                 setOptions(new_options);
             } catch (error) {
-                console.log("Error fetching tags");
+                message.error("Error fetching tags");
             }
         }
         const getUserDetails = async () => {
@@ -49,7 +48,7 @@ export function ProfilePageHeader() {
                 setUserDetails(x.data.payload)
             }
             catch (error) {
-                console.log("something went wrong while retriving user data, profile page header component")
+                message.error("Unable to fetch user data in profile page header component");
             }
         }
         getTags();
@@ -75,12 +74,11 @@ export function ProfilePageHeader() {
             });
             bodyFormData.append("num",values.tags.length)
             await api.put("/users/",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
-            messageApi.open({type: 'success',content: 'Tags Edited Successfully',className: 'Poppins-message',style:{}});
+            messageApi.open({type: 'success',content: 'Updated interests!',className: 'Poppins-message',style:{}});
             setReload(!reload)
             setShowAddTagModal(false)
         } catch (error) {
-            console.log(error)
-            console.log("add tag modal issue")
+            messageApi.open({type: 'error',content: 'Unable to update interests!',className: 'Poppins-message',style:{}});
         }
     }
     
@@ -104,7 +102,7 @@ export function ProfilePageHeader() {
             setReload(!reload)
             setShowEditProfileModal(false)
         } catch (error) {
-            console.log("edit profile modal issue")
+            messageApi.open({type: 'error',content: 'Unable to update profile!',className: 'Poppins-message',style:{}});
         }
     }
 
@@ -123,6 +121,7 @@ export function ProfilePageHeader() {
         <>
         {contextHolder}
             <div className="profile-header-main-div d-flex flex-column Poppins">
+                {contextHolder}
                 <div className="profilepage-display-div d-flex">
                     <div className="profilepage-picture-div d-flex justify-content-center">
                         <img src={data_b64} alt="profile picture" className="rounded-circle profilepage-picture-internal-div m-auto"></img>
