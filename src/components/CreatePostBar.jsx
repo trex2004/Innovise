@@ -2,9 +2,8 @@ import "./CreatePostBar.css"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useEffect, useState } from "react";
-import { Button, ConfigProvider, Form, Input, Modal, Select } from "antd";
+import { Button, ConfigProvider, Form, Input, Modal, Select, message } from "antd";
 import api from "./axiosbaseurl";
-import { message } from "antd";
 
 
 export function CreatePostBar(props){
@@ -15,8 +14,8 @@ export function CreatePostBar(props){
     const [showSearchModal, setShowSearchModal] = useState(false);
     const [reload,setReload] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
-    const [pic,setPic] = useState("");
     const [messageApi, contextHolder] = message.useMessage();
+    const [pic,setPic] = useState("");
 
     useEffect(()=>{
         const getTags = async() => {
@@ -98,17 +97,18 @@ export function CreatePostBar(props){
             bodyFormData.append("link[1]",values.link1)
             bodyFormData.append("link[2]",values.link2)
             const data = await api.post("/users/post",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
-            messageApi.open({type: 'success',content: 'Post Created Successfully',className: 'Poppins-message',style:{}});
+            messageApi.open({type: 'success',content: 'Added new post!',className: 'Poppins-message',style:{}});
             setShowCreatePostModal(false)
             
 
         } catch (error) {
-            console.log("error while submitting post data")
+            messageApi.open({type: 'error',content: 'Error in adding new post!',className: 'Poppins-message',style:{}});
         }
     }
 
     return (
         <div className="create-div d-flex flex-column align-items-center gap-3 py-3 Poppins">
+            {contextHolder}
             <div className="create-div-top d-flex flex-row gap-4 justify-content-center ">
                 <div className="create-bar-picture-div d-flex justify-content-center">
                     <img src={ "data:image;base64,"+localStorage.getItem("picture")} alt="profile picture" className="rounded-circle create-bar-picture-internal-div m-auto"></img>
