@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/Profilepage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePageOtherUser from './pages/ProfilePageOtherUser';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/profile' element={<ProtectedRoute><ProfilePage/></ProtectedRoute>}/>
         <Route path='/profile/:username' element={<ProtectedRoute><ProfilePageOtherUser/></ProtectedRoute>}/>
         <Route path='/profile/:username/:pid' element={<ProtectedRoute><ProfilePageOtherUser/></ProtectedRoute>}/>
+        <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
     </>
   );
