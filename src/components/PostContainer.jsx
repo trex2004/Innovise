@@ -65,7 +65,7 @@ export function PostContainer(props) {
                             bodyFormData.append("page",page)
                             const x = await api.post("/users/post/filter",bodyFormData, {headers: { Authorization: "Bearer " + authToken },});
                             setNoOfPages(x.data.pages)
-                            setPostData(x.data.payload);
+                            setPostData(x.data.payload.reverse());
                             setMapping(x.data.mapping);
                         }
                     else{
@@ -78,7 +78,7 @@ export function PostContainer(props) {
                         else{
                             const data = await api.get("/users/post/" + uid + "?page="+page, {headers: { Authorization: "Bearer " + authToken },});
                             setNoOfPages(data.data.pages)
-                            setPostData(data.data.payload);
+                            setPostData(data.data.payload.reverse());
                             setMapping(data.data.mapping)
                         }
                     }
