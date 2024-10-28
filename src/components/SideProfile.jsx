@@ -23,7 +23,7 @@ export function SideProfile() {
         dataFetch();
     }, [userId])
 
-    let data_b64 = userDetails["picture"];
+    let data_b64 = localStorage.getItem("picture");
     data_b64 = "data:image;base64,"+data_b64
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export function SideProfile() {
         }
         if(value=='logout'){
             setUserLogout(true)
-            messageApi.open({type: 'success',content: 'Logout Successfull',className: 'Poppins-message',style:{}});
+            message.success('Logout Successfull');
 
         }        
     }

@@ -160,8 +160,8 @@ export function CreatePostBar(props){
                         <Form.Item name="link2" label="Link 2" rules={[{ type: 'url'}, { type: 'string', min: 6 }, {pattern: new RegExp(/(https):\/\/([\w.]+\/?)\S*/), message: "Url is not valid"}]}>
                             <Input placeholder="https://www.example.com" />
                         </Form.Item>
-                        <Form.Item name="tags" label="Tags" >
-                            <Select mode="multiple" placeholder="Please Select Tags" options={options}/>
+                        <Form.Item name="tags" label="Tags" rules={[{ required: true,message: 'Please enter atleast 1 tag!'}]}>
+                            <Select mode="multiple" placeholder="Please Select Tags" options={options} />
                         </Form.Item>
                         <Form.Item style={{display:"flex",justifyContent:"right"}}>
                             <Button type="primary" htmlType="submit">
