@@ -3,6 +3,8 @@ import './SideProfile.css';
 import api from './axiosbaseurl';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
+import { message } from "antd";
+
 
 export function SideProfile() {
     const [userId, setUserId] = useState(localStorage.getItem("id"));
@@ -10,7 +12,7 @@ export function SideProfile() {
     const [userLogout, setUserLogout] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const navigate = useNavigate();
-
+    const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(() => {
         async function dataFetch() {
@@ -37,6 +39,8 @@ export function SideProfile() {
         }
 
         logout()
+        
+
     },[userLogout])
 
     const handleClick = (value) =>{
@@ -45,6 +49,8 @@ export function SideProfile() {
         }
         if(value=='logout'){
             setUserLogout(true)
+            messageApi.open({type: 'success',content: 'Logout Successfull',className: 'Poppins-message',style:{}});
+
         }        
     }
 
@@ -65,7 +71,7 @@ export function SideProfile() {
                 </div>
                 <div className='d-flex justify-content-center gap-3'>
                     <button className="edit-btn" onClick={() => handleClick("profile")}>Edit</button>
-                    <button className="logout-btn" onClick={() => handleClick("logout")}>Logout</button>
+                    <button className="logout-btn" onClick={() => handleClick("logout")}>{contextHolder}Logout</button>
                 </div>
             </div>
         );

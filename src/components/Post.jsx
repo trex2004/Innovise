@@ -41,9 +41,12 @@ export function Post(props) {
     }
 
     const handleDelete = () => {
+        messageApi.open({type: 'success',content: 'Post Deleted Successfully',className: 'Poppins-message',style:{}});
+
         setDeleted(true)
         api.delete("/post/"+data._id,{headers: {Authorization: 'Bearer ' + authToken}})
         setData([])
+
     }
     
     const handleCopyClick = (link) => {
@@ -97,7 +100,7 @@ export function Post(props) {
 
     return (
         <>
-        
+        {contextHolder}
         <Flex gap="middle" vertical align="center" style={{ "marginBottom": "1vi" }}>
             
             <Card gap="middle" style={{ "width": "100%", "backgroundColor": colour, "border": "none", "borderRadius": "20px" }}>

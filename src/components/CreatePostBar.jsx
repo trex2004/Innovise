@@ -4,6 +4,7 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useEffect, useState } from "react";
 import { Button, ConfigProvider, Form, Input, Modal, Select } from "antd";
 import api from "./axiosbaseurl";
+import { message } from "antd";
 
 
 export function CreatePostBar(props){
@@ -15,6 +16,7 @@ export function CreatePostBar(props){
     const [reload,setReload] = useState(false);
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [pic,setPic] = useState("");
+    const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(()=>{
         const getTags = async() => {
@@ -96,7 +98,10 @@ export function CreatePostBar(props){
             bodyFormData.append("link[1]",values.link1)
             bodyFormData.append("link[2]",values.link2)
             const data = await api.post("/users/post",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
+            messageApi.open({type: 'success',content: 'Post Created Successfully',className: 'Poppins-message',style:{}});
             setShowCreatePostModal(false)
+            
+
         } catch (error) {
             console.log("error while submitting post data")
         }
@@ -133,6 +138,8 @@ export function CreatePostBar(props){
                         multipleItemBg: activeColour,multipleItemBorderColor: activeColour,
                         colorIcon: "#FFFFFF"},
                 },}}>
+                                {contextHolder}
+                    
                 <Modal title="Create Post" open={showCreatePostModal} onCancel={() => setShowCreatePostModal(false)} destroyOnClose={true}  footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
                     <Form onFinish={submitFormData} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} initialValues={{["type"]: typeOfPost,["link1"]:"",["link2"]:"" }}>
                         <Form.Item name="type" label="Type" rules={[{ required: true,message: 'Please select Type!'}]} >
