@@ -17,7 +17,6 @@ export function CreatePostBar(props){
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [messageApi, contextHolder] = message.useMessage();
     const [pic,setPic] = useState("");
-    const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(()=>{
         const getTags = async() => {
