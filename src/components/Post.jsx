@@ -43,6 +43,7 @@ export function Post(props) {
     const handleDelete = () => {
         setDeleted(true)
         api.delete("/post/"+data._id,{headers: {Authorization: 'Bearer ' + authToken}})
+        message.success("Post deleted successfully!")
         setData([])
     }
     
