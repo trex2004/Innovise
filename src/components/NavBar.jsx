@@ -8,6 +8,7 @@ import Groups3OutlinedIcon from '@mui/icons-material/Groups3Outlined';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Circle from "./Gradient_circle";
 
 
 export function NavBar(props){
@@ -66,7 +67,10 @@ export function NavBar(props){
 
     return (
         <div className="side-div d-flex flex-column  ">
-            <div className="logo-div d-flex my-3" onClick={() => handleClick('Trending')} style={{cursor:"pointer"}}>
+
+        
+
+            <div className="tw-z-10 logo-div d-flex my-3" onClick={() => handleClick('Trending')} style={{cursor:"pointer"}}>
                 <img className="logo-div-img rounded" src={innoviseLogo} alt="Innovise Logo" />
             </div>
             <div className="nav-div gap-3 d-flex flex-column">
@@ -76,6 +80,8 @@ export function NavBar(props){
                 <Button className={activeButton=="Internships"?"navbar-Button-active navbar-Button Poppins py-2":"navbar-Button Poppins py-2"} onClick={() => handleClick('Internships')}><WorkOutlineOutlinedIcon className="icon"/> &nbsp; Internships</Button>
                 <Button className={activeButton=="Project"?"navbar-Button-active navbar-Button Poppins py-2":"navbar-Button Poppins py-2"} onClick={() => handleClick('Project')}><Groups3OutlinedIcon className="icon" /> &nbsp; Project Collab</Button>
             </div>
+            
+            
         </div>
     )
 }

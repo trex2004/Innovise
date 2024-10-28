@@ -8,9 +8,7 @@
     left: 5vw;
     overflow:auto;
 }
-html {
-    scroll-behavior: smooth;
-}
+
 
 .middle-column{
     width: 50vw !important;

@@ -4,6 +4,7 @@ import api from "./axiosbaseurl";
 import { useNavigate } from "react-router-dom";
 
 
+
 export function Suggestion(props){
 
     const [users,setUsers] = useState([]);
@@ -58,6 +59,7 @@ export function Suggestion(props){
             <div className="suggest-content d-flex flex-column gap-3">
                 {x}
             </div>
+            
         </div>
     )
 }

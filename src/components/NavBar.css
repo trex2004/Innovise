@@ -6,13 +6,16 @@
 }
 
 .side-div{
-    background-color: rgba(43, 43, 43, 0.795);
+    background-color: #1c1c1c;
+    overflow: hidden;
+    position: relative;
 }
 
 .logo-div-img{
     /* width: 15vw !important; */
     max-width:100% !important;
     height:auto !important;
+    filter: drop-shadow(0px 4px 10px rgba(54, 166, 178, 0.05));
 }
 
 /*font used for right nav bar buttons - swayam*/

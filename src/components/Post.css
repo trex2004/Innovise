@@ -16,7 +16,7 @@
 }
 
 .post-follow-button:hover {
-  background-color: rgba(54, 166, 178, 0.7);
+  background-color: rgba(54, 166, 178, 1);
   color: black;
   box-shadow: 0 0 20px rgba(54, 166, 178, 0.5);
   transform: scale(1.05);
