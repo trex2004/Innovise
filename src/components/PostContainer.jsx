@@ -3,7 +3,7 @@ import { Post } from "./Post.jsx";
 import api from "./axiosbaseurl.js";
 import Loader from "./Loader.jsx";
 import { ConfigProvider, Pagination, message } from "antd";
-import not_found_src from "./not_found.jpg"
+import not_found_src from "./not_found.png"
 
 export function PostContainer(props) {
 

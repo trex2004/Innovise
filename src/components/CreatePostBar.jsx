@@ -4,7 +4,6 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useEffect, useState } from "react";
 import { Button, ConfigProvider, Form, Input, Modal, Select, message } from "antd";
 import api from "./axiosbaseurl";
-import { message } from "antd";
 
 
 export function CreatePostBar(props){
