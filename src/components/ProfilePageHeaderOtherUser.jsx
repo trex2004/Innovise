@@ -93,6 +93,7 @@ export function ProfilePageHeaderOtherUser(props) {
                     <div className=" profilepage-details-div d-flex flex-column gap-4 m-auto">
                         <div>
                             <div className="h2">{userDetails.fullname}</div>
+                            <div className="h6">{userDetails.email}</div>
                             <div className="">{userDetails.bio}</div>
                         </div>
                         {contextHolder}
