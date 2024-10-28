@@ -3,6 +3,7 @@ import { Post } from "./Post.jsx";
 import api from "./axiosbaseurl.js";
 import Loader from "./Loader.jsx";
 import { ConfigProvider, Pagination } from "antd";
+import not_found_src from "./not_found.jpg"
 
 export function PostContainer(props) {
 
@@ -92,10 +93,16 @@ export function PostContainer(props) {
         getPostDetails();
     }, [uid, authToken, typeFilter, tagFilter, page]);
 
-
-    const postHtml = postData.map((data, i) => {
-        return <Post data={data} pic={mapping[data.user_id]} key={i} self={props.self}></Post>;
-    });
+    let postHtml = (
+        <div style={{"display":"flex","justifyContent":"center","alignItems":"center"}}>
+            <img src={not_found_src} alt="not-found-img" width="500vw"/>
+        </div>
+    );
+    if (postData.length > 0){
+        postHtml = postData.map((data, i) => {
+            return <Post data={data} pic={mapping[data.user_id]} key={i} self={props.self}></Post>;
+        });
+    }
 
     let colour="#1D1D1D";
     let activeColour = "#131313";
@@ -111,17 +118,22 @@ export function PostContainer(props) {
         );
     }
 
+    let pagination = (
+        <ConfigProvider theme={{components: {
+                    Pagination: {colorBgContainer : dropDownColour, colorText:"#FFFFFF",
+                                colorTextDisabled:"#FFFFFF",itemBg:dropDownColour},}
+            ,}}>
+        <Pagination defaultCurrent={1} current={page} total={noOfPages} onChange={(value) => setPage(value)}/>
+        </ConfigProvider>
+    )
+
     return (
         <>
             <div style={{ marginTop: "1vi" }}>
                 {postHtml}
             </div>
-            <ConfigProvider theme={{components: {
-                                    Pagination: {colorBgContainer : dropDownColour, colorText:"#FFFFFF",
-                                                colorTextDisabled:"#FFFFFF",itemBg:dropDownColour},}
-                            ,}}>
-                <Pagination defaultCurrent={1} current={page} total={noOfPages} onChange={(value) => setPage(value)}/>
-            </ConfigProvider>
+
+            {postData.length > 0 ? pagination : <></>}
         </>
     );
 }
