@@ -21,7 +21,6 @@ export function ProfilePageHeader() {
     const [messageApi, contextHolder] = message.useMessage();
     const [options,setOptions] = useState([]);
     const[pic,setPic] =  useState({})
-    const [messageApi, contextHolder] = message.useMessage();
 
     
     const userId = localStorage.getItem("id")
