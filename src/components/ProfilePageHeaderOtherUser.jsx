@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./ProfilePageHeader.css";
 import api from "./axiosbaseurl";
+import { message } from "antd";
 import Loader from "./Loader";
 
 export function ProfilePageHeaderOtherUser(props) {
@@ -12,7 +13,8 @@ export function ProfilePageHeaderOtherUser(props) {
     const [userId, setUserId] = useState();
     const [isFollowing, setIsFollowing] = useState(false);
     const [loading, setLoading] = useState(true); 
-    
+    const [messageApi, contextHolder] = message.useMessage();
+
 
     useEffect(() => {
         const getUserDetails = async () => {
@@ -47,12 +49,17 @@ export function ProfilePageHeaderOtherUser(props) {
                 bodyFormData.append("delete",1)
                 setIsFollowing(false)
                 await api.post("/users/following",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
+                messageApi.open({type: 'success',content: 'Unfollowed Sucessfully',className: 'Poppins-message',style:{}});
+
             }
             else{
                 bodyFormData.append("delete",0)
                 setIsFollowing(true)
                 await api.post("/users/following",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
+                messageApi.open({type: 'success',content: 'Followed Sucessfully',className: 'Poppins-message',style:{}});
+
             }
+
         } catch (error) {
             console.log("Some error in following: other user header")
         }
@@ -88,6 +95,7 @@ export function ProfilePageHeaderOtherUser(props) {
                             <div className="h2">{userDetails.fullname}</div>
                             <div className="">{userDetails.bio}</div>
                         </div>
+                        {contextHolder}
                         <div className="rounded-pill border px-3 py-1 edit-div-profile-header" onClick={handleFollow}>{isFollowing?"Unfollow":"Follow"}</div>
                     </div>
                 </div>

@@ -96,7 +96,7 @@ export function PostContainer(props) {
 
     let postHtml = (
         <div style={{"display":"flex","justifyContent":"center","alignItems":"center"}}>
-            <img src={not_found_src} alt="not-found-img" width="500vw"/>
+            <img className="tw-opacity-25 tw-scale-50" src={not_found_src} alt="not-found-img" width="500vw"/>
         </div>
     );
     if (postData.length > 0){

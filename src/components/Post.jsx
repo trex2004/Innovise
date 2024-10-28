@@ -40,11 +40,16 @@ export function Post(props) {
         messageApi.open({type: 'success',content: 'Share Link Copied',className: 'Poppins-message',style:{}});
     }
 
-    const handleDelete = () => {
-        setDeleted(true)
-        api.delete("/post/"+data._id,{headers: {Authorization: 'Bearer ' + authToken}})
-        message.success("Post deleted successfully!")
-        setData([])
+    const handleDelete = async () => {
+        try {
+            message.success({content: 'Post Deleted Successfully',className: 'Poppins-message',style: {}});
+            await api.delete(`/post/${data._id}`, {headers: { Authorization: 'Bearer ' + authToken }});
+            setDeleted(true);
+            setData([]);
+        } catch (error) {
+            console.error("Error while deleting post:", error);
+            message.error({content: 'Failed to delete post',className: 'Poppins-message',style: {}});
+        }
     }
     
     const handleCopyClick = (link) => {
@@ -98,7 +103,7 @@ export function Post(props) {
 
     return (
         <>
-        
+        {contextHolder}
         <Flex gap="middle" vertical align="center" style={{ "marginBottom": "1vi" }}>
             
             <Card gap="middle" style={{ "width": "100%", "backgroundColor": colour, "border": "none", "borderRadius": "20px" }}>
@@ -145,7 +150,6 @@ export function Post(props) {
                                             <p className="post-link-link" >Link {i + 1}</p>
                                         </div>
                                         <div className="post-link-copy-div" onClick={() => handleCopyClick(x)}>
-                                            {contextHolder}
                                             <ContentCopyRoundedIcon className="post-link-copy-div-icon" style={{color:"#8F8F8F"}} fontSize="small"/>
                                         </div>
                                     </div>
@@ -155,7 +159,6 @@ export function Post(props) {
                         </Flex>
                        
                         <Flex gap="middle" align="flex-end" justify="flex-end" style={{ "height": "50%" }}>
-                            {contextHolder}
                             <Button className="border rounded-pill border-secondary text-secondary Poppins-btn post-btn" onClick={() => handleShare()} style={{textTransform:"none"}} startIcon={<ShareAltOutlined />} >Share</Button>
                             <Button className="border rounded-pill border-secondary text-secondary Poppins-btn" onClick={handleLike} style={{textTransform:"none"}} startIcon={<LikeButton isLiked={isLiked}  />}> {data.likes?data.likes:"Like"} </Button>
                         </Flex>

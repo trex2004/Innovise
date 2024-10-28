@@ -9,6 +9,7 @@ import Loader from "./Loader";
 import { message } from "antd";
 
 
+
 export function ProfilePageHeader() {
 
     const [userDetails, setUserDetails] = useState("");
@@ -20,6 +21,8 @@ export function ProfilePageHeader() {
     const [messageApi, contextHolder] = message.useMessage();
     const [options,setOptions] = useState([]);
     const[pic,setPic] =  useState({})
+    const [messageApi, contextHolder] = message.useMessage();
+
     
     const userId = localStorage.getItem("id")
 
@@ -95,7 +98,8 @@ export function ProfilePageHeader() {
             bodyFormData.append("picture",pic)
 
             await api.put("/users/",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
-            messageApi.open({type: 'success',content: 'Updated profile!',className: 'Poppins-message',style:{}});
+            messageApi.open({type: 'success',content: 'Profile Edited Successfully',className: 'Poppins-message',style:{}});
+
             setReload(!reload)
             setShowEditProfileModal(false)
         } catch (error) {
@@ -116,6 +120,7 @@ export function ProfilePageHeader() {
         <Loader/>
     ):(
         <>
+        {contextHolder}
             <div className="profile-header-main-div d-flex flex-column Poppins">
                 {contextHolder}
                 <div className="profilepage-display-div d-flex">

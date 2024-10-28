@@ -4,6 +4,7 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useEffect, useState } from "react";
 import { Button, ConfigProvider, Form, Input, Modal, Select, message } from "antd";
 import api from "./axiosbaseurl";
+import { message } from "antd";
 
 
 export function CreatePostBar(props){
@@ -16,6 +17,7 @@ export function CreatePostBar(props){
     const [authToken,setAuthToken] = useState(localStorage.getItem('authToken'));
     const [messageApi, contextHolder] = message.useMessage();
     const [pic,setPic] = useState("");
+    const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(()=>{
         const getTags = async() => {
@@ -99,6 +101,8 @@ export function CreatePostBar(props){
             const data = await api.post("/users/post",bodyFormData,{headers: {Authorization: 'Bearer ' + authToken}})
             messageApi.open({type: 'success',content: 'Added new post!',className: 'Poppins-message',style:{}});
             setShowCreatePostModal(false)
+            
+
         } catch (error) {
             messageApi.open({type: 'error',content: 'Error in adding new post!',className: 'Poppins-message',style:{}});
         }
@@ -136,6 +140,8 @@ export function CreatePostBar(props){
                         multipleItemBg: activeColour,multipleItemBorderColor: activeColour,
                         colorIcon: "#FFFFFF"},
                 },}}>
+                                {contextHolder}
+                    
                 <Modal title="Create Post" open={showCreatePostModal} onCancel={() => setShowCreatePostModal(false)} destroyOnClose={true}  footer={false} styles={{content: { backgroundColor: colour}, header: { backgroundColor: colour}}}>
                     <Form onFinish={submitFormData} labelCol={{ span: 4 }} layout="horizontal" style={{ maxWidth: 800 }} initialValues={{["type"]: typeOfPost,["link1"]:"",["link2"]:"" }}>
                         <Form.Item name="type" label="Type" rules={[{ required: true,message: 'Please select Type!'}]} >
