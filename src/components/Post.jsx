@@ -100,7 +100,7 @@ export function Post(props) {
         
         <Flex gap="middle" vertical align="center" style={{ "marginBottom": "1vi" }}>
             
-            <Card style={{ "width": "100%", "backgroundColor": colour, "border": "none", "borderRadius": "20px" }}>
+            <Card gap="middle" style={{ "width": "100%", "backgroundColor": colour, "border": "none", "borderRadius": "20px" }}>
                 
                 <div className="mx-2">
                 
@@ -124,7 +124,7 @@ export function Post(props) {
                         </Flex>
                     </Flex>
 
-                    <Flex style={{ "marginBottom": "0px", "marginTop": "1.5vi" }}>
+                    <Flex style={{ "marginBottom": "1.5vi", "marginTop": "1.5vi" }}>
                         <p style={{ "color": "#FFFFFF" }} className="Poppins-content">
                             {data.content}
                         </p>
