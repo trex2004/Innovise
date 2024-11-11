@@ -36,7 +36,7 @@ export function Post(props) {
         navigate("/profile/" + value)
     }
     const handleShare = () => {
-        navigator.clipboard.writeText("http://localhost:3000/profile/"+data.user_name+"/"+data._id)
+        navigator.clipboard.writeText("https://innovise-iota.vercel.app/profile/"+data.user_name+"/"+data._id)
         messageApi.open({type: 'success',content: 'Share Link Copied',className: 'Poppins-message',style:{}});
     }
 
